@@ -3,6 +3,8 @@ layout: base.njk
 title: Release Notes
 ---
 
+<section>
+
 # Release Notes
 
 Updates and improvements to the Interloom platform.
@@ -15,3 +17,5 @@ Updates and improvements to the Interloom platform.
 </li>
 {%- endfor -%}
 </ul>
+
+</section>

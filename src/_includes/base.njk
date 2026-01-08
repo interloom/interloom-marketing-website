@@ -5,26 +5,69 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ title }} | Interloom</title>
   <meta name="description" content="{{ description or 'Interloom - Custom automation that fits how you work' }}">
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@latest/dist/geist.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/css/style.css' | url }}">
 </head>
 <body>
   <header>
-    <nav>
-      <a href="/" class="logo">Interloom</a>
-      <div class="nav-links">
-        <a href="/blog/">Blog</a>
-        <a href="/releases/">Release Notes</a>
-        <a href="#contact" class="cta-link">Get in Touch</a>
-      </div>
-    </nav>
+    <div class="header-grid">
+      <div class="gutter gutter-left"></div>
+      <nav>
+        <a href="{{ '/' | url }}" class="logo"><img src="{{ '/images/InterloomSymbol.svg' | url }}" alt="" class="logo-icon">Interloom</a>
+        <div class="nav-links">
+          <a href="{{ '/pitches/' | url }}">Pitches</a>
+          <a href="{{ '/blog/' | url }}">Blog</a>
+          <a href="{{ '/releases/' | url }}">Release Notes</a>
+          <a href="#contact" class="cta-link">Get in Touch</a>
+        </div>
+      </nav>
+      <div class="gutter gutter-right"></div>
+    </div>
   </header>
 
-  <main>
-    {{ content | safe }}
-  </main>
+  <div class="page-grid">
+    <div class="gutter gutter-left"></div>
+    <main>
+      {{ content | safe }}
+    </main>
+    <div class="gutter gutter-right"></div>
+  </div>
 
   <footer>
-    <p>&copy; 2025 Interloom. All rights reserved.</p>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Product</h4>
+        <a href="#">Features</a>
+        <a href="#">Integrations</a>
+        <a href="#">Pricing</a>
+        <a href="#">Changelog</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">About</a>
+        <a href="#">Blog</a>
+        <a href="#">Careers</a>
+        <a href="#">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <a href="#">Documentation</a>
+        <a href="#">Case Studies</a>
+        <a href="#">API Reference</a>
+        <a href="#">Support</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Security</a>
+        <a href="#">GDPR</a>
+      </div>
+    </div>
+    <p class="footer-copyright">&copy; 2025 Interloom. All rights reserved.</p>
   </footer>
 </body>
 </html>

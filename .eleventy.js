@@ -14,16 +14,29 @@ module.exports = function(eleventyConfig) {
 
   // Collection for blog posts
   eleventyConfig.addCollection("posts", function(collectionApi) {
-    return collectionApi.getFilteredByGlob("src/blog/*.md").sort((a, b) => {
-      return b.date - a.date;
-    });
+    return collectionApi.getFilteredByGlob("src/blog/*.md")
+      .filter(item => !item.inputPath.includes("index.md"))
+      .sort((a, b) => {
+        return b.date - a.date;
+      });
   });
 
   // Collection for release notes
   eleventyConfig.addCollection("releases", function(collectionApi) {
-    return collectionApi.getFilteredByGlob("src/releases/*.md").sort((a, b) => {
-      return b.date - a.date;
-    });
+    return collectionApi.getFilteredByGlob("src/releases/*.md")
+      .filter(item => !item.inputPath.includes("index.md"))
+      .sort((a, b) => {
+        return b.date - a.date;
+      });
+  });
+
+  // Collection for pitches
+  eleventyConfig.addCollection("pitches", function(collectionApi) {
+    return collectionApi.getFilteredByGlob("src/pitches/*.md")
+      .filter(item => !item.inputPath.includes("index.md"))
+      .sort((a, b) => {
+        return b.date - a.date;
+      });
   });
 
   return {
@@ -34,6 +47,7 @@ module.exports = function(eleventyConfig) {
       data: "_data"
     },
     markdownTemplateEngine: "njk",
-    htmlTemplateEngine: "njk"
+    htmlTemplateEngine: "njk",
+    pathPrefix: "/interloom-website-3/"
   };
 };
