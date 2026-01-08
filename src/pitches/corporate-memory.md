@@ -1,15 +1,15 @@
 ---
-layout: base.njk
-title: Home
+title: Corporate Memory
+date: 2025-01-08
 ---
 
 <section class="hero">
 
-# Your back-office runs on email, spreadsheets, and tribal knowledge. Interloom fixes that.
+# Your operations learn from every decision. Build expertise that stays.
 
-<p class="subtitle">Custom-built automation that fits how you actually work — not how software thinks you should.</p>
+<p class="subtitle">Turn institutional knowledge into operational memory. Every resolution makes the next one better.</p>
 
-<a href="#contact" class="btn">Get a workflow assessment</a>
+<a href="#contact" class="btn">Build your memory layer</a>
 
 </section>
 
@@ -27,7 +27,7 @@ title: Home
 
 <div class="testimonial">
 <div class="testimonial-portrait"></div>
-<blockquote>"Interloom understood our workflows better than we did. They built something that actually works the way our team thinks."</blockquote>
+<blockquote>"Interloom captured our best project outcomes. New consultants now start with 5 years of institutional knowledge built in."</blockquote>
 <div class="testimonial-author">
 <span class="name">Sarah Chen</span>
 <span class="title">Head of Operations, VW Group Services</span>
@@ -36,7 +36,7 @@ title: Home
 
 <div class="testimonial">
 <div class="testimonial-portrait"></div>
-<blockquote>"We went from 12-minute average handling time to 90 seconds. The ROI was obvious within the first month."</blockquote>
+<blockquote>"Our resolution quality improved 3x once we started grounding decisions in proven precedents instead of starting from scratch."</blockquote>
 <div class="testimonial-author">
 <span class="name">Michael Weber</span>
 <span class="title">Claims Director, Zurich Insurance</span>
@@ -45,7 +45,7 @@ title: Home
 
 <div class="testimonial">
 <div class="testimonial-portrait"></div>
-<blockquote>"Unlike other vendors, Interloom didn't disappear after deployment. They're continuously improving our systems."</blockquote>
+<blockquote>"We're building expertise that compounds. Every case we resolve makes the system smarter for the next one."</blockquote>
 <div class="testimonial-author">
 <span class="name">Anna Schmidt</span>
 <span class="title">VP Digital Transformation, Comdirect</span>
@@ -54,7 +54,7 @@ title: Home
 
 <div class="testimonial">
 <div class="testimonial-portrait"></div>
-<blockquote>"The integration was seamless. Our legacy systems now talk to each other without the manual data entry that used to consume half our day."</blockquote>
+<blockquote>"The memory layer eliminated the tribal knowledge problem. Our best decisions are now permanently captured."</blockquote>
 <div class="testimonial-author">
 <span class="name">Thomas Richter</span>
 <span class="title">IT Director, BMW Group</span>
@@ -70,11 +70,11 @@ title: Home
 <div class="story">
 <div class="story-content">
 
-### The problem with off-the-shelf
+### Expertise walks out the door
 
-Most automation tools force you into rigid workflows designed for someone else's business. You end up adapting your processes to fit the software, instead of the other way around.
+When your best consultants leave, their knowledge goes with them. Every new project starts from scratch. Your team reinvents solutions that were already solved last year. Experience doesn't compound—it evaporates.
 
-<a href="#contact" class="story-link">See what makes us different →</a>
+<a href="#contact" class="story-link">See how to capture it →</a>
 
 </div>
 <div class="story-visual">
@@ -85,11 +85,11 @@ Most automation tools force you into rigid workflows designed for someone else's
 <div class="story">
 <div class="story-content">
 
-### Built around your reality
+### Build precedent, not just tickets
 
-We start by understanding how your team actually works — the workarounds, the edge cases, the tribal knowledge that keeps things running. Then we build automation that fits.
+Interloom captures decisions, outcomes, and the reasoning behind them. Future cases match against proven precedents, not blank slates. Your best work becomes the foundation for everything that follows.
 
-<a href="#contact" class="story-link">Learn about our process →</a>
+<a href="#contact" class="story-link">Learn how precedents work →</a>
 
 </div>
 <div class="story-visual">
@@ -100,11 +100,11 @@ We start by understanding how your team actually works — the workarounds, the 
 <div class="story">
 <div class="story-content">
 
-### Continuously improving
+### Compound your expertise
 
-Your business changes. Your automation should too. We monitor, optimize, and evolve your systems as your needs grow — no more shelfware.
+Each resolved case strengthens your memory layer. New team members start with years of institutional knowledge, not training manuals. What took you 5 years to learn takes them 5 minutes to access.
 
-<a href="#contact" class="story-link">Explore ongoing support →</a>
+<a href="#contact" class="story-link">Explore the memory layer →</a>
 
 </div>
 <div class="story-visual">
@@ -127,11 +127,11 @@ Your business changes. Your automation should too. We monitor, optimize, and evo
 <section class="cta" id="contact">
 <div class="cta-inner">
 
-## See how it would work for you
+## See how you could build your memory layer
 
-We'll walk through your specific workflows and show you what's possible.
+We'll show you how to capture institutional knowledge and turn it into operational memory.
 
-<a href="mailto:hello@interloom.io" class="btn">Get a workflow assessment</a>
+<a href="mailto:hello@interloom.io" class="btn">Build your memory layer</a>
 
 </div>
 </section>

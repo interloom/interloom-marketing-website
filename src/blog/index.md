@@ -3,6 +3,8 @@ layout: base.njk
 title: Blog
 ---
 
+<section>
+
 # Blog
 
 <ul class="post-list">
@@ -13,3 +15,5 @@ title: Blog
 </li>
 {%- endfor -%}
 </ul>
+
+</section>
