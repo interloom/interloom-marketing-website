@@ -11,7 +11,7 @@ tags: []
 <ul class="post-list">
 {%- for pitch in collections.pitches -%}
 <li>
-  <a href="{{ pitch.url }}">{{ pitch.data.title }}</a>
+  <a href="{{ pitch.url | url }}">{{ pitch.data.title }}</a>
 </li>
 {%- endfor -%}
 </ul>
