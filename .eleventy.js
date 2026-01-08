@@ -39,7 +39,7 @@ module.exports = function(eleventyConfig) {
       });
   });
 
-  return {
+  const config = {
     dir: {
       input: "src",
       output: "_site",
@@ -47,7 +47,13 @@ module.exports = function(eleventyConfig) {
       data: "_data"
     },
     markdownTemplateEngine: "njk",
-    htmlTemplateEngine: "njk",
-    pathPrefix: "/interloom-website-3/"
+    htmlTemplateEngine: "njk"
   };
+
+  // Only add pathPrefix for production builds (GitHub Pages)
+  if (process.env.ELEVENTY_ENV === "production") {
+    config.pathPrefix = "/interloom-website-3/";
+  }
+
+  return config;
 };
