@@ -540,6 +540,15 @@ section::before {
 }
 
 /* Post page */
+.post {
+  padding: 3rem 1rem;
+}
+
+.post > * {
+  max-width: 1000px;
+  margin-inline: auto;
+}
+
 .post-header {
   margin-bottom: 2rem;
   padding-bottom: 1rem;
@@ -553,6 +562,11 @@ section::before {
 
 .post-content {
   margin-bottom: 3rem;
+}
+
+.post-content > * {
+  max-width: 1000px;
+  margin-inline: auto;
 }
 
 /* Footer */

@@ -23,3 +23,15 @@ Vendors show demos with clean data, simple workflows, and happy-path scenarios. 
 What actually works is starting from the workflow — mapping how work really moves through your organization, then building automation that handles the complexity you actually have.
 
 This takes longer to set up. But it's the difference between 40% automation and 90% automation.
+
+<section class="cta" id="contact">
+<div class="cta-inner">
+
+## Let's talk about your operations
+
+We'll map your actual workflows and show you what 90% automation looks like.
+
+<a href="mailto:hello@interloom.io" class="btn">Get in touch</a>
+
+</div>
+</section>
