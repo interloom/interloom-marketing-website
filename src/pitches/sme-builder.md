@@ -7,7 +7,7 @@ date: 2025-01-12
 
 # AI Operations for Experts.
 
-<p class="subtitle">Build AI-powered workflows in hours, not months. No engineering backlog. No compromise on how you actually work.</p>
+<p class="subtitle">Orchestrate your AI agents and domain experts in one unified workspace</p>
 
 <a href="#contact" class="btn">See what you can build</a>
 

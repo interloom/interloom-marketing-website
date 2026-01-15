@@ -39,6 +39,15 @@ module.exports = function(eleventyConfig) {
       });
   });
 
+  // Collection for documentation
+  eleventyConfig.addCollection("docs", function(collectionApi) {
+    return collectionApi.getFilteredByGlob("src/docs/*.md")
+      .filter(item => !item.inputPath.includes("index.md"))
+      .sort((a, b) => {
+        return (a.data.order || 0) - (b.data.order || 0);
+      });
+  });
+
   const config = {
     dir: {
       input: "src",

@@ -1,0 +1,23 @@
+{
+  "sections": [
+    {
+      "title": "Getting Started",
+      "items": [
+        { "title": "Introduction", "url": "/docs/introduction/" },
+        { "title": "Getting Started", "url": "/docs/getting-started/" }
+      ]
+    },
+    {
+      "title": "Core Concepts",
+      "items": [
+        { "title": "Primitives", "url": "/docs/primitives/" }
+      ]
+    },
+    {
+      "title": "Reference",
+      "items": [
+        { "title": "API Reference", "url": "/docs/api-reference/" }
+      ]
+    }
+  ]
+}
