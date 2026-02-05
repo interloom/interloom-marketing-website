@@ -1,6 +1,12 @@
 module.exports = function(eleventyConfig) {
-  // Copy static assets (CSS handled by Tailwind CLI)
+  // Copy static assets
   eleventyConfig.addPassthroughCopy("src/images");
+
+  // Tell Eleventy's dev server to watch and serve the Tailwind output
+  eleventyConfig.setServerOptions({
+    domDiff: false,
+    watch: ["_site/css/**/*.css"]
+  });
 
   // Date formatting filter
   eleventyConfig.addFilter("dateFormat", (date) => {
