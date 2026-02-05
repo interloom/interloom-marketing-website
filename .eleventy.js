@@ -61,7 +61,7 @@ module.exports = function(eleventyConfig) {
 
   // Only add pathPrefix for production builds (GitHub Pages)
   if (process.env.ELEVENTY_ENV === "production") {
-    config.pathPrefix = "/interloom-website-3/";
+    config.pathPrefix = "/interloom-marketing-website/";
   }
 
   return config;

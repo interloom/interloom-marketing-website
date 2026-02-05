@@ -54,4 +54,4 @@ For docs, add `order: N` to control sidebar order.
 
 ## Deployment
 
-GitHub Pages with `pathPrefix: /interloom-website-3/` in production (set via `ELEVENTY_ENV=production`).
+GitHub Pages with `pathPrefix: /interloom-marketing-website/` in production (set via `ELEVENTY_ENV=production`).

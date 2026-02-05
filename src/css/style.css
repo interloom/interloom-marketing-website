@@ -95,6 +95,11 @@ nav {
   width: auto;
 }
 
+.logo-wordmark {
+  height: 1.25rem;
+  width: auto;
+}
+
 .nav-links {
   display: flex;
   gap: 1.5rem;
