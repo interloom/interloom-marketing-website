@@ -6,7 +6,7 @@
     "dev:css": "tailwindcss -i ./src/css/main.css -o ./_site/css/main.css --watch",
     "start": "npm-run-all --parallel dev:*",
     "build:css": "tailwindcss -i ./src/css/main.css -o ./_site/css/main.css --minify",
-    "build:11ty": "ELEVENTY_ENV=production eleventy",
+    "build:11ty": "eleventy",
     "build": "npm-run-all build:css build:11ty"
   },
   "devDependencies": {
