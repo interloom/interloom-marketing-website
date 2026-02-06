@@ -1,5 +1,5 @@
 ---
-title: Context Layer v2 — Incremental Learning
+title: Context Layer v2 with Incremental Learning
 date: 2025-02-03
 tag: Context Layer
 ---

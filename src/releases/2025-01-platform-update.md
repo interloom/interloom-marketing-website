@@ -1,5 +1,5 @@
 ---
-title: Improved Document Extraction & Email Parsing
+title: Improved Document Extraction and Email Parsing
 date: 2025-01-06
 tag: Platform
 ---

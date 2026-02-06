@@ -1,5 +1,5 @@
 ---
-title: Audit Trail & Compliance Reports
+title: Audit Trail and Compliance Reports
 date: 2025-04-14
 tag: Enterprise
 ---

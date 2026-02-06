@@ -1,4 +1,24 @@
+const markdownIt = require("markdown-it");
+const markdownItAnchor = require("markdown-it-anchor");
+
+const slugify = (s) =>
+  s.toLowerCase().replace(/[^\w\s-]/g, "").replace(/\s+/g, "-").replace(/-+/g, "-").trim();
+
 module.exports = function(eleventyConfig) {
+
+  // Markdown with heading anchors (clean slugs, no special chars)
+  const md = markdownIt({ html: true })
+    .use(markdownItAnchor, { permalink: false, slugify });
+  eleventyConfig.setLibrary("md", md);
+
+  // Filter to extract h2 headings from rendered content for TOC
+  eleventyConfig.addFilter("toc", (content) => {
+    const matches = [...(content || "").matchAll(/<h2[^>]*id="([^"]*)"[^>]*>(.*?)<\/h2>/gi)];
+    return matches.map(m => ({
+      id: m[1],
+      text: m[2].replace(/<[^>]+>/g, "")
+    }));
+  });
   // Copy static assets
   eleventyConfig.addPassthroughCopy("src/images");
 

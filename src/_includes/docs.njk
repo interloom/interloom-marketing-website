@@ -15,6 +15,18 @@ layout: base.njk
                       {% if page.url == item.url %}bg-surface-3 text-fg-1 font-medium{% else %}text-fg-3 hover:text-fg-1 hover:bg-surface-3/50{% endif %}">
               {{ item.title }}
             </a>
+            {%- if page.url == item.url %}
+            {%- set headings = content | toc %}
+            {%- if headings.length > 0 %}
+            <ul class="list-none p-0 m-0 mt-1 mb-2">
+              {%- for h in headings %}
+              <li class="m-0">
+                <a href="#{{ h.id }}" class="block py-1 px-2 pl-4 text-sm rounded no-underline text-fg-3 hover:text-fg-1 hover:bg-surface-3/50 transition-colors">{{ h.text }}</a>
+              </li>
+              {%- endfor %}
+            </ul>
+            {%- endif %}
+            {%- endif %}
           </li>
           {%- endfor %}
         </ul>

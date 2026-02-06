@@ -1,5 +1,5 @@
 ---
-title: Native Integrations — SAP, Salesforce, ServiceNow
+title: Native Integrations for SAP, Salesforce, and ServiceNow
 date: 2025-05-19
 tag: Integrations
 ---

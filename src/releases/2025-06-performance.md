@@ -1,5 +1,5 @@
 ---
-title: 3x Throughput & Sub-Second Latency
+title: Three Times the Throughput with Sub-Second Latency
 date: 2025-06-02
 tag: Platform
 ---
