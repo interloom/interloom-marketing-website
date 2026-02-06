@@ -3,12 +3,14 @@ layout: base.njk
 title: The AI-Native Back Office
 ---
 
-<section class="fade-in-stagger min-h-[50vh] flex flex-col justify-center items-center py-16 md:py-24 px-4">
-<h1 class="text-4xl md:text-5xl font-normal tracking-tight text-center max-w-2xl">The AI Native Back Office</h1>
-<p class="text-xl md:text-2xl text-fg-3 leading-snug tracking-tight text-center max-w-2xl mt-4"><span class="text-fg-2">Workflow Orchestration for Complex Domains.</span> Deploy production AI workflows in natural language. Designed by the people who know the work, powered by a context layer that learns as it runs.</p>
-<div class="flex justify-center gap-3 mt-8">
+<section id="hero" class="fade-in-stagger relative min-h-[50vh] flex flex-col justify-center py-16 md:py-24 px-4" style="background-image: url('{{ '/images/landscape-right.png' | url }}'); background-repeat: no-repeat; background-position: calc(100% + 270px) center; background-size: auto 120%;">
+<div class="mx-auto max-w-5xl w-full relative z-10">
+<h1 class="text-4xl md:text-5xl font-normal tracking-tight max-w-2xl">The AI Native Back Office</h1>
+<p class="text-xl md:text-2xl text-fg-3 leading-snug tracking-tight max-w-2xl mt-4"><span class="text-fg-2">Workflow Orchestration for Complex Domains.</span> Deploy production AI workflows in natural language. Designed by the people who know the work, powered by a context layer that learns as it runs.</p>
+<div class="flex gap-3 mt-8">
 <a href="#contact" class="inline-flex items-center h-[32px] bg-fg-1 text-surface-1 px-3 rounded font-medium no-underline hover:opacity-85 transition-opacity">Book a demo</a>
 <a href="#contact" class="inline-flex items-center h-[32px] border border-line text-fg-2 px-3 rounded font-medium no-underline hover:bg-surface-3 transition-colors">Join Waitlist</a>
+</div>
 </div>
 </section>
 

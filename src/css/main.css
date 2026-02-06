@@ -414,3 +414,9 @@ section.fade-in-stagger > .visible {
   opacity: 1;
   transform: translateY(0);
 }
+
+@media (width < 80rem) {
+  #hero {
+    background-image: none !important;
+  }
+}

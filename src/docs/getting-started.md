@@ -6,7 +6,7 @@ order: 2
 
 This guide walks you through the core workflow: creating a space, opening a case, applying a procedure, and collaborating with both human and AI actors.
 
-## 1. Create a Space
+## Create a Space
 
 Spaces are workspace containers where related cases, procedures, and actors operate together. A space might represent a department ("Claims Operations"), a project ("Q1 Onboarding"), or a client engagement.
 
@@ -17,7 +17,7 @@ Spaces are workspace containers where related cases, procedures, and actors oper
 
 Every user also has a **private space** created automatically. Standalone threads (quick conversations with an AI agent, for example) start here and can be moved to a shared space later.
 
-## 2. Create a Procedure
+## Create a Procedure
 
 Procedures are reusable templates that define how a type of case should be handled. Before creating cases, define the stages they'll follow.
 
@@ -34,7 +34,7 @@ Procedures are reusable templates that define how a type of case should be handl
 | 3. Kickoff Call | Schedule and conduct welcome call | Human |
 | 4. Compliance Check | Run KYC/AML screening, file documentation | AI |
 
-## 3. Open a Case
+## Open a Case
 
 Cases are the primary unit of work in Interloom.
 
@@ -46,7 +46,7 @@ Cases are the primary unit of work in Interloom.
 
 The case starts in the **intake** phase with **idle** motion — work hasn't begun yet.
 
-## 4. Start Working
+## Start Working
 
 When you're ready to begin, **commence** the case:
 
@@ -62,7 +62,7 @@ Work through each stage by completing its instructions:
 
 When all instructions in a stage are satisfied, the stage completes and the next one activates.
 
-## 5. Collaborate in the Thread
+## Collaborate in the Thread
 
 Every case has a **Thread** — a chronological timeline of everything that happens:
 
@@ -74,7 +74,7 @@ Every case has a **Thread** — a chronological timeline of everything that happ
 
 The thread is the single source of truth for what happened, when, and by whom. All activity is logged with visibility controls: public (all participants), internal (assigned actors and admins), or system (audit log only).
 
-## 6. Resolve and Close
+## Resolve and Close
 
 When the business-relevant work is done:
 
