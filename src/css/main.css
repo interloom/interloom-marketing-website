@@ -259,4 +259,157 @@
     max-width: 100%;
     border-radius: 0.5rem;
   }
+
+}
+
+
+/* =================================================================
+   Scaffold grid — outside @layer to bypass Tailwind tree-shaking
+   ================================================================= */
+:root {
+  --gutter-w: 0.75rem;
+}
+@media (width >= 48rem) {
+  :root {
+    --gutter-w: 2rem;
+  }
+}
+@media (width >= 80rem) {
+  :root {
+    --gutter-w: 3rem;
+  }
+}
+
+body {
+  overflow-x: clip;
+}
+
+main,
+footer {
+  padding-inline: var(--gutter-w);
+}
+
+header {
+  padding-inline: var(--gutter-w);
+  border-bottom: 1px solid var(--color-line);
+}
+
+header > nav {
+  border-inline: 1px solid var(--color-line);
+  margin-inline: -1px;
+}
+
+.scaffold {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  display: grid;
+  grid-template-columns: var(--gutter-w) 1fr var(--gutter-w);
+}
+
+.gutter {
+  background-color: var(--color-surface-3);
+}
+
+.gutter-left {
+  border-right: 1px solid var(--color-line);
+}
+
+.gutter-right {
+  border-left: 1px solid var(--color-line);
+  grid-column: 3;
+}
+
+main > section {
+  position: relative;
+  padding-inline: 1rem;
+}
+@media (width >= 48rem) {
+  main > section {
+    padding-inline: 2.5rem;
+  }
+}
+@media (width >= 80rem) {
+  main > section {
+    padding-inline: 4rem;
+  }
+}
+
+main > section:first-child::before {
+  display: none;
+}
+
+main > section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: calc(-1 * var(--gutter-w));
+  right: calc(-1 * var(--gutter-w));
+  border-top: 1px solid var(--color-line);
+  z-index: 41;
+}
+
+footer {
+  position: relative;
+  padding-inline: var(--gutter-w);
+  margin-top: 4rem;
+}
+
+footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  border-top: 1px solid var(--color-line);
+  z-index: 41;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+}
+.blog-grid h2 {
+  margin-top: 0;
+}
+@media (width >= 40rem) {
+  .blog-grid {
+    grid-template-columns: 1fr 180px;
+    gap: 2.5rem;
+    align-items: baseline;
+  }
+}
+.blog-meta {
+  text-align: left;
+}
+@media (width >= 40rem) {
+  .blog-meta {
+    text-align: right;
+  }
+}
+
+section.fade-in > * {
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+
+section.fade-in > .visible {
+  opacity: 1;
+}
+
+section.fade-in-stagger > * {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+section.fade-in-stagger > *:nth-child(1) { transition-delay: 0s; }
+section.fade-in-stagger > *:nth-child(2) { transition-delay: 0.15s; }
+section.fade-in-stagger > *:nth-child(3) { transition-delay: 0.3s; }
+
+section.fade-in-stagger > .visible {
+  opacity: 1;
+  transform: translateY(0);
 }

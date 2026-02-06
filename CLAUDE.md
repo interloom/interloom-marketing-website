@@ -12,7 +12,7 @@ Marketing and documentation website for Interloom, a custom automation platform.
 ## Commands
 
 - `npm start` - Run dev server (Eleventy + Tailwind watch in parallel) at http://localhost:8080
-- `npm run build` - Build for production (Tailwind minify + Eleventy with pathPrefix)
+- `npm run build` - Build for production (Tailwind minify + Eleventy)
 
 ## Project Structure
 
@@ -53,6 +53,24 @@ Content here...
 
 For docs, add `order: N` to control sidebar order.
 
+## Scaffold Grid System
+
+The site uses a structural scaffold overlay inspired by tailwindcss.com and Vercel's Geist docs — faint architectural lines that reveal the underlying grid and give the page visual grounding.
+
+**How it works:**
+- A `position: fixed` overlay (`div.scaffold` in `base.njk`) renders two gutter columns at the viewport edges with diagonal crosshatch fill and inner keyline borders.
+- `main > section::before` pseudo-elements draw full-bleed 1px hairlines between homepage sections.
+- Everything uses `--color-line` (10% opacity) and `--color-line-faint` (4% opacity) tokens, so dark mode adapts automatically.
+- `pointer-events: none` + `z-index: 40` (below header z-50) keeps the overlay non-interactive.
+
+**Gutter widths** are responsive via `--gutter-w`: 0.75rem → 2rem (md) → 3rem (xl).
+
+**Important — Tailwind v4 gotcha:** All scaffold CSS lives **outside** `@layer` blocks at the bottom of `main.css`. Tailwind v4 tree-shakes `@layer components`, and classes used only in `_includes/` templates (underscore prefix) aren't found by the content scanner. Non-layered CSS bypasses this and always wins in the cascade.
+
+**When adding new sections:** Any `<section>` directly inside `<main>` automatically gets a hairline at its top edge. No extra classes needed.
+
 ## Deployment
 
-GitHub Pages with `pathPrefix: /interloom-marketing-website/` in production (set via `ELEVENTY_ENV=production`).
+Primary deploy target is **Vercel** (serves from root `/`). `npm run build` produces a clean build with no path prefix.
+
+For **GitHub Pages** (subdirectory hosting), set `PATH_PREFIX=/interloom-marketing-website/` as an env var — Eleventy will prepend it to all `| url` filter outputs. Do **not** hardcode a prefix in `.eleventy.js` or the build script, as it breaks Vercel deploys.

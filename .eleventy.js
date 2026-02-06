@@ -17,6 +17,14 @@ module.exports = function(eleventyConfig) {
     });
   });
 
+  // Short month + year filter (e.g., "Jan 2025")
+  eleventyConfig.addFilter("monthYear", (date) => {
+    return new Date(date).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short'
+    });
+  });
+
   // Collection for blog posts
   eleventyConfig.addCollection("posts", function(collectionApi) {
     return collectionApi.getFilteredByGlob("src/blog/*.md")

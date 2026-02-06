@@ -1,20 +1,11 @@
 ---
-title: January 2025 Platform Update
+title: Improved Document Extraction & Email Parsing
 date: 2025-01-06
+tag: Platform
 ---
 
-## New features
+**Better handling of scanned documents and handwritten annotations.** The extraction pipeline now uses a two-pass approach — first an OCR pass for machine-readable text, then a vision model pass for handwritten notes, stamps, and annotations. Accuracy on mixed documents improved from 82% to 94%.
 
-- **Improved document extraction**: Better handling of scanned documents and handwritten annotations
-- **Email thread analysis**: Automated parsing of email conversation context for more accurate routing
+**Automated email thread analysis.** Workflows can now ingest full email threads and reconstruct conversation context — who said what, when, and which attachments belong to which message. Particularly useful for claims intake and customer support routing.
 
-## Improvements
-
-- Faster processing for high-volume periods
-- Enhanced accuracy for German-language documents
-- Reduced false positive rate in anomaly detection
-
-## Bug fixes
-
-- Fixed an issue where certain PDF attachments weren't processed correctly
-- Resolved occasional delays in notification delivery
+Also in this release: faster processing for high-volume periods, enhanced accuracy for German-language documents, and reduced false positive rates in anomaly detection.

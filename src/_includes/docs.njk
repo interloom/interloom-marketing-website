@@ -1,12 +1,12 @@
 ---
 layout: base.njk
 ---
-<div class="grid grid-cols-1 md:grid-cols-[240px_1fr] min-h-[calc(100vh-200px)]">
-  <aside class="border-b md:border-b-0 md:border-r border-line p-4 md:p-6 md:sticky md:top-[50px] md:h-[calc(100vh-50px)] overflow-y-auto">
+<div class="grid grid-cols-1 md:grid-cols-[220px_1fr]">
+  <aside class="border-b md:border-b-0 md:border-r border-line p-4 md:py-8 md:pr-6 md:pl-4 md:sticky md:top-[49px] md:h-[calc(100vh-49px)] overflow-y-auto">
     <nav>
       {%- for section in docsNav.sections %}
       <div class="mb-6">
-        <h4 class="text-xs font-medium uppercase tracking-wide text-fg-3 mb-2 px-2">{{ section.title }}</h4>
+        <h4 class="text-[11px] font-mono font-medium uppercase tracking-wider text-fg-4 mb-2 px-2">{{ section.title }}</h4>
         <ul class="list-none p-0 m-0">
           {%- for item in section.items %}
           <li class="m-0">
@@ -22,12 +22,14 @@ layout: base.njk
       {%- endfor %}
     </nav>
   </aside>
-  <article class="p-6 md:p-8 max-w-3xl">
-    <header class="mb-8 pb-4 border-b border-line">
-      <h1 class="font-serif text-2xl font-normal mb-0">{{ title }}</h1>
+  <div class="min-w-0">
+    <header class="border-b border-line bg-surface-1 px-6 md:px-10 py-10 md:py-14">
+      <h1 class="font-serif text-3xl md:text-4xl font-normal mb-0 tracking-tight">{{ title }}</h1>
     </header>
-    <div class="prose">
-      {{ content | safe }}
-    </div>
-  </article>
+    <article class="px-6 md:px-10 py-6 md:py-8 max-w-3xl">
+      <div class="prose">
+        {{ content | safe }}
+      </div>
+    </article>
+  </div>
 </div>

@@ -1,6 +1,9 @@
 ---
 title: Why Off-the-Shelf Automation Fails for Complex Operations
 date: 2025-01-07
+author: Erik Collinder
+description: Most automation software is designed for the general case. Your operations aren't the general case. The gap between what tools promise and what complex teams actually need is where most automation projects go to die — buried under workarounds, brittle integrations, and the quiet resignation of people who just go back to doing things manually.
+layout: post.njk
 ---
 
 Most automation software is designed for the general case. Your operations aren't the general case.
@@ -23,15 +26,3 @@ Vendors show demos with clean data, simple workflows, and happy-path scenarios. 
 What actually works is starting from the workflow — mapping how work really moves through your organization, then building automation that handles the complexity you actually have.
 
 This takes longer to set up. But it's the difference between 40% automation and 90% automation.
-
-<section class="cta" id="contact">
-<div class="cta-inner">
-
-## Let's talk about your operations
-
-We'll map your actual workflows and show you what 90% automation looks like.
-
-<a href="mailto:hello@interloom.io" class="btn">Get in touch</a>
-
-</div>
-</section>
