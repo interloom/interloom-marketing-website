@@ -65,9 +65,25 @@ The site uses a structural scaffold overlay inspired by tailwindcss.com and Verc
 
 **Gutter widths** are responsive via `--gutter-w`: 0.75rem → 2rem (md) → 3rem (xl).
 
-**Important — Tailwind v4 gotcha:** All scaffold CSS lives **outside** `@layer` blocks at the bottom of `main.css`. Tailwind v4 tree-shakes `@layer components`, and classes used only in `_includes/` templates (underscore prefix) aren't found by the content scanner. Non-layered CSS bypasses this and always wins in the cascade.
+**Important — Tailwind v4 gotcha:** All scaffold and `.prose` CSS lives **outside** `@layer` blocks at the bottom of `main.css`. Tailwind v4 tree-shakes `@layer components`, and classes used only in `_includes/` templates (underscore prefix) aren't found by the content scanner. Non-layered CSS bypasses this and always wins in the cascade.
 
 **When adding new sections:** Any `<section>` directly inside `<main>` automatically gets a hairline at its top edge. No extra classes needed.
+
+## Documentation
+
+Docs live in `src/docs/` and use the `docs.njk` layout (inherits from `base.njk`). Directory data file `src/docs/docs.json` sets `layout: docs.njk` and `tags: docs` for all pages.
+
+**Sidebar navigation** is defined in `src/_data/docsNav.json` with sections and items. The sidebar automatically shows h2 anchor links beneath each page title, extracted at build time via a `toc` filter (uses `markdown-it-anchor` for heading IDs).
+
+**Current doc pages** (ordered by `order` frontmatter):
+1. Introduction — platform overview
+2. Getting Started — walkthrough of spaces, cases, procedures
+3. Core Concepts — full domain model (environment tree, phase+motion, entities)
+4. API Reference — REST endpoints for all entities
+
+**Content grounding**: Documentation content is grounded in the Interloom ontology (`prototype-control-tower/ontology/interloom-ontology.yaml`). Key concepts: Organization → Space → Case (with phase+motion lifecycle), Procedures with Stages and Instructions, Actors (human+AI), Threads with Activities, Artifacts, DataTables, EmailMessages.
+
+**Heading style**: h2/h3 use `font-weight: 400` globally. Headlines across blog, releases, and docs should use editorial title case (no ampersands, no shorthand like "3x").
 
 ## Deployment
 
