@@ -3,6 +3,8 @@
 @source "../**/*.njk";
 @source "../**/*.md";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   /* =================================================================
      Base swatches — raw palette
@@ -482,24 +484,28 @@ section.fade-in-stagger > .visible {
   }
 }
 
+.carousel-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
 .carousel-prev,
 .carousel-next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(calc(-50% - 2rem));
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2rem;
+  height: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 9999px;
   border: 1px solid var(--color-line);
-  background: var(--color-surface-2);
+  background: none;
   color: var(--color-fg-3);
-  font-size: 1rem;
+  font-size: 0.875rem;
   cursor: pointer;
   transition: color 0.15s, border-color 0.15s;
-  z-index: 2;
 }
 
 .carousel-prev:hover,
@@ -508,19 +514,10 @@ section.fade-in-stagger > .visible {
   border-color: var(--color-fg-4);
 }
 
-.carousel-prev {
-  left: var(--_inset);
-}
-
-.carousel-next {
-  right: 0.5rem;
-}
-
 .carousel-dots {
   display: flex;
-  justify-content: center;
+  align-items: center;
   gap: 0.5rem;
-  margin-top: 1.5rem;
 }
 
 .carousel-dot {
@@ -536,5 +533,4 @@ section.fade-in-stagger > .visible {
 
 .carousel-dot.active {
   background: var(--color-fg-1);
-  transform: scale(1.25);
 }

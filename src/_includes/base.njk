@@ -160,17 +160,20 @@
       // Arrow navigation
       prevBtn.addEventListener('click', function () {
         var target = Math.max(current - 1, 0);
+        updateDots(target);
         track.scrollTo({ left: target * getStep(), behavior: 'smooth' });
       });
 
       nextBtn.addEventListener('click', function () {
         var target = Math.min(current + 1, slides.length - 1);
+        updateDots(target);
         track.scrollTo({ left: target * getStep(), behavior: 'smooth' });
       });
 
       // Dot navigation
       dots.forEach(function (dot, i) {
         dot.addEventListener('click', function () {
+          updateDots(i);
           track.scrollTo({ left: i * getStep(), behavior: 'smooth' });
         });
       });

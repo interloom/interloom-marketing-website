@@ -37,12 +37,14 @@ title: Workspace for Business Operations
 <p class="text-xl md:text-2xl text-fg-3 leading-snug tracking-tight max-w-2xl mt-8"><span class="text-fg-1">Agents in the loop.</span> Repetitive steps like extraction, triage, and follow-ups run autonomously inside controlled workflows. Agents operate within boundaries you set, and every action is grounded in context your team has already built. Over time, the system gets sharper.</p>
 </div>
 </div>
+<div class="carousel-nav">
 <button class="carousel-prev" aria-label="Previous slide">&larr;</button>
-<button class="carousel-next" aria-label="Next slide">&rarr;</button>
 <div class="carousel-dots">
 <button class="carousel-dot active" aria-label="Slide 1"></button>
 <button class="carousel-dot" aria-label="Slide 2"></button>
 <button class="carousel-dot" aria-label="Slide 3"></button>
+</div>
+<button class="carousel-next" aria-label="Next slide">&rarr;</button>
 </div>
 </div>
 
@@ -59,16 +61,16 @@ title: Workspace for Business Operations
 
 <section class="py-14 px-4 bg-surface-1">
 <div class="mx-auto max-w-5xl flex items-center justify-center gap-10 md:gap-14 flex-wrap">
-<img src="{{ '/images/logos/Volkswagen_Group_Services_logo 1.svg' | url }}" alt="Volkswagen Group Services" class="h-5 md:h-6 w-auto dark:invert">
-<img src="{{ '/images/logos/Commerzbank_(2009) 1.svg' | url }}" alt="Commerzbank" class="h-5 md:h-6 w-auto dark:invert">
-<img src="{{ '/images/logos/JLL_logo 1.svg' | url }}" alt="JLL" class="h-5 md:h-6 w-auto dark:invert">
-<img src="{{ '/images/logos/Kühne_+_Nagel_logo.svg' | url }}" alt="Kühne + Nagel" class="h-5 md:h-6 w-auto dark:invert">
-<img src="{{ '/images/logos/MSD_Sharp_&_Dohme_GmbH_logo.svg' | url }}" alt="MSD Sharp & Dohme" class="h-5 md:h-6 w-auto dark:invert">
-<img src="{{ '/images/logos/thuega_claim 1.svg' | url }}" alt="Thüga" class="h-5 md:h-6 w-auto dark:invert">
-<img src="{{ '/images/logos/Comdirect_Bank_AG_Logo 2.svg' | url }}" alt="Comdirect" class="h-5 md:h-6 w-auto dark:invert">
-<img src="{{ '/images/logos/Lenze_Gruppe_Logo 1.svg' | url }}" alt="Lenze" class="h-5 md:h-6 w-auto dark:invert">
-<img src="{{ '/images/logos/fiege svg15599.svg' | url }}" alt="Fiege" class="h-5 md:h-6 w-auto dark:invert">
-<img src="{{ '/images/logos/willke.svg' | url }}" alt="Willke" class="h-5 md:h-6 w-auto dark:invert">
+<img src="{{ '/images/logos/Volkswagen_Group_Services_logo 1.svg' | url }}" alt="Volkswagen Group Services" class="h-5 md:h-6 w-auto grayscale opacity-60 dark:invert">
+<img src="{{ '/images/logos/Commerzbank_(2009) 1.svg' | url }}" alt="Commerzbank" class="h-5 md:h-6 w-auto grayscale opacity-60 dark:invert">
+<img src="{{ '/images/logos/JLL_logo 1.svg' | url }}" alt="JLL" class="h-5 md:h-6 w-auto grayscale opacity-60 dark:invert">
+<img src="{{ '/images/logos/Kühne_+_Nagel_logo.svg' | url }}" alt="Kühne + Nagel" class="h-5 md:h-6 w-auto grayscale opacity-60 dark:invert">
+<img src="{{ '/images/logos/MSD_Sharp_&_Dohme_GmbH_logo.svg' | url }}" alt="MSD Sharp & Dohme" class="h-5 md:h-6 w-auto grayscale opacity-60 dark:invert">
+<img src="{{ '/images/logos/thuega_claim 1.svg' | url }}" alt="Thüga" class="h-5 md:h-6 w-auto grayscale opacity-60 dark:invert">
+<img src="{{ '/images/logos/Comdirect_Bank_AG_Logo 2.svg' | url }}" alt="Comdirect" class="h-5 md:h-6 w-auto grayscale opacity-60 dark:invert">
+<img src="{{ '/images/logos/Lenze_Gruppe_Logo 1.svg' | url }}" alt="Lenze" class="h-5 md:h-6 w-auto grayscale opacity-60 dark:invert">
+<img src="{{ '/images/logos/fiege svg15599.svg' | url }}" alt="Fiege" class="h-5 md:h-6 w-auto grayscale opacity-60 dark:invert">
+<img src="{{ '/images/logos/willke.svg' | url }}" alt="Willke" class="h-5 md:h-6 w-auto grayscale opacity-60 dark:invert">
 </div>
 </section>
 
