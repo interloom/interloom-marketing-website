@@ -5,10 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ title }} | Interloom</title>
   <meta name="description" content="{{ description or 'Interloom - Custom automation that fits how you work' }}">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@latest/dist/geist.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&family=Hedvig+Letters+Serif:opsz@12..24&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ '/css/main.css' | url }}">
 </head>
 <body class="bg-surface-2 text-fg-1 font-sans text-base leading-relaxed antialiased">
@@ -122,6 +121,59 @@
         });
       }, { threshold: 0.1 });
       targets.forEach(function (el) { observer.observe(el); });
+    })();
+  </script>
+  <script>
+    (function () {
+      var carousel = document.querySelector('.carousel');
+      if (!carousel) return;
+
+      var track = carousel.querySelector('.carousel-track');
+      var slides = carousel.querySelectorAll('.carousel-slide');
+      var dots = carousel.querySelectorAll('.carousel-dot');
+      var prevBtn = carousel.querySelector('.carousel-prev');
+      var nextBtn = carousel.querySelector('.carousel-next');
+      var current = 0;
+
+      function getStep() {
+        var gap = parseFloat(getComputedStyle(track).gap) || 0;
+        return slides[0].offsetWidth + gap;
+      }
+
+      function updateDots(index) {
+        dots.forEach(function (dot, i) {
+          dot.classList.toggle('active', i === index);
+        });
+        current = index;
+      }
+
+      // Detect active slide on scroll
+      var scrollTimer;
+      track.addEventListener('scroll', function () {
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(function () {
+          var index = Math.round(track.scrollLeft / getStep());
+          updateDots(index);
+        }, 50);
+      });
+
+      // Arrow navigation
+      prevBtn.addEventListener('click', function () {
+        var target = Math.max(current - 1, 0);
+        track.scrollTo({ left: target * getStep(), behavior: 'smooth' });
+      });
+
+      nextBtn.addEventListener('click', function () {
+        var target = Math.min(current + 1, slides.length - 1);
+        track.scrollTo({ left: target * getStep(), behavior: 'smooth' });
+      });
+
+      // Dot navigation
+      dots.forEach(function (dot, i) {
+        dot.addEventListener('click', function () {
+          track.scrollTo({ left: i * getStep(), behavior: 'smooth' });
+        });
+      });
     })();
   </script>
 </body>

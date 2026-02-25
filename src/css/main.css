@@ -420,3 +420,126 @@ section.fade-in-stagger > .visible {
     background-image: none !important;
   }
 }
+
+
+/* =================================================================
+   Carousel — outside @layer to bypass Tailwind v4 tree-shaking
+   ================================================================= */
+.carousel {
+  position: relative;
+  /* Bleed right into section padding so the peek reaches the edge */
+  margin-right: -1rem;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  /* Space after the last slide so it doesn't touch the edge */
+  padding-right: 1rem;
+}
+
+.carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-slide {
+  flex: 0 0 calc(100% - 3rem);
+  scroll-snap-align: start;
+  min-width: 0;
+}
+
+@media (width >= 48rem) {
+  .carousel {
+    margin-right: -2.5rem;
+  }
+  .carousel-track {
+    gap: 1.5rem;
+    padding-right: 2.5rem;
+  }
+  .carousel-slide {
+    flex: 0 0 calc(100% - 5rem);
+  }
+}
+
+@media (width >= 80rem) {
+  .carousel {
+    margin-right: -4rem;
+  }
+  .carousel-track {
+    gap: 2rem;
+    padding-right: 4rem;
+  }
+  .carousel-slide {
+    flex: 0 0 calc(100% - 6rem);
+  }
+}
+
+.carousel-prev,
+.carousel-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(calc(-50% - 2rem));
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: 1px solid var(--color-line);
+  background: var(--color-surface-2);
+  color: var(--color-fg-3);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+  z-index: 2;
+}
+
+.carousel-prev:hover,
+.carousel-next:hover {
+  color: var(--color-fg-1);
+  border-color: var(--color-fg-4);
+}
+
+.carousel-prev {
+  left: 0.5rem;
+}
+
+.carousel-next {
+  right: 0.5rem;
+}
+
+@media (width >= 48rem) {
+  .carousel-prev {
+    left: 1rem;
+  }
+  .carousel-next {
+    right: 1rem;
+  }
+}
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.carousel-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  border: none;
+  background: var(--color-line);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.carousel-dot.active {
+  background: var(--color-fg-1);
+  transform: scale(1.25);
+}

@@ -5,8 +5,8 @@ title: Workspace for Business Operations
 
 <section id="hero" class="fade-in-stagger relative min-h-[50vh] flex flex-col justify-center py-16 md:py-24 px-4" style="background-image: url('{{ '/images/landscape-right.png' | url }}'); background-repeat: no-repeat; background-position: calc(100% + 270px) center; background-size: auto 120%;">
 <div class="mx-auto max-w-5xl w-full relative z-10">
-<h1 class="text-4xl md:text-5xl font-normal tracking-tight max-w-2xl">Workspace for Business Operations</h1>
-<p class="text-xl md:text-2xl text-fg-3 leading-snug tracking-tight max-w-2xl mt-4"><span class="text-fg-2">Workflows for Complex Domains.</span> Deploy production AI workflows in natural language. Designed by the people who know the domain best, powered by a context graph that learns as it runs.</p>
+<h1 class="text-4xl md:text-5xl font-normal tracking-tight max-w-2xl">Workflows that learn from every case</h1>
+<p class="text-xl md:text-2xl text-fg-3 leading-snug tracking-tight max-w-2xl mt-4"><span class="text-fg-2">Deploy production workflows in natural language.</span> Designed for the people who know the domain best, powered by a context graph that constantly gets smarter.</p>
 <div class="flex gap-3 mt-8">
 <a href="#contact" class="inline-flex items-center h-[32px] bg-fg-1 text-surface-1 px-3 rounded font-medium no-underline hover:opacity-85 transition-opacity">Book a demo</a>
 <a href="#contact" class="inline-flex items-center h-[32px] border border-line text-fg-2 px-3 rounded font-medium no-underline hover:bg-surface-3 transition-colors">Join Waitlist</a>
@@ -14,29 +14,38 @@ title: Workspace for Business Operations
 </div>
 </section>
 
-<section class="min-h-[50vh] flex flex-col justify-center py-20 md:py-28 px-4">
-<div class="mx-auto max-w-5xl prose">
+<section class="min-h-[50vh] flex flex-col justify-center py-20 md:py-28">
 
-<p class="text-xl md:text-2xl text-fg-3 leading-snug tracking-tight max-w-2xl"><span class="text-fg-1">Workflows That Learn.</span> Design workflows that read from and write back to your organisation's knowledge layer. Every case processed makes the next one smarter.</p>
-
-<div class="mt-8 relative rounded-lg overflow-hidden shadow-[inset_0_0_0_1px_var(--color-line)] ring-[6px] ring-[var(--color-line)] outline-1 outline-[var(--color-line)]">
-<img src="{{ '/images/screenshot1.png' | url }}" alt="Interloom platform screenshot" class="block w-full">
+<div class="carousel" role="region" aria-label="Feature slides">
+<div class="carousel-track">
+<div class="carousel-slide">
+<div class="relative rounded-lg overflow-hidden shadow-[inset_0_0_0_1px_var(--color-line)] ring-[6px] ring-[var(--color-line)] outline-1 outline-[var(--color-line)]">
+<img src="{{ '/images/screenshot1.png' | url }}" alt="Interloom workflow editor" class="block w-full">
+</div>
+<p class="text-xl md:text-2xl text-fg-3 leading-snug tracking-tight max-w-2xl mt-8"><span class="text-fg-1">Built for experts.</span> You write workflows in natural language, adding code only where you need it. Each one combines AI steps like extraction and classification with deterministic steps like validation and formatting.</p>
+</div>
+<div class="carousel-slide">
+<div class="relative rounded-lg overflow-hidden shadow-[inset_0_0_0_1px_var(--color-line)] ring-[6px] ring-[var(--color-line)] outline-1 outline-[var(--color-line)]">
+<img src="{{ '/images/screenshot1.png' | url }}" alt="Interloom context layer" class="block w-full">
+</div>
+<p class="text-xl md:text-2xl text-fg-3 leading-snug tracking-tight max-w-2xl mt-8"><span class="text-fg-1">Context Layer.</span> A corporate knowledge base, structured as readable articles like a wiki. It gives every workflow grounding context at execution time. It grows incrementally as workflows process cases, and you can import existing sources. Fully portable, never locked in.</p>
+</div>
+<div class="carousel-slide">
+<div class="relative rounded-lg overflow-hidden shadow-[inset_0_0_0_1px_var(--color-line)] ring-[6px] ring-[var(--color-line)] outline-1 outline-[var(--color-line)]">
+<img src="{{ '/images/screenshot1.png' | url }}" alt="Interloom agent automation" class="block w-full">
+</div>
+<p class="text-xl md:text-2xl text-fg-3 leading-snug tracking-tight max-w-2xl mt-8"><span class="text-fg-1">Agents in the loop.</span> Repetitive steps like extraction, triage, and follow-ups run autonomously inside controlled workflows. Agents operate within boundaries you set, and every action is grounded in context your team has already built. Over time, the system gets sharper.</p>
+</div>
+</div>
+<button class="carousel-prev" aria-label="Previous slide">&larr;</button>
+<button class="carousel-next" aria-label="Next slide">&rarr;</button>
+<div class="carousel-dots">
+<button class="carousel-dot active" aria-label="Slide 1"></button>
+<button class="carousel-dot" aria-label="Slide 2"></button>
+<button class="carousel-dot" aria-label="Slide 3"></button>
+</div>
 </div>
 
-<div class="md:grid md:grid-cols-2 md:gap-8 mt-8">
-<div>
-
-<span class="inline-flex items-center px-2 py-0.5 text-xs font-mono font-medium uppercase tracking-wider rounded bg-tint-blue-subtle text-tint-blue border border-tint-blue/20">Workflows</span> Workflows are authored in natural language — with code where needed — and execute complex, multi-step processes. Each workflow can combine LLM-based steps (extraction, classification, summarisation) with deterministic ones (validation, formatting, lookups), using each where it's strongest.
-
-</div>
-<div>
-
-<span class="inline-flex items-center px-2 py-0.5 text-xs font-mono font-medium uppercase tracking-wider rounded bg-tint-blue-subtle text-tint-blue border border-tint-blue/20">Context Layer</span> The Context Layer is a corporate knowledge base, structured as human-readable articles similar to a wiki. It provides grounding context to every workflow at execution time. It's built incrementally as workflows process cases, or imported from existing sources — and it's fully portable, never locked in proprietary representations.
-
-</div>
-</div>
-
-</div>
 </section>
 
 <section class="min-h-[50vh] flex flex-col justify-center py-12 px-4 bg-surface-1">
@@ -48,24 +57,51 @@ title: Workspace for Business Operations
 </div>
 </section>
 
-<section class="min-h-[50vh] flex flex-col justify-center py-12 px-4">
+<section class="py-14 px-4 bg-surface-1">
+<div class="mx-auto max-w-5xl flex items-center justify-center gap-10 md:gap-14 flex-wrap">
+<img src="{{ '/images/logos/Volkswagen_Group_Services_logo 1.svg' | url }}" alt="Volkswagen Group Services" class="h-5 md:h-6 w-auto dark:invert">
+<img src="{{ '/images/logos/Commerzbank_(2009) 1.svg' | url }}" alt="Commerzbank" class="h-5 md:h-6 w-auto dark:invert">
+<img src="{{ '/images/logos/JLL_logo 1.svg' | url }}" alt="JLL" class="h-5 md:h-6 w-auto dark:invert">
+<img src="{{ '/images/logos/Kühne_+_Nagel_logo.svg' | url }}" alt="Kühne + Nagel" class="h-5 md:h-6 w-auto dark:invert">
+<img src="{{ '/images/logos/MSD_Sharp_&_Dohme_GmbH_logo.svg' | url }}" alt="MSD Sharp & Dohme" class="h-5 md:h-6 w-auto dark:invert">
+<img src="{{ '/images/logos/thuega_claim 1.svg' | url }}" alt="Thüga" class="h-5 md:h-6 w-auto dark:invert">
+<img src="{{ '/images/logos/Comdirect_Bank_AG_Logo 2.svg' | url }}" alt="Comdirect" class="h-5 md:h-6 w-auto dark:invert">
+<img src="{{ '/images/logos/Lenze_Gruppe_Logo 1.svg' | url }}" alt="Lenze" class="h-5 md:h-6 w-auto dark:invert">
+<img src="{{ '/images/logos/fiege svg15599.svg' | url }}" alt="Fiege" class="h-5 md:h-6 w-auto dark:invert">
+<img src="{{ '/images/logos/willke.svg' | url }}" alt="Willke" class="h-5 md:h-6 w-auto dark:invert">
+</div>
+</section>
+
+
+<section class="py-20 md:py-28 px-4">
 <div class="mx-auto max-w-5xl">
-
-<div class="space-y-8 md:space-y-0 md:grid md:grid-cols-2 md:gap-8">
-<div>
-<p class="text-xl md:text-2xl text-fg-1 leading-snug tracking-tight"><span class="inline-flex items-center px-2 py-0.5 text-xs font-mono font-medium uppercase tracking-wider rounded bg-tint-blue-subtle text-tint-blue border border-tint-blue/20 align-middle">Simplicity</span> Traditional workflow tools force you to think like an engineer — mapping every branch, coding every integration, maintaining every edge case. Interloom flips this. You describe your process in natural language: what comes in, what should happen, when to escalate, what good looks like.</p>
+<p class="text-xl md:text-2xl text-fg-3 leading-snug tracking-tight max-w-2xl"><span class="text-fg-1">Integrations.</span> Connect to the tools your team already uses. Interloom reads, writes, and syncs data across your stack so workflows stay grounded in live systems.</p>
+<div class="mt-12 grid grid-cols-2 md:grid-cols-3 gap-4">
+<div class="flex items-center gap-3 rounded-lg border border-line px-4 py-4">
+<img src="{{ '/images/integrations/sharepoint.svg' | url }}" alt="SharePoint" class="h-6 w-6 shrink-0">
+<span class="text-fg-2 text-sm font-medium">SharePoint</span>
 </div>
-<div>
-<p class="text-xl md:text-2xl text-fg-1 leading-snug tracking-tight"><span class="inline-flex items-center px-2 py-0.5 text-xs font-mono font-medium uppercase tracking-wider rounded bg-tint-blue-subtle text-tint-blue border border-tint-blue/20 align-middle">Learning</span> As each case is worked, Interloom detects patterns, remembers outcomes, and builds a memory layer that grounds future decisions in the best precedent. Your operations get sharper over time — not because the system rewrites itself, but because it accumulates context.</p>
+<div class="flex items-center gap-3 rounded-lg border border-line px-4 py-4">
+<img src="{{ '/images/integrations/salesforce.svg' | url }}" alt="Salesforce" class="h-6 w-6 shrink-0">
+<span class="text-fg-2 text-sm font-medium">Salesforce</span>
 </div>
-<div>
-<p class="text-xl md:text-2xl text-fg-1 leading-snug tracking-tight"><span class="inline-flex items-center px-2 py-0.5 text-xs font-mono font-medium uppercase tracking-wider rounded bg-tint-blue-subtle text-tint-blue border border-tint-blue/20 align-middle">Instant Setup</span> Subject matter experts can stand up their own workflows in minutes. Connect real case data from existing systems, describe the outcome you want, and let Interloom orchestrate both human experts and AI agents across the process. From zero to production in days, not months.</p>
+<div class="flex items-center gap-3 rounded-lg border border-line px-4 py-4">
+<img src="{{ '/images/integrations/sap.svg' | url }}" alt="SAP" class="h-6 w-6 shrink-0">
+<span class="text-fg-2 text-sm font-medium">SAP</span>
 </div>
-<div>
-<p class="text-xl md:text-2xl text-fg-1 leading-snug tracking-tight"><span class="inline-flex items-center px-2 py-0.5 text-xs font-mono font-medium uppercase tracking-wider rounded bg-tint-blue-subtle text-tint-blue border border-tint-blue/20 align-middle">For Enterprise</span> Every action, decision, and override is logged in a full audit trail. Role-based access controls ensure the right people see the right data — and nothing more. Whether you're responding to an internal review or a regulatory audit, the evidence is already there.</p>
+<div class="flex items-center gap-3 rounded-lg border border-line px-4 py-4">
+<img src="{{ '/images/integrations/microsoft.svg' | url }}" alt="Microsoft" class="h-6 w-6 shrink-0">
+<span class="text-fg-2 text-sm font-medium">Microsoft</span>
+</div>
+<div class="flex items-center gap-3 rounded-lg border border-line px-4 py-4">
+<img src="{{ '/images/integrations/confluence.svg' | url }}" alt="Confluence" class="h-6 w-6 shrink-0">
+<span class="text-fg-2 text-sm font-medium">Confluence</span>
+</div>
+<div class="flex items-center gap-3 rounded-lg border border-line px-4 py-4">
+<img src="{{ '/images/integrations/google-workspace.svg' | url }}" alt="Google Workspace" class="h-6 w-6 shrink-0">
+<span class="text-fg-2 text-sm font-medium">Google Workspace</span>
 </div>
 </div>
-
 </div>
 </section>
 
