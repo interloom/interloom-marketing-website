@@ -426,9 +426,18 @@ section.fade-in-stagger > .visible {
    Carousel — outside @layer to bypass Tailwind v4 tree-shaking
    ================================================================= */
 .carousel {
+  /* Mirror scaffold section padding so negative margin pulls to section edge */
+  --_pad: 1rem;
+  --_inset: max(calc(var(--_pad) + 0.5rem), calc((100% - 64rem) / 2 + 0.5rem));
   position: relative;
-  /* Bleed right into section padding so the peek reaches the edge */
-  margin-right: -1rem;
+  margin-inline: calc(-1 * var(--_pad));
+}
+
+@media (width >= 48rem) {
+  .carousel { --_pad: 2.5rem; }
+}
+@media (width >= 80rem) {
+  .carousel { --_pad: 4rem; }
 }
 
 .carousel-track {
@@ -438,8 +447,11 @@ section.fade-in-stagger > .visible {
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
-  /* Space after the last slide so it doesn't touch the edge */
-  padding-right: 1rem;
+  padding-block: 0.5rem;
+  /* Left inset aligns first slide with max-w-5xl content measure */
+  padding-left: var(--_inset);
+  padding-right: 0.5rem;
+  scroll-padding-inline-start: var(--_inset);
 }
 
 .carousel-track::-webkit-scrollbar {
@@ -453,12 +465,8 @@ section.fade-in-stagger > .visible {
 }
 
 @media (width >= 48rem) {
-  .carousel {
-    margin-right: -2.5rem;
-  }
   .carousel-track {
     gap: 1.5rem;
-    padding-right: 2.5rem;
   }
   .carousel-slide {
     flex: 0 0 calc(100% - 5rem);
@@ -466,12 +474,8 @@ section.fade-in-stagger > .visible {
 }
 
 @media (width >= 80rem) {
-  .carousel {
-    margin-right: -4rem;
-  }
   .carousel-track {
     gap: 2rem;
-    padding-right: 4rem;
   }
   .carousel-slide {
     flex: 0 0 calc(100% - 6rem);
@@ -505,20 +509,11 @@ section.fade-in-stagger > .visible {
 }
 
 .carousel-prev {
-  left: 0.5rem;
+  left: var(--_inset);
 }
 
 .carousel-next {
   right: 0.5rem;
-}
-
-@media (width >= 48rem) {
-  .carousel-prev {
-    left: 1rem;
-  }
-  .carousel-next {
-    right: 1rem;
-  }
 }
 
 .carousel-dots {
