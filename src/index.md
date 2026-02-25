@@ -39,21 +39,6 @@ title: Workspace for Business Operations
 </div>
 </section>
 
-<section class="min-h-[50vh] flex flex-col justify-center py-12 px-4">
-<div class="mx-auto max-w-5xl">
-
-<div class="space-y-8 md:space-y-0 md:grid md:grid-cols-2 md:gap-8">
-<div>
-<p class="text-xl md:text-2xl text-fg-3 leading-snug tracking-tight">Software may have eaten parts of the world, but in the industries that keep it running — insurance, logistics, real estate management, construction, manufacturing — <span class="text-fg-1">digitalisation remains superficial.</span> The raw capability of AI is soaring, yet it's almost nowhere to be found in production workflows.</p>
-</div>
-<div>
-<p class="text-xl md:text-2xl text-fg-3 leading-snug tracking-tight"><span class="text-fg-1">The core issue is a lack of unified context.</span> Over 70% of knowledge work happens in departmental silos, scattered across tools, documents, emails, and meetings. Tasks get done, but knowledge is lost — undocumented, unstructured, impossible to re-use. <span class="text-fg-1">In a world with abundant artificial intelligence it's a critical point of failure.</span></p>
-</div>
-</div>
-
-</div>
-</section>
-
 <section class="min-h-[50vh] flex flex-col justify-center py-12 px-4 bg-surface-1">
 <div class="mx-auto max-w-2xl text-center">
 <blockquote class="text-2xl md:text-4xl md:leading-snug font-serif text-fg-3">
