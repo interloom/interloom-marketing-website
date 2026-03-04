@@ -14,7 +14,7 @@ description: Enterprise-grade security architecture, controls, and governance fo
       governance model, cloud architecture, and technical safeguards.
     </p>
     <div class="mt-8 flex flex-wrap gap-3">
-      <a href="https://calendar.app.google/k2yMWKpKFnCCGZt87" class="inline-flex items-center h-[32px] bg-fg-1 text-surface-1 px-3 rounded font-medium no-underline hover:opacity-85 transition-opacity">Request security review</a>
+      <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2eEwV1c880TGi16I1QWst6PTzbawnSjH9mV1e49ihrW3raJf-nKrwUIua0S59qEtt5TkGFmrfr" class="inline-flex items-center h-[32px] bg-fg-1 text-surface-1 px-3 rounded font-medium no-underline hover:opacity-85 transition-opacity">Request security review</a>
       <a href="#technical-controls" class="inline-flex items-center h-[32px] border border-line text-fg-2 px-3 rounded font-medium no-underline hover:bg-surface-3 transition-colors">Explore technical controls</a>
     </div>
   </div>
@@ -220,7 +220,7 @@ description: Enterprise-grade security architecture, controls, and governance fo
       architecture walkthroughs, and procurement due diligence with your security leadership and platform operations stakeholders.
     </p>
     <div class="mt-6 flex flex-wrap gap-3">
-      <a href="mailto:contact@interloom.io?subject=Enterprise%20Security%20Assessment" class="inline-flex items-center h-[32px] bg-fg-1 text-surface-1 px-3 rounded font-medium no-underline hover:opacity-85 transition-opacity">Schedule security session</a>
+      <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2eEwV1c880TGi16I1QWst6PTzbawnSjH9mV1e49ihrW3raJf-nKrwUIua0S59qEtt5TkGFmrfr" class="inline-flex items-center h-[32px] bg-fg-1 text-surface-1 px-3 rounded font-medium no-underline hover:opacity-85 transition-opacity">Schedule security session</a>
       <a href="mailto:contact@interloom.io?subject=Interloom%20Compliance%20Questions" class="inline-flex items-center h-[32px] border border-line text-fg-2 px-3 rounded font-medium no-underline hover:bg-surface-3 transition-colors">Contact security team</a>
     </div>
     <div class="mt-8 text-sm text-fg-3">

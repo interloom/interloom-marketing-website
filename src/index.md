@@ -8,8 +8,8 @@ title: Workspace for Business Operations
 <h1 class="text-4xl md:text-5xl font-normal tracking-tight max-w-2xl">Workflows that learn from every case</h1>
 <p class="text-xl md:text-2xl text-fg-3 leading-snug tracking-tight max-w-2xl mt-4"><span class="text-fg-2">Deploy production workflows in natural language.</span> Designed for the people who know the domain best, powered by a context graph that constantly gets smarter.</p>
 <div class="flex gap-3 mt-8">
-<a href="#contact" class="inline-flex items-center h-[32px] bg-fg-1 text-surface-1 px-3 rounded font-medium no-underline hover:opacity-85 transition-opacity">Book a demo</a>
-<a href="#contact" class="inline-flex items-center h-[32px] border border-line text-fg-2 px-3 rounded font-medium no-underline hover:bg-surface-3 transition-colors">Join Waitlist</a>
+<a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2eEwV1c880TGi16I1QWst6PTzbawnSjH9mV1e49ihrW3raJf-nKrwUIua0S59qEtt5TkGFmrfr" class="inline-flex items-center h-[32px] bg-fg-1 text-surface-1 px-3 rounded font-medium no-underline hover:opacity-85 transition-opacity">Book a demo</a>
+<a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2eEwV1c880TGi16I1QWst6PTzbawnSjH9mV1e49ihrW3raJf-nKrwUIua0S59qEtt5TkGFmrfr" class="inline-flex items-center h-[32px] border border-line text-fg-2 px-3 rounded font-medium no-underline hover:bg-surface-3 transition-colors">Join Waitlist</a>
 </div>
 </div>
 </section>
@@ -113,8 +113,8 @@ title: Workspace for Business Operations
 <p class="text-xl md:text-2xl text-fg-3 leading-snug tracking-tight">Every week your team spends on manual processes is a week your competitors might not. <span class="text-fg-1">Start deploying production workflows with a forward-deployed Interloom engineer.</span></p>
 </div>
 <div class="flex gap-3">
-<a href="mailto:hello@interloom.io" class="inline-flex items-center h-[32px] bg-fg-1 text-surface-1 px-3 rounded font-medium no-underline hover:opacity-85 transition-opacity">Book a demo</a>
-<a href="mailto:hello@interloom.io" class="inline-flex items-center h-[32px] border border-line text-fg-2 px-3 rounded font-medium no-underline hover:bg-surface-3 transition-colors">Join the waitlist</a>
+<a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2eEwV1c880TGi16I1QWst6PTzbawnSjH9mV1e49ihrW3raJf-nKrwUIua0S59qEtt5TkGFmrfr" class="inline-flex items-center h-[32px] bg-fg-1 text-surface-1 px-3 rounded font-medium no-underline hover:opacity-85 transition-opacity">Book a demo</a>
+<a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2eEwV1c880TGi16I1QWst6PTzbawnSjH9mV1e49ihrW3raJf-nKrwUIua0S59qEtt5TkGFmrfr" class="inline-flex items-center h-[32px] border border-line text-fg-2 px-3 rounded font-medium no-underline hover:bg-surface-3 transition-colors">Join the waitlist</a>
 </div>
 </div>
 
