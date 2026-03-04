@@ -19,8 +19,47 @@ module.exports = function(eleventyConfig) {
       text: m[2].replace(/<[^>]+>/g, "")
     }));
   });
+
+  // Normalize imported Webflow rich text blocks to semantic HTML.
+  // - Converts YouTube thumbnail figures into real iframe embeds
+  // - Unwraps Webflow image wrapper markup for cleaner styling hooks
+  eleventyConfig.addFilter("normalizeImportedRichText", (content) => {
+    if (!content) return content;
+    let out = content;
+
+    const toYouTubeEmbed = (href) => {
+      const watch = href.match(/youtube\.com\/watch\?v=([^&#]+)/i);
+      if (watch) return `https://www.youtube.com/embed/${watch[1]}`;
+      const short = href.match(/youtu\.be\/([^?&#/]+)/i);
+      if (short) return `https://www.youtube.com/embed/${short[1]}`;
+      return null;
+    };
+
+    // Convert Webflow image figures to simple figures
+    out = out.replace(
+      /<figure[^>]*w-richtext-figure-type-image[^>]*>\s*<div>\s*(<img\b[^>]*>)\s*<\/div>\s*<\/figure>/gi,
+      '<figure class="article-figure">$1</figure>'
+    );
+
+    // Convert linked image figures; embed YouTube links as iframe.
+    out = out.replace(
+      /<figure[^>]*w-richtext-figure-type-image[^>]*>\s*<a[^>]*href="([^"]+)"[^>]*>\s*<div>\s*(<img\b[^>]*>)\s*<\/div>\s*<\/a>\s*<\/figure>/gi,
+      (_, href, imgTag) => {
+        const embedUrl = toYouTubeEmbed(href);
+        if (embedUrl) {
+          return `<div class="video-embed"><iframe src="${embedUrl}" title="YouTube video player" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>`;
+        }
+        return `<figure class="article-figure"><a href="${href}" target="_blank" rel="noopener noreferrer">${imgTag}</a></figure>`;
+      }
+    );
+
+    return out;
+  });
   // Copy static assets
-  eleventyConfig.addPassthroughCopy("src/images");
+  eleventyConfig.addPassthroughCopy({
+    "src/images": "images",
+    "src/css/main.generated.css": "css/main.generated.css"
+  });
 
   // Tell Eleventy's dev server to watch and serve the Tailwind output
   eleventyConfig.setServerOptions({

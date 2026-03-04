@@ -181,8 +181,28 @@
   padding-left: 1.5rem;
 }
 
+.prose ul {
+  list-style: disc;
+}
+
+.prose ol {
+  list-style: decimal;
+}
+
+.prose ul ul {
+  list-style: circle;
+}
+
+.prose ol ol {
+  list-style: lower-alpha;
+}
+
 .prose li {
   margin-bottom: 0.5rem;
+}
+
+.prose li::marker {
+  color: var(--color-fg-3);
 }
 
 .prose h2 {
@@ -220,10 +240,14 @@
   padding: 0;
   font-size: 0.8125rem;
   color: inherit;
+  display: block;
+  white-space: pre;
 }
 
 .prose table {
   width: 100%;
+  display: block;
+  overflow-x: auto;
   border-collapse: collapse;
   margin: 1rem 0;
   font-size: 0.875rem;
@@ -262,6 +286,45 @@
 
 .prose img {
   max-width: 100%;
+  border-radius: 0.5rem;
+}
+
+.prose .article-figure {
+  margin: 1.25rem 0;
+}
+
+.prose .article-figure img {
+  width: 100%;
+  height: auto;
+}
+
+.article-hero {
+  margin: 0 0 1.5rem 0;
+}
+
+.article-hero img {
+  width: 100%;
+  max-height: 30rem;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0.5rem;
+}
+
+.prose .video-embed {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  margin: 1.5rem 0;
+}
+
+.prose .video-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
   border-radius: 0.5rem;
 }
 
@@ -328,9 +391,16 @@ main > section {
   position: relative;
   padding-inline: 1rem;
 }
+
+main > section + section {
+  padding-top: 1.5rem;
+}
 @media (width >= 48rem) {
   main > section {
     padding-inline: 2.5rem;
+  }
+  main > section + section {
+    padding-top: 2rem;
   }
 }
 @media (width >= 80rem) {

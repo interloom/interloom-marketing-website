@@ -7,8 +7,8 @@
   <meta name="description" content="{{ description or 'Interloom - Custom automation that fits how you work' }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&family=Hedvig+Letters+Serif:opsz@12..24&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ '/css/main.css' | url }}">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&family=Hedvig+Letters+Serif:opsz@12..24&display=optional" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/css/main.generated.css' | url }}">
 </head>
 <body class="bg-surface-2 text-fg-1 font-sans text-base leading-relaxed antialiased">
   <div class="scaffold" aria-hidden="true">
@@ -52,7 +52,7 @@
         </div>
         <div class="flex flex-col gap-2">
           <h4 class="text-sm font-medium text-fg-1 mb-2">Company</h4>
-          <a href="#" class="text-sm text-fg-3 no-underline hover:text-fg-1 transition-colors">About</a>
+          <a href="{{ '/about/' | url }}" class="text-sm text-fg-3 no-underline hover:text-fg-1 transition-colors">About</a>
           <a href="{{ '/blog/' | url }}" class="text-sm text-fg-3 no-underline hover:text-fg-1 transition-colors">Blog</a>
           <a href="#" class="text-sm text-fg-3 no-underline hover:text-fg-1 transition-colors">Careers</a>
           <a href="mailto:hello@interloom.io" class="text-sm text-fg-3 no-underline hover:text-fg-1 transition-colors">Contact</a>
@@ -64,10 +64,10 @@
           <a href="#" class="text-sm text-fg-3 no-underline hover:text-fg-1 transition-colors">API Reference</a>
         </div>
         <div class="flex flex-col gap-2">
-          <h4 class="text-sm font-medium text-fg-1 mb-2">Legal</h4>
-          <a href="#" class="text-sm text-fg-3 no-underline hover:text-fg-1 transition-colors">Privacy</a>
-          <a href="#" class="text-sm text-fg-3 no-underline hover:text-fg-1 transition-colors">Terms</a>
-          <a href="#" class="text-sm text-fg-3 no-underline hover:text-fg-1 transition-colors">Security</a>
+          <a href="{{ '/legal/' | url }}" class="text-sm text-fg-3 no-underline hover:text-fg-1 transition-colors">Legal</a>
+          <a href="{{ '/privacy/' | url }}" class="text-sm text-fg-3 no-underline hover:text-fg-1 transition-colors">Privacy</a>
+          <a href="{{ '/terms/' | url }}" class="text-sm text-fg-3 no-underline hover:text-fg-1 transition-colors">Terms</a>
+          <a href="{{ '/security/' | url }}" class="text-sm text-fg-3 no-underline hover:text-fg-1 transition-colors">Security</a>
         </div>
       </div>
       <div class="mt-12 pt-6 border-t border-line-faint flex items-center justify-between">
