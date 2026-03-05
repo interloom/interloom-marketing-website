@@ -58,6 +58,7 @@ module.exports = function(eleventyConfig) {
   // Copy static assets
   eleventyConfig.addPassthroughCopy({
     "src/images": "images",
+    "src/videos": "videos",
     "src/css/main.generated.css": "css/main.generated.css"
   });
 
@@ -96,6 +97,15 @@ module.exports = function(eleventyConfig) {
   // Collection for release notes
   eleventyConfig.addCollection("releases", function(collectionApi) {
     return collectionApi.getFilteredByGlob("src/releases/*.md")
+      .filter(item => !item.inputPath.includes("index.md"))
+      .sort((a, b) => {
+        return b.date - a.date;
+      });
+  });
+
+  // Collection for customer stories
+  eleventyConfig.addCollection("customerStories", function(collectionApi) {
+    return collectionApi.getFilteredByGlob("src/customer-stories/*.md")
       .filter(item => !item.inputPath.includes("index.md"))
       .sort((a, b) => {
         return b.date - a.date;

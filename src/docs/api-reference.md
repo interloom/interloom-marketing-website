@@ -19,7 +19,7 @@ API keys are scoped to an organization. Contact your administrator to generate a
 ## Base URL
 
 ```
-https://api.interloom.io/v1
+https://api.interloom.com/v1
 ```
 
 ## Response Format
@@ -244,4 +244,4 @@ Errors follow a consistent format:
 
 ## Need Help?
 
-For API support, contact us at [hello@interloom.io](mailto:hello@interloom.io).
+For API support, contact us at [hello@interloom.com](mailto:hello@interloom.com).

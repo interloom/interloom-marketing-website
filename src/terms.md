@@ -13,18 +13,6 @@ description: Terms governing the use of Interloom services.
 
 <section class="pb-20 px-4">
   <div class="mx-auto max-w-5xl grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
-    <aside class="md:col-span-4">
-      <div class="rounded-lg border border-line bg-surface-1 p-4">
-        <p class="text-sm text-fg-3 mb-2">Quick links</p>
-        <div class="flex flex-col gap-2">
-          <a href="#use-of-service" class="text-sm text-fg-2 no-underline hover:text-fg-1 transition-colors">Use of Service</a>
-          <a href="#accounts-and-access" class="text-sm text-fg-2 no-underline hover:text-fg-1 transition-colors">Accounts and Access</a>
-          <a href="#intellectual-property" class="text-sm text-fg-2 no-underline hover:text-fg-1 transition-colors">Intellectual Property</a>
-          <a href="#limitation-of-liability" class="text-sm text-fg-2 no-underline hover:text-fg-1 transition-colors">Limitation of Liability</a>
-        </div>
-      </div>
-    </aside>
-
     <div class="md:col-span-8 prose max-w-none">
       <p>
         These Terms govern access to and use of Interloom services. By using Interloom, you agree to these

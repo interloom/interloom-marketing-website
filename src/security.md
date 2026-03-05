@@ -221,12 +221,12 @@ description: Enterprise-grade security architecture, controls, and governance fo
     </p>
     <div class="mt-6 flex flex-wrap gap-3">
       <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2eEwV1c880TGi16I1QWst6PTzbawnSjH9mV1e49ihrW3raJf-nKrwUIua0S59qEtt5TkGFmrfr" class="inline-flex items-center h-[32px] bg-fg-1 text-surface-1 px-3 rounded font-medium no-underline hover:opacity-85 transition-opacity">Schedule security session</a>
-      <a href="mailto:contact@interloom.io?subject=Interloom%20Compliance%20Questions" class="inline-flex items-center h-[32px] border border-line text-fg-2 px-3 rounded font-medium no-underline hover:bg-surface-3 transition-colors">Contact security team</a>
+      <a href="mailto:contact@interloom.com?subject=Interloom%20Compliance%20Questions" class="inline-flex items-center h-[32px] border border-line text-fg-2 px-3 rounded font-medium no-underline hover:bg-surface-3 transition-colors">Contact security team</a>
     </div>
     <div class="mt-8 text-sm text-fg-3">
       <p><strong>Interloom Technologies GmbH</strong></p>
       <p>Osterwaldstr. 10, 80805 Munich, Germany</p>
-      <p>Email: <a href="mailto:contact@interloom.io">contact@interloom.io</a></p>
+      <p>Email: <a href="mailto:contact@interloom.com">contact@interloom.com</a></p>
       <p>Managing Director: Fabian Jakobi | Amtsgericht Muenchen, HRB 287622</p>
     </div>
   </div>

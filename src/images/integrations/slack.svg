@@ -1,0 +1,6 @@
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Slack">
+  <path d="M9.8 3.2a2 2 0 1 1-4 0 2 2 0 0 1 4 0v5h-2a2 2 0 0 1 0-4h2V3.2Z" fill="#e01e5a"/>
+  <path d="M20.8 9.8a2 2 0 1 1 0-4 2 2 0 0 1 0 4h-5v-2a2 2 0 0 1 4 0v2h1Z" fill="#36c5f0"/>
+  <path d="M14.2 20.8a2 2 0 1 1 4 0 2 2 0 0 1-4 0v-5h2a2 2 0 0 1 0 4h-2v1Z" fill="#2eb67d"/>
+  <path d="M3.2 14.2a2 2 0 1 1 0 4 2 2 0 0 1 0-4h5v2a2 2 0 0 1-4 0v-2h-1Z" fill="#ecb22e"/>
+</svg>

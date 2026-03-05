@@ -1,8 +1,9 @@
 ---
 layout: base.njk
 ---
-<div class="grid grid-cols-1 md:grid-cols-[220px_1fr]">
-  <aside class="border-b md:border-b-0 md:border-r border-line p-4 md:py-8 md:pr-6 md:pl-4 md:sticky md:top-[49px] md:h-[calc(100vh-49px)] overflow-y-auto">
+<div class="grid grid-cols-1 md:grid-cols-[220px_1fr] docs-layout">
+  <aside class="border-b md:border-b-0 md:border-r border-line p-4 md:py-8 md:pr-0 md:pl-4">
+    <div class="md:sticky md:top-[49px] md:max-h-[calc(100vh-49px)] md:overflow-y-auto md:pr-6" data-doc-nav-scroll>
     <nav>
       {%- for section in docsNav.sections %}
       <div class="mb-6">
@@ -11,6 +12,8 @@ layout: base.njk
           {%- for item in section.items %}
           <li class="m-0">
             <a href="{{ item.url | url }}"
+               data-doc-page-link
+               {% if page.url == item.url %}aria-current="page"{% endif %}
                class="block py-1.5 px-2 text-sm rounded no-underline transition-colors
                       {% if page.url == item.url %}bg-surface-3 text-fg-1 font-medium{% else %}text-fg-3 hover:text-fg-1 hover:bg-surface-3/50{% endif %}">
               {{ item.title }}
@@ -22,7 +25,7 @@ layout: base.njk
             <ul class="list-none p-0 m-0 mt-1 mb-2">
               {%- for h in headings %}
               <li class="m-0">
-                <a href="{{ item.url | url }}#{{ h.id }}" class="block py-1.5 px-2 pl-4 text-sm rounded no-underline text-fg-3 hover:text-fg-1 hover:bg-surface-3/50 transition-colors">{{ h.text }}</a>
+                <a href="{{ item.url | url }}#{{ h.id }}" data-doc-anchor-link class="block py-1.5 px-2 pl-4 text-sm rounded no-underline text-fg-3 hover:text-fg-1 hover:bg-surface-3/50 transition-colors">{{ h.text }}</a>
               </li>
               {%- endfor %}
             </ul>
@@ -35,6 +38,7 @@ layout: base.njk
       </div>
       {%- endfor %}
     </nav>
+    </div>
   </aside>
   <div class="min-w-0">
     <header class="border-b border-line bg-surface-1 px-6 md:px-10 py-10 md:py-14">
@@ -47,3 +51,81 @@ layout: base.njk
     </article>
   </div>
 </div>
+<script>
+  (function () {
+    var navScroll = document.querySelector('[data-doc-nav-scroll]');
+    if (!navScroll) return;
+
+    var currentPageLink = navScroll.querySelector('[data-doc-page-link][aria-current="page"]');
+    if (currentPageLink) {
+      currentPageLink.scrollIntoView({ block: 'nearest' });
+    }
+
+    var anchorLinks = Array.prototype.slice.call(navScroll.querySelectorAll('[data-doc-anchor-link]'));
+    if (!anchorLinks.length) return;
+
+    var activeClasses = ['text-fg-1', 'bg-surface-3/60', 'font-medium'];
+
+    function setActiveLink(activeLink) {
+      anchorLinks.forEach(function (link) {
+        var isActive = link === activeLink;
+        activeClasses.forEach(function (cls) {
+          link.classList.toggle(cls, isActive);
+        });
+        link.classList.toggle('text-fg-3', !isActive);
+      });
+
+      if (activeLink) {
+        activeLink.scrollIntoView({ block: 'nearest' });
+      }
+    }
+
+    var linkById = new Map();
+    anchorLinks.forEach(function (link) {
+      var parts = link.getAttribute('href').split('#');
+      var id = parts.length > 1 ? parts[1] : '';
+      if (id) linkById.set(id, link);
+    });
+
+    function activateById(id) {
+      if (!id) return false;
+      var link = linkById.get(id);
+      if (!link) return false;
+      setActiveLink(link);
+      return true;
+    }
+
+    var hash = decodeURIComponent((window.location.hash || '').replace(/^#/, ''));
+    var hasHashMatch = activateById(hash);
+
+    var headings = Array.prototype.slice.call(document.querySelectorAll('article .prose h2[id]'));
+    if (!headings.length) return;
+
+    if (!hasHashMatch) {
+      activateById(headings[0].id);
+    }
+
+    var observer = new IntersectionObserver(function (entries) {
+      var visible = entries
+        .filter(function (entry) { return entry.isIntersecting; })
+        .sort(function (a, b) { return a.boundingClientRect.top - b.boundingClientRect.top; });
+
+      if (visible.length) {
+        activateById(visible[0].target.id);
+      }
+    }, {
+      root: null,
+      rootMargin: '-20% 0px -65% 0px',
+      threshold: [0, 1]
+    });
+
+    headings.forEach(function (heading) {
+      observer.observe(heading);
+    });
+
+    window.addEventListener('hashchange', function () {
+      var nextHash = decodeURIComponent((window.location.hash || '').replace(/^#/, ''));
+      activateById(nextHash);
+    });
+  })();
+</script>

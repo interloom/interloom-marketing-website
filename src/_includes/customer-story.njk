@@ -1,0 +1,135 @@
+---
+layout: base.njk
+---
+<article>
+
+  <section style="padding: 4rem 1rem 3rem;">
+    <div style="max-width: 64rem; margin: 0 auto;">
+      <a href="{{ '/customer-stories/' | url }}" class="text-xs text-fg-3 no-underline hover:text-fg-1 transition-colors" style="display: block; margin-bottom: 1.5rem;">
+        &larr; Back to Customer Stories
+      </a>
+      {% if logo %}
+      <div style="margin-bottom: 1.5rem;">
+        <span class="bg-surface-1" style="display: inline-flex; align-items: center; justify-content: center; width: 96px; height: 96px; border-radius: 12px; border: 1px solid var(--color-line); overflow: hidden; flex-shrink: 0; padding: 14px;">
+          <img src="{{ logo | url }}" alt="{{ company }}" style="width: 100%; height: 100%; object-fit: contain;">
+        </span>
+      </div>
+      {% endif %}
+      <h1 class="font-serif font-normal tracking-tight" style="font-size: 2.25rem; line-height: 1.2; margin-bottom: 0.75rem;">{{ title }}</h1>
+      {% if description %}
+      <p class="text-fg-2" style="font-size: 1.125rem; line-height: 1.5; margin-bottom: 1.5rem; max-width: 42rem;">{{ description }}</p>
+      {% endif %}
+      <div class="text-sm text-fg-3" style="display: flex; flex-wrap: wrap; align-items: center; gap: 1rem;">
+        {% if company %}<span>{{ company }}</span>{% endif %}
+        <time>Published {{ date | dateFormat }}</time>
+        {% if updated %}<time>Updated {{ updated | dateFormat }}</time>{% endif %}
+      </div>
+      {% if tags and tags.length %}
+      <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem;">
+        {% for tag in tags %}
+        <span style="display: inline-block; font-size: 0.75rem; font-weight: 500; color: var(--color-fg-3); background: var(--color-surface-3); padding: 0.125rem 0.5rem; border-radius: 0.25rem;">{{ tag }}</span>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </section>
+
+  <style>
+    @media (min-width: 768px) {
+      .cs-kpi-grid { grid-template-columns: repeat(3, 1fr) !important; }
+      .cs-ps-grid { grid-template-columns: repeat(2, 1fr) !important; }
+      .cs-quote-grid { grid-template-columns: auto 1fr !important; }
+    }
+  </style>
+
+  <section style="padding: 3rem 1rem;">
+    <div class="cs-ps-grid" style="max-width: 64rem; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 3rem;">
+      <div>
+        <h3 class="font-serif font-normal text-fg-1" style="font-size: 1.5em; margin: 0 0 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--color-line);">Problem</h3>
+        <p class="text-fg-2" style="font-size: 1rem; line-height: 1.7; margin: 0;">{{ problem or "Teams manage high-variance operational work across multiple systems, creating coordination overhead and delayed execution." }}</p>
+      </div>
+      <div>
+        <h3 class="font-serif font-normal text-fg-1" style="font-size: 1.5em; margin: 0 0 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--color-line);">Solution</h3>
+        <p class="text-fg-2" style="font-size: 1rem; line-height: 1.7; margin: 0;">{{ solution or "Interloom structures workflows into controlled steps where experts and agents coordinate execution with transparent context and auditability." }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding: 0 1rem 3rem;">
+    <div class="cs-kpi-grid" style="max-width: 64rem; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 1rem;">
+      {% if kpis and kpis.length %}
+        {% for kpi in kpis %}
+        <div class="bg-surface-1" style="padding: 1.5rem; border-radius: 0.5rem; border: 1px solid var(--color-line);">
+          <p class="text-fg-1" style="font-size: 2rem; font-weight: 500; letter-spacing: -0.02em; margin: 0;">{{ kpi.value }}</p>
+          <p class="text-fg-3" style="font-size: 0.8125rem; margin: 0.5rem 0 0;">{{ kpi.label }}</p>
+        </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </section>
+
+  {% if quote %}
+  <section class="bg-surface-1" style="padding: 3rem 1rem;">
+    <div class="cs-quote-grid" style="max-width: 64rem; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 2.5rem; align-items: center;">
+      {% if championName %}
+      <div style="flex-shrink: 0;">
+        {% if championPhoto %}
+        <img src="{{ championPhoto | url }}" alt="{{ championName }}" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover; border: 1px solid var(--color-line);">
+        {% else %}
+        <span style="display: flex; align-items: center; justify-content: center; width: 140px; height: 140px; border-radius: 50%; background: var(--color-surface-3); border: 1px solid var(--color-line); font-size: 3rem; color: var(--color-fg-3);">{{ championName[0] }}</span>
+        {% endif %}
+      </div>
+      {% endif %}
+      <div>
+        <blockquote class="font-serif text-fg-2" style="font-size: 1.5rem; line-height: 1.5; margin: 0;">
+          <p style="margin: 0;">&ldquo;{{ quote }}&rdquo;</p>
+        </blockquote>
+        {% if championName %}
+        <div style="display: flex; align-items: center; gap: 0.625rem; margin-top: 1.25rem;">
+          <div style="width: 32px; height: 1px; background: var(--color-line);"></div>
+          <p style="font-size: 0.875rem; margin: 0;"><span class="text-fg-1" style="font-weight: 500;">{{ championName }}</span>{% if championTitle %}<br><span class="text-fg-3">{{ championTitle }}</span>{% endif %}</p>
+        </div>
+        {% elif quoteAuthor %}
+        <div style="display: flex; align-items: center; gap: 0.625rem; margin-top: 1.25rem;">
+          <div style="width: 32px; height: 1px; background: var(--color-line);"></div>
+          <p class="text-fg-3" style="font-size: 0.875rem; margin: 0;">{{ quoteAuthor }}</p>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+  {% set slides = screenshots or [heroImage or '/images/screenshot1.png', heroImage or '/images/screenshot1.png', heroImage or '/images/screenshot1.png'] %}
+  <section style="padding: 3rem 1rem;">
+    <div class="carousel" role="region" aria-label="Screenshots" style="margin-inline: 0;">
+      <div class="carousel-track" style="padding-left: 0; padding-right: 0; scroll-padding-inline-start: 0; max-width: 64rem; margin: 0 auto;">
+        {% for img in slides %}
+        <div class="carousel-slide" style="flex: 0 0 100%;">
+          <div class="relative rounded-lg overflow-hidden shadow-[inset_0_0_0_1px_var(--color-line)] ring-[6px] ring-[var(--color-line)] outline-1 outline-[var(--color-line)]">
+            <img src="{{ img | url }}" alt="{{ title }} – Screenshot {{ loop.index }}" class="block w-full" loading="lazy">
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="carousel-nav">
+        <button class="carousel-prev" aria-label="Previous slide">&larr;</button>
+        <div class="carousel-dots">
+          {% for img in slides %}
+          <button class="carousel-dot{% if loop.first %} active{% endif %}" aria-label="Slide {{ loop.index }}"></button>
+          {% endfor %}
+        </div>
+        <button class="carousel-next" aria-label="Next slide">&rarr;</button>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding: 0 1rem 4rem;">
+    <div style="max-width: 64rem; margin: 0 auto;">
+      <div class="prose max-w-none">
+        {{ content | safe }}
+      </div>
+    </div>
+  </section>
+
+</article>

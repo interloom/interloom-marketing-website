@@ -34,4 +34,4 @@ Work in Interloom flows through a clear hierarchy:
 
 ## Need Help?
 
-Contact us at [hello@interloom.io](mailto:hello@interloom.io) to get started with your first workflow.
+Contact us at [hello@interloom.com](mailto:hello@interloom.com) to get started with your first workflow.

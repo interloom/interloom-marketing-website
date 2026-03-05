@@ -1,9 +1,7 @@
 ---
 title: Code Interpreter and External API Access
 date: 2026-01-14
-tag: Platform
+tag: Tools
 ---
 
-**Code Interpreter - January 9, 2026.** The AI assistant can now write and execute Python in a secure, isolated sandbox. This enables spreadsheet analysis, calculations, chart generation, transformations, and report workflows directly in a task thread.
-
-**External API Access - January 14, 2026.** Agents can now execute HTTP and GraphQL requests to external services as part of task execution. Combined with MCP, this turns the assistant into an integration layer that can fetch or update data across the systems your team depends on.
+The assistant can now execute Python in an isolated runtime for structured analysis and call external HTTP or GraphQL endpoints to fetch and update operational data during task execution. Customers can automate richer end-to-end workflows without leaving Interloom or building custom glue code first.

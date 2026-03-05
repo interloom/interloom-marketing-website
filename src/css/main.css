@@ -355,12 +355,12 @@ footer {
   padding-inline: var(--gutter-w);
 }
 
-header {
+body > header {
   padding-inline: var(--gutter-w);
   border-bottom: 1px solid var(--color-line);
 }
 
-header > nav {
+body > header > nav {
   border-inline: 1px solid var(--color-line);
   margin-inline: -1px;
 }
@@ -427,6 +427,16 @@ footer {
   position: relative;
   padding-inline: var(--gutter-w);
   margin-top: 4rem;
+}
+
+/* Docs pages should connect content directly to footer divider. */
+.docs-page footer {
+  margin-top: 0;
+}
+
+/* Ensure docs two-column shell fills the same vertical space as main. */
+.docs-layout {
+  min-height: inherit;
 }
 
 footer::before {
@@ -519,10 +529,10 @@ section.fade-in-stagger > .visible {
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
-  padding-block: 0.5rem;
+  padding-block: 0.75rem;
   /* Left inset aligns first slide with max-w-5xl content measure */
   padding-left: var(--_inset);
-  padding-right: 0.5rem;
+  padding-right: 0.75rem;
   scroll-padding-inline-start: var(--_inset);
 }
 
