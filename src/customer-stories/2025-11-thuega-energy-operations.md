@@ -3,7 +3,7 @@ layout: customer-story.njk
 title: Thüga Streamlines Operations Across Regional Energy Subsidiaries
 description: How Thüga's shared services team deploys and iterates operational workflows across two regional energy brands.
 company: Thüga Aktiengesellschaft
-logo: /images/logos/thuega-icon.svg
+logo: /images/logos/thuega-icon.png
 date: 2025-11-15
 tags:
   - Energy

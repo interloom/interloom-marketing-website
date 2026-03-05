@@ -3,7 +3,7 @@ layout: customer-story.njk
 title: RM Components Transforms Bills of Materials Processing
 description: How a precision engineering firm replaced manual BOM workflows with structured, AI-assisted case handling.
 company: RM Components
-logo: /images/logos/rm-components-icon.svg
+logo: /images/logos/rm-components-icon.png
 date: 2025-10-20
 tags:
   - Manufacturing
