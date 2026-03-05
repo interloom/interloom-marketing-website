@@ -29,6 +29,14 @@
         </svg>
       </a>
       <div class="flex items-center gap-2 text-sm">
+        <div class="relative" data-dropdown>
+          <button type="button" class="{{ 'text-fg-1' if page.url.startsWith('/product/') else 'text-fg-3' }} px-2 py-0.5 rounded no-underline hover:text-fg-1 transition-colors cursor-pointer flex items-center gap-1" style="background:color-mix(in srgb,var(--color-fg-1) {{ '8%' if page.url.startsWith('/product/') else '0%' }},transparent)" aria-expanded="false">Product <svg width="10" height="6" viewBox="0 0 10 6" fill="none" style="margin-top:1px"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="absolute top-full right-0 mt-1 py-1 bg-surface-1 border border-line rounded-lg shadow-lg opacity-0 invisible transition-all" data-dropdown-menu style="z-index:60; width: max-content; min-width: 160px;">
+            <a href="{{ '/product/workspace/' | url }}" class="block px-3 py-1.5 text-sm text-fg-2 no-underline hover:bg-surface-3 hover:text-fg-1 transition-colors whitespace-nowrap">Workspace</a>
+            <a href="{{ '/product/context-graph/' | url }}" class="block px-3 py-1.5 text-sm text-fg-2 no-underline hover:bg-surface-3 hover:text-fg-1 transition-colors whitespace-nowrap">Context Graph</a>
+            <a href="{{ '/product/chief-of-staff/' | url }}" class="block px-3 py-1.5 text-sm text-fg-2 no-underline hover:bg-surface-3 hover:text-fg-1 transition-colors whitespace-nowrap">Chief of Staff</a>
+          </div>
+        </div>
         <a href="{{ '/blog/' | url }}" class="{{ 'text-fg-1' if page.url.startsWith('/blog/') else 'text-fg-3' }} px-2 py-0.5 rounded no-underline hover:text-fg-1 transition-colors" style="background:color-mix(in srgb,var(--color-fg-1) {{ '8%' if page.url.startsWith('/blog/') else '0%' }},transparent)">Blog</a>
         <a href="{{ '/releases/' | url }}" class="{{ 'text-fg-1' if page.url.startsWith('/releases/') else 'text-fg-3' }} px-2 py-0.5 rounded no-underline hover:text-fg-1 transition-colors" style="background:color-mix(in srgb,var(--color-fg-1) {{ '8%' if page.url.startsWith('/releases/') else '0%' }},transparent)">Releases</a>
         <a href="{{ '/docs/' | url }}" class="{{ 'text-fg-1' if page.url.startsWith('/docs/') else 'text-fg-3' }} px-2 py-0.5 rounded no-underline hover:text-fg-1 transition-colors" style="background:color-mix(in srgb,var(--color-fg-1) {{ '8%' if page.url.startsWith('/docs/') else '0%' }},transparent)">Documentation</a>
@@ -54,7 +62,7 @@
           <h4 class="text-sm font-medium text-fg-1 mb-2">Product</h4>
           <a href="#" class="text-sm text-fg-3 no-underline hover:text-fg-1 transition-colors">Features</a>
           <a href="#" class="text-sm text-fg-3 no-underline hover:text-fg-1 transition-colors">Integrations</a>
-          <a href="#" class="text-sm text-fg-3 no-underline hover:text-fg-1 transition-colors">Pricing</a>
+          <a href="{{ '/pricing/' | url }}" class="text-sm text-fg-3 no-underline hover:text-fg-1 transition-colors">Pricing</a>
           <a href="#" class="text-sm text-fg-3 no-underline hover:text-fg-1 transition-colors">Changelog</a>
         </div>
         <div class="flex flex-col gap-2">
@@ -322,6 +330,23 @@
           updateDots(i);
           track.scrollTo({ left: i * getStep(), behavior: 'smooth' });
         });
+      });
+    })();
+  </script>
+  <script>
+    (function () {
+      document.querySelectorAll('[data-dropdown]').forEach(function (drop) {
+        var btn = drop.querySelector('button');
+        var menu = drop.querySelector('[data-dropdown-menu]');
+        var timer;
+        function show() { clearTimeout(timer); menu.style.opacity = '1'; menu.style.visibility = 'visible'; btn.setAttribute('aria-expanded', 'true'); }
+        function hide() { timer = setTimeout(function () { menu.style.opacity = '0'; menu.style.visibility = 'hidden'; btn.setAttribute('aria-expanded', 'false'); }, 120); }
+        drop.addEventListener('mouseenter', show);
+        drop.addEventListener('mouseleave', hide);
+        btn.addEventListener('click', function () {
+          if (menu.style.visibility === 'visible') { hide(); } else { show(); }
+        });
+        menu.addEventListener('mouseenter', function () { clearTimeout(timer); });
       });
     })();
   </script>
