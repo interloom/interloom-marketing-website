@@ -4,26 +4,44 @@ date: 2025-01-13
 order: 2
 ---
 
-This guide walks you through the core workflow: creating a space, opening a case, applying a procedure, and collaborating with both human and AI actors.
+This guide walks you through the core process of working with Interloom: creating a space, building a workflow or agent and collaborating with both human and AI actors.
 
-## Create a Space
+## Navigating the UI
 
-Spaces are workspace containers where related cases, procedures, and actors operate together. A space might represent a department ("Claims Operations"), a project ("Q1 Onboarding"), or a client engagement.
+The left sidebar is your command center.
+
+- **Home**: Your personal inbox showing assigned work, @mentions, and active cases.
+- **Spaces**: Distinct areas for teams or projects.
+- **Team**: Where you find and manage AI Agents.
+
+## Spaces
+
+### Spaces
+
+Spaces separate teams, departments, and use cases. It is the top-level boundary and defines the environment, the available Agents, and the data isolation.
+
+### Space Types
+
+**My Tasks**: Your personal space. Only you (and your agents) can read/write. It is immutable (cannot be deleted). Any task not associated with another space is automatically assigned here.
+
+**General Space**: A shared, immutable space available to all users for collaboration.
+
+**Other Spaces**: Areas for teams/projects. Specialized Spaces are the most common way to organize a business. While the General Space is for everyone, Other Spaces are used to create "Departments" or "Project Rooms" with specific rules, specialized agents, and restricted access.
+
+### Create a Space
 
 1. Navigate to your organization in the sidebar
 2. Click **New Space**
 3. Give it a descriptive name and optional description
 4. Invite team members by adding them as **members** — each person gets a role: owner, admin, member, or observer
 
-Every user also has a **private space** created automatically. Standalone threads (quick conversations with an AI agent, for example) start here and can be moved to a shared space later.
+## Workflows
 
-## Create a Procedure
+This is the "Architect's Studio" for a Space. It is where you define the automated logic, procedures, and rules that govern how work is executed within that specific environment. It wires inputs into Interloom and defines automation triggers. Triggers can be flipped on with a toggle button, allowing users to configure automated workflows or define default agents that will be assigned to any opened case.
 
-Procedures are reusable templates that define how a type of case should be handled. Before creating cases, define the stages they'll follow.
+**Follow Procedure**: It serves as the library where you create, edit, and store Procedures, which are the standardized sets of instructions and subtasks used to automate recurring work.
 
-1. Inside your space, go to **Procedures** and click **New Procedure**
-2. Add stages in sequence — each stage has a name, instructions, and optionally a required actor type (human, AI, or either)
-3. For each stage, add **default instructions** — checklist items that will be created when the procedure is applied
+**Notify**: It is where you assign specific Agents to specific subtasks, ensuring that the right "specialist" is automatically tasked when a new Case begins.
 
 **Example: Customer Onboarding**
 
@@ -34,7 +52,23 @@ Procedures are reusable templates that define how a type of case should be handl
 | 3. Kickoff Call | Schedule and conduct welcome call | Human |
 | 4. Compliance Check | Run KYC/AML screening, file documentation | AI |
 
-## Open a Case
+## Agents
+
+Interloom agents are specialized AI agents assigned to specific tasks or subtasks within a structured workspace to execute defined instructions and automate complex workflows. They interact with the platform using a suite of tools to manage objects like notes and files, collaborating with humans and other agents by maintaining a continuous, shared context.
+
+### Native Agents
+
+These agents are present out-of-the-box. They help plan and organize work, manage tasks, index and extract from documents, etc.
+
+### Custom Agents
+
+You can add your own agents via **New Agent** in **Team**.
+
+Describe what the agent should do, how it should respond, and when to use each tool.
+
+You can write the agent's job description yourself or ask `@Thor` to draft a job description for an agent that fulfills a specific task or process.
+
+## Cases
 
 Cases are the primary unit of work in Interloom.
 
@@ -46,7 +80,7 @@ Cases are the primary unit of work in Interloom.
 
 The case starts in the **intake** phase with **idle** motion — work hasn't begun yet.
 
-## Start Working
+### Start Working
 
 When you're ready to begin, **commence** the case:
 
@@ -62,7 +96,7 @@ Work through each stage by completing its instructions:
 
 When all instructions in a stage are satisfied, the stage completes and the next one activates.
 
-## Collaborate in the Thread
+### Collaborate in the Thread
 
 Every case has a **Thread** — a chronological timeline of everything that happens:
 
@@ -74,7 +108,7 @@ Every case has a **Thread** — a chronological timeline of everything that happ
 
 The thread is the single source of truth for what happened, when, and by whom. All activity is logged with visibility controls: public (all participants), internal (assigned actors and admins), or system (audit log only).
 
-## Resolve and Close
+### Resolve and Close
 
 When the business-relevant work is done:
 
@@ -85,3 +119,7 @@ When the business-relevant work is done:
 
 - Read [Core Concepts](/docs/core-concepts/) to understand the full domain model — the environment tree, phase+motion lifecycle, and how entities relate
 - Check the [API Reference](/docs/api-reference/) for programmatic access to every entity
+
+## Need Help?
+
+Contact us at [hello@interloom.com](mailto:hello@interloom.com) to get started with your first workflow.

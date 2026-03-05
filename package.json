@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev:11ty": "eleventy --serve",
-    "dev:css": "tailwindcss -i ./src/css/main.css -o ./_site/css/main.css --watch",
+    "dev:css": "tailwindcss -i ./src/css/main.css -o ./_site/css/main.css --watch=always",
     "start": "npm-run-all --parallel dev:*",
     "build:css": "tailwindcss -i ./src/css/main.css -o ./_site/css/main.css --minify",
     "build:11ty": "eleventy",
