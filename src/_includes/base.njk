@@ -34,7 +34,6 @@
         <a href="{{ '/blog/' | url }}" class="{{ 'text-fg-1' if page.url.startsWith('/blog/') else 'text-fg-3' }} px-2 py-0.5 rounded no-underline hover:text-fg-1 transition-colors" style="background:color-mix(in srgb,var(--color-fg-1) {{ '8%' if page.url.startsWith('/blog/') else '0%' }},transparent)">Blog</a>
         <a href="{{ '/releases/' | url }}" class="{{ 'text-fg-1' if page.url.startsWith('/releases/') else 'text-fg-3' }} px-2 py-0.5 rounded no-underline hover:text-fg-1 transition-colors" style="background:color-mix(in srgb,var(--color-fg-1) {{ '8%' if page.url.startsWith('/releases/') else '0%' }},transparent)">Releases</a>
         <a href="{{ '/docs/' | url }}" class="{{ 'text-fg-1' if page.url.startsWith('/docs/') else 'text-fg-3' }} px-2 py-0.5 rounded no-underline hover:text-fg-1 transition-colors" style="background:color-mix(in srgb,var(--color-fg-1) {{ '8%' if page.url.startsWith('/docs/') else '0%' }},transparent)">Documentation</a>
-        <a href="{{ '/customer-stories/' | url }}" class="{{ 'text-fg-1' if page.url.startsWith('/customer-stories/') else 'text-fg-3' }} px-2 py-0.5 rounded no-underline hover:text-fg-1 transition-colors" style="background:color-mix(in srgb,var(--color-fg-1) {{ '8%' if page.url.startsWith('/customer-stories/') else '0%' }},transparent)">Customer Stories</a>
       </div>
       <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2eEwV1c880TGi16I1QWst6PTzbawnSjH9mV1e49ihrW3raJf-nKrwUIua0S59qEtt5TkGFmrfr" class="inline-flex items-center h-6 bg-fg-1 text-surface-1 px-2 text-sm rounded font-medium no-underline hover:opacity-85 transition-opacity">Demo</a>
     </nav>
@@ -61,6 +60,7 @@
         <div class="flex flex-col gap-2">
           <h4 class="text-sm font-medium text-fg-1 mb-2">Company</h4>
           <a href="{{ '/about/' | url }}" class="text-sm text-fg-3 no-underline hover:text-fg-1 transition-colors">About</a>
+          <a href="{{ '/customer-stories/' | url }}" class="text-sm text-fg-3 no-underline hover:text-fg-1 transition-colors">Customers</a>
           <a href="{{ '/blog/' | url }}" class="text-sm text-fg-3 no-underline hover:text-fg-1 transition-colors">Blog</a>
           <a href="#" class="text-sm text-fg-3 no-underline hover:text-fg-1 transition-colors">Careers</a>
           <a href="mailto:hello@interloom.com" class="text-sm text-fg-3 no-underline hover:text-fg-1 transition-colors">Contact</a>

@@ -149,7 +149,7 @@ title: Workspace for Business Operations
 </div>
 </section>
 
-<section class="min-h-[40vh] flex flex-col justify-center" id="contact" style="background-image: url('{{ '/images/landscape-right.png' | url }}'); background-repeat: no-repeat; background-position: calc(100% + 270px) bottom; background-size: auto 120%;">
+<section class="min-h-[40vh] flex flex-col" id="contact">
 <div class="mx-auto max-w-5xl w-full relative z-10">
 
 <p class="text-xl md:text-2xl text-fg-3 leading-snug tracking-tight max-w-2xl" data-scramble>Every week your team spends on manual workflows is a week your competitors are not. <span class="text-fg-1">Start deploying production workflows with a forward-deployed Interloom engineer.</span></p>
@@ -157,6 +157,8 @@ title: Workspace for Business Operations
 <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2eEwV1c880TGi16I1QWst6PTzbawnSjH9mV1e49ihrW3raJf-nKrwUIua0S59qEtt5TkGFmrfr" class="inline-flex items-center h-[32px] bg-fg-1 text-surface-1 px-3 rounded font-medium no-underline hover:opacity-85 transition-opacity">Book a demo</a>
 <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2eEwV1c880TGi16I1QWst6PTzbawnSjH9mV1e49ihrW3raJf-nKrwUIua0S59qEtt5TkGFmrfr" class="inline-flex items-center h-[32px] border border-line text-fg-2 px-3 rounded font-medium no-underline hover:bg-surface-3 transition-colors">Join the waitlist</a>
 </div>
+
+<img src="{{ '/images/landscape-top-view.svg' | url }}" alt="" class="w-full mt-8" aria-hidden="true">
 
 </div>
 </section>
