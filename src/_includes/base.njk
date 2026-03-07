@@ -10,6 +10,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&family=Hedvig+Letters+Serif:opsz@12..24&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ '/css/main.generated.css' | url }}">
   <style>[data-scramble]{opacity:1}@media(prefers-reduced-motion:reduce){[data-scramble]{opacity:1}}</style>
+  <script>
+    (function(){var s=localStorage.getItem('theme');var d=s?s==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.classList.add(d?'dark':'light');})();
+  </script>
 </head>
 <body class="bg-surface-2 text-fg-1 font-sans text-base leading-relaxed antialiased{{ ' docs-page' if page.url.startsWith('/docs/') else '' }}">
   <div class="scaffold" aria-hidden="true">
@@ -96,25 +99,16 @@
       const root = document.documentElement;
       const btn = document.getElementById('theme-toggle');
       const label = document.getElementById('theme-label');
-      const stored = localStorage.getItem('theme');
 
-      function apply(dark) {
-        root.classList.toggle('dark', dark);
-        root.classList.toggle('light', !dark);
-        label.textContent = dark ? 'Light' : 'Dark';
-      }
-
-      // Init: respect stored preference, else follow system
-      if (stored) {
-        apply(stored === 'dark');
-      } else {
-        apply(window.matchMedia('(prefers-color-scheme: dark)').matches);
-      }
+      // Theme class already applied by <head> script; just sync the label
+      label.textContent = root.classList.contains('dark') ? 'Light' : 'Dark';
 
       btn.addEventListener('click', function () {
         const dark = !root.classList.contains('dark');
+        root.classList.toggle('dark', dark);
+        root.classList.toggle('light', !dark);
         localStorage.setItem('theme', dark ? 'dark' : 'light');
-        apply(dark);
+        label.textContent = dark ? 'Light' : 'Dark';
       });
     })();
   </script>

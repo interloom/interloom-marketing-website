@@ -479,19 +479,19 @@ body > header > nav {
 main > section {
   position: relative;
   padding-inline: 1rem;
-  padding-block: 3rem;
+  padding-block: 5rem;
 }
 
 @media (width >= 48rem) {
   main > section {
     padding-inline: 2.5rem;
-    padding-block: 3rem;
+    padding-block: 6rem;
   }
 }
 @media (width >= 80rem) {
   main > section {
     padding-inline: 4rem;
-    padding-block: 4rem;
+    padding-block: 8rem;
   }
 }
 
