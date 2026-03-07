@@ -659,12 +659,100 @@ section.fade-in-stagger > .visible {
 
 
 /* =================================================================
+   Announcement pill — ticker / marquee next to logo
+   ================================================================= */
+.announcement-pill {
+  display: inline-flex;
+  align-items: center;
+  height: 1.5rem;
+  overflow: hidden;
+  border-radius: 9999px;
+  border: 1px solid var(--color-line);
+  background: var(--color-surface-3);
+  padding-inline: 0.625rem;
+  font-size: 0.8125rem;
+  letter-spacing: 0.01em;
+  color: var(--color-fg-3);
+  white-space: nowrap;
+  position: relative;
+  transition: color 0.15s, border-color 0.15s;
+  flex-shrink: 0;
+}
+.announcement-pill:hover {
+  color: var(--color-fg-2);
+  border-color: var(--color-fg-4);
+}
+/* Inverted (dark) variant */
+.announcement-pill--inverted {
+  background: var(--color-fg-1);
+  border-color: transparent;
+  color: var(--color-surface-3);
+}
+.announcement-pill--inverted:hover {
+  color: var(--color-surface-1);
+}
+/* Gradient fade masks on both edges */
+.announcement-pill::before,
+.announcement-pill::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1.25rem;
+  z-index: 1;
+  pointer-events: none;
+}
+.announcement-pill {
+  --_pill-bg: var(--color-surface-3);
+}
+.announcement-pill--inverted {
+  --_pill-bg: var(--color-fg-1);
+}
+.announcement-pill::before {
+  left: 0;
+  background: linear-gradient(to right, var(--_pill-bg), transparent);
+}
+.announcement-pill::after {
+  right: 0;
+  width: 2.5rem;
+  background: linear-gradient(to left, var(--_pill-bg) 40%, transparent);
+}
+.announcement-pill-arrow {
+  position: absolute;
+  right: 0.375rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  flex-shrink: 0;
+  color: inherit;
+  opacity: 0.7;
+  transition: opacity 0.15s;
+}
+.announcement-pill:hover .announcement-pill-arrow {
+  opacity: 1;
+}
+.announcement-pill-track {
+  display: block;
+  overflow: hidden;
+  padding-inline: 0.75rem; /* breathing room inside fade zones */
+}
+.announcement-pill-text {
+  display: inline-block;
+  will-change: transform;
+}
+/* Continuous ticker loop — JS sets --ticker-unit to one copy's width */
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(calc(-1 * var(--ticker-unit))); }
+}
+
+/* =================================================================
    Carousel — outside @layer to bypass Tailwind v4 tree-shaking
    ================================================================= */
 .carousel {
   /* Mirror scaffold section padding so negative margin pulls to section edge */
   --_pad: 1rem;
-  --_inset: max(calc(var(--_pad) + 0.5rem), calc((100% - 64rem) / 2 + 0.5rem));
+  --_inset: max(var(--_pad), calc((100% - 64rem) / 2));
   position: relative;
   margin-inline: calc(-1 * var(--_pad));
 }
@@ -758,7 +846,7 @@ section.fade-in-stagger > .visible {
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
-  margin-top: 1.5rem;
+  margin-top: 0;
 }
 
 .carousel-prev,
