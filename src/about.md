@@ -8,7 +8,7 @@ permalink: /about/
 <section class="pt-24 pb-10 px-4 flex items-end min-h-[30vh]">
   <div class="mx-auto max-w-5xl w-full">
     <p class="text-xs tracking-[0.12em] uppercase text-fg-3 mb-4">Company</p>
-    <h1 class="text-4xl md:text-5xl font-normal tracking-tight max-w-4xl mb-0">From the Founding Team at Interloom</h1>
+    <h1 class="max-w-4xl mb-0">From the Founding Team at Interloom</h1>
   </div>
 </section>
 

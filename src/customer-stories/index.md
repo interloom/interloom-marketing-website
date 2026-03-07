@@ -6,7 +6,7 @@ title: Customer Stories
 <section class="pt-24 pb-12 px-4 flex items-end min-h-[30vh]">
 <div class="mx-auto max-w-5xl w-full">
 
-<h1 class="text-4xl md:text-5xl font-normal tracking-tight font-serif">Customer Stories</h1>
+<h1>Customer Stories</h1>
 <p class="text-fg-3 mt-6 mb-0">How teams deploy, iterate, and scale operational workflows with Interloom.</p>
 {%- set storyTags = [] -%}
 {%- for story in collections.customerStories -%}

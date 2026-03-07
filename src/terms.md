@@ -6,7 +6,7 @@ description: Terms governing the use of Interloom services.
 
 <section class="pt-24 pb-12 px-4 flex items-end min-h-[26vh]">
   <div class="mx-auto max-w-5xl w-full">
-    <h1 class="text-4xl md:text-5xl font-normal tracking-tight font-serif mb-0">Terms</h1>
+    <h1 class="mb-0">Terms</h1>
     <p class="text-fg-3 mt-5 mb-0 max-w-2xl">Terms governing access to and use of Interloom services.</p>
   </div>
 </section>

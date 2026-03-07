@@ -23,7 +23,6 @@ title: Seed Round Announcement
     font-size: 1.5rem;
     font-weight: 400;
     margin-bottom: 0.5rem;
-    letter-spacing: -0.01em;
   }
   .video-subtitle {
     color: rgba(255,255,255,0.5);
@@ -33,7 +32,7 @@ title: Seed Round Announcement
 </style>
 
 <div class="video-container">
-  <h1 class="video-title font-serif">Seed Round Announcement</h1>
+  <h1 class="video-title">Seed Round Announcement</h1>
   <p class="video-subtitle">Interloom raises $16.5m from DN Capital, BEK Ventures and Air Street Capital to redefine business process automation.</p>
   <video src="{{ '/videos/seed-round.mp4' | url }}" controls playsinline preload="metadata"></video>
 </div>

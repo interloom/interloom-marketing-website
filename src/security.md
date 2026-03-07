@@ -7,7 +7,7 @@ description: Enterprise-grade security architecture, controls, and governance fo
 <section class="pt-24 pb-16 px-4">
   <div class="mx-auto max-w-5xl">
     <p class="text-sm text-fg-3 tracking-wide uppercase">Interloom Security Overview</p>
-    <h1 class="text-4xl md:text-5xl font-normal tracking-tight font-serif mt-3">Security and trust for enterprise automation</h1>
+    <h1 class="mt-3">Security and trust for enterprise automation</h1>
     <p class="text-xl md:text-2xl text-fg-3 leading-snug tracking-tight max-w-4xl mt-6">
       Interloom is built for organizations that automate critical business processes and need
       strong, verifiable controls. This page gives security leadership and platform operations teams a practical view of our

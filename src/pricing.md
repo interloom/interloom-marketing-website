@@ -6,7 +6,7 @@ title: Pricing
 <section id="hero" class="relative min-h-[50vh] flex flex-col justify-center py-16 md:py-24 px-4">
 <div class="mx-auto max-w-5xl w-full relative z-10">
 <p class="text-sm text-fg-3 font-medium tracking-wide uppercase mb-4">Pricing</p>
-<h1 class="text-4xl md:text-5xl font-normal tracking-tight max-w-3xl" data-scramble>Pricing that rewards automation, not headcount.</h1>
+<h1 class="max-w-3xl" data-scramble>Pricing that rewards automation, not headcount.</h1>
 <p class="text-xl md:text-2xl text-fg-3 leading-snug tracking-tight max-w-3xl mt-4" data-scramble="150"><span class="text-fg-2">Manual work is free. Forever.</span> You only pay when AI agents take over work that used to require people. Unlimited users, unlimited spaces, no seat-based pricing.</p>
 <div class="flex flex-wrap items-center gap-3 mt-8">
 <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2eEwV1c880TGi16I1QWst6PTzbawnSjH9mV1e49ihrW3raJf-nKrwUIua0S59qEtt5TkGFmrfr" class="inline-flex items-center h-[32px] bg-fg-1 text-surface-1 px-3 rounded font-medium no-underline hover:opacity-85 transition-opacity">Talk to Sales</a>

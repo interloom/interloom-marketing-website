@@ -1,0 +1,10 @@
+{% macro render(items) %}
+<div class="split-block grid grid-cols-1 md:grid-cols-2 gap-6">
+  {% for item in items %}
+  <div style="padding-top: 1.5rem; border-top: 1px solid var(--color-line);">
+    <p class="text-sm font-medium text-fg-1 mb-3">{{ item.title }}</p>
+    <p class="text-sm text-fg-3 leading-relaxed">{{ item.content }}</p>
+  </div>
+  {% endfor %}
+</div>
+{% endmacro %}
