@@ -9,6 +9,7 @@
   /* =================================================================
      Base swatches — raw palette
      ================================================================= */
+  --color-gray-25: #fcfcfc;
   --color-gray-50: #fafafa;
   --color-gray-100: #f5f5f5;
   --color-gray-200: #e5e5e5;
@@ -19,6 +20,7 @@
   --color-gray-700: #404040;
   --color-gray-800: #262626;
   --color-gray-900: #171717;
+  --color-gray-925: #131313;
   --color-gray-950: #0a0a0a;
 
   /* =================================================================
@@ -37,10 +39,53 @@
   --color-line: var(--line);
   --color-line-faint: var(--line-faint);
 
+  /* Accent scale */
+  --color-accent-50: #fafafa;
+  --color-accent-100: #f5f5f5;
+  --color-accent-200: #e5e5e5;
+  --color-accent-300: #d4d4d4;
+  --color-accent-400: #a3a3a3;
+  --color-accent-500: #262626;
+  --color-accent-600: #171717;
+  --color-accent-700: #0a0a0a;
+  --color-accent-800: #0a0a0a;
+  --color-accent-900: #0a0a0a;
+
+  /* Status colors */
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+
   /* Tint tokens */
   --color-tint-blue: var(--tint-blue);
   --color-tint-blue-subtle: var(--tint-blue-subtle);
   --color-tint-blue-vivid: var(--tint-blue-vivid);
+  --color-tint-purple: var(--tint-purple);
+  --color-tint-purple-subtle: var(--tint-purple-subtle);
+  --color-tint-pink: var(--tint-pink);
+  --color-tint-pink-subtle: var(--tint-pink-subtle);
+  --color-tint-amber: var(--tint-amber);
+  --color-tint-amber-subtle: var(--tint-amber-subtle);
+  --color-tint-emerald: var(--tint-emerald);
+  --color-tint-emerald-subtle: var(--tint-emerald-subtle);
+  --color-tint-cyan: var(--tint-cyan);
+  --color-tint-cyan-subtle: var(--tint-cyan-subtle);
+  --color-tint-rose: var(--tint-rose);
+  --color-tint-rose-subtle: var(--tint-rose-subtle);
+  --color-tint-indigo: var(--tint-indigo);
+  --color-tint-indigo-subtle: var(--tint-indigo-subtle);
+  --color-tint-teal: var(--tint-teal);
+  --color-tint-teal-subtle: var(--tint-teal-subtle);
+  --color-tint-orange: var(--tint-orange);
+  --color-tint-orange-subtle: var(--tint-orange-subtle);
+  --color-tint-violet: var(--tint-violet);
+  --color-tint-violet-subtle: var(--tint-violet-subtle);
+  --color-tint-red: var(--tint-red);
+  --color-tint-red-subtle: var(--tint-red-subtle);
+  --color-tint-green: var(--tint-green);
+  --color-tint-green-subtle: var(--tint-green-subtle);
+  --color-tint-yellow: var(--tint-yellow);
+  --color-tint-yellow-subtle: var(--tint-yellow-subtle);
 
   /* Typography */
   --font-sans: "Geist", "Inter", system-ui, -apple-system, sans-serif;
@@ -55,7 +100,7 @@
   color-scheme: light;
 
   --surface-1: #ffffff;
-  --surface-2: var(--color-gray-50);
+  --surface-2: var(--color-gray-25);
   --surface-3: var(--color-gray-100);
   --surface-4: var(--color-gray-200);
 
@@ -64,12 +109,23 @@
   --fg-3: var(--color-gray-500);
   --fg-4: var(--color-gray-400);
 
-  --line: rgba(0, 0, 0, 0.10);
-  --line-faint: rgba(0, 0, 0, 0.04);
+  --line: rgba(0, 0, 0, 0.12);
+  --line-faint: rgba(0, 0, 0, 0.06);
 
-  --tint-blue: #1d4ed8;
-  --tint-blue-subtle: #dbeafe;
-  --tint-blue-vivid: #3b82f6;
+  --tint-blue: #1d4ed8;        --tint-blue-subtle: #dbeafe;  --tint-blue-vivid: #3b82f6;
+  --tint-purple: #7e22ce;      --tint-purple-subtle: #f3e8ff;
+  --tint-pink: #be185d;        --tint-pink-subtle: #fce7f3;
+  --tint-amber: #b45309;       --tint-amber-subtle: #fef3c7;
+  --tint-emerald: #047857;     --tint-emerald-subtle: #d1fae5;
+  --tint-cyan: #0e7490;        --tint-cyan-subtle: #cffafe;
+  --tint-rose: #be123c;        --tint-rose-subtle: #ffe4e6;
+  --tint-indigo: #4338ca;      --tint-indigo-subtle: #e0e7ff;
+  --tint-teal: #0f766e;        --tint-teal-subtle: #ccfbf1;
+  --tint-orange: #c2410c;      --tint-orange-subtle: #ffedd5;
+  --tint-violet: #6d28d9;      --tint-violet-subtle: #ede9fe;
+  --tint-red: #b91c1c;         --tint-red-subtle: #fee2e2;
+  --tint-green: #15803d;       --tint-green-subtle: #dcfce7;
+  --tint-yellow: #a16207;      --tint-yellow-subtle: #fef9c3;
 }
 
 /* =================================================================
@@ -79,8 +135,8 @@
   :root:not(.light) {
     color-scheme: dark;
 
-    --surface-1: var(--color-gray-800);
-    --surface-2: var(--color-gray-900);
+    --surface-1: var(--color-gray-900);
+    --surface-2: var(--color-gray-925);
     --surface-3: var(--color-gray-950);
     --surface-4: #000000;
 
@@ -89,12 +145,23 @@
     --fg-3: var(--color-gray-500);
     --fg-4: var(--color-gray-600);
 
-    --line: rgba(255, 255, 255, 0.10);
-    --line-faint: rgba(255, 255, 255, 0.04);
+    --line: rgba(255, 255, 255, 0.12);
+    --line-faint: rgba(255, 255, 255, 0.06);
 
-    --tint-blue: #60a5fa;
-    --tint-blue-subtle: rgba(59, 130, 246, 0.12);
-    --tint-blue-vivid: #60a5fa;
+    --tint-blue: #60a5fa;        --tint-blue-subtle: rgba(59, 130, 246, 0.12);  --tint-blue-vivid: #60a5fa;
+    --tint-purple: #c084fc;      --tint-purple-subtle: rgba(168, 85, 247, 0.12);
+    --tint-pink: #f472b6;        --tint-pink-subtle: rgba(236, 72, 153, 0.12);
+    --tint-amber: #fbbf24;       --tint-amber-subtle: rgba(245, 158, 11, 0.12);
+    --tint-emerald: #34d399;     --tint-emerald-subtle: rgba(16, 185, 129, 0.12);
+    --tint-cyan: #22d3ee;        --tint-cyan-subtle: rgba(6, 182, 212, 0.12);
+    --tint-rose: #fb7185;        --tint-rose-subtle: rgba(244, 63, 94, 0.12);
+    --tint-indigo: #818cf8;      --tint-indigo-subtle: rgba(99, 102, 241, 0.12);
+    --tint-teal: #2dd4bf;        --tint-teal-subtle: rgba(20, 184, 166, 0.12);
+    --tint-orange: #fb923c;      --tint-orange-subtle: rgba(249, 115, 22, 0.12);
+    --tint-violet: #a78bfa;      --tint-violet-subtle: rgba(139, 92, 246, 0.12);
+    --tint-red: #f87171;         --tint-red-subtle: rgba(239, 68, 68, 0.12);
+    --tint-green: #4ade80;       --tint-green-subtle: rgba(34, 197, 94, 0.12);
+    --tint-yellow: #facc15;      --tint-yellow-subtle: rgba(234, 179, 8, 0.12);
   }
 }
 
@@ -102,8 +169,8 @@
 :root.dark {
   color-scheme: dark;
 
-  --surface-1: var(--color-gray-800);
-  --surface-2: var(--color-gray-900);
+  --surface-1: var(--color-gray-900);
+  --surface-2: var(--color-gray-925);
   --surface-3: var(--color-gray-950);
   --surface-4: #000000;
 
@@ -112,12 +179,23 @@
   --fg-3: var(--color-gray-500);
   --fg-4: var(--color-gray-600);
 
-  --line: rgba(255, 255, 255, 0.10);
-  --line-faint: rgba(255, 255, 255, 0.04);
+  --line: rgba(255, 255, 255, 0.12);
+  --line-faint: rgba(255, 255, 255, 0.06);
 
-  --tint-blue: #60a5fa;
-  --tint-blue-subtle: rgba(59, 130, 246, 0.12);
-  --tint-blue-vivid: #60a5fa;
+  --tint-blue: #60a5fa;        --tint-blue-subtle: rgba(59, 130, 246, 0.12);  --tint-blue-vivid: #60a5fa;
+  --tint-purple: #c084fc;      --tint-purple-subtle: rgba(168, 85, 247, 0.12);
+  --tint-pink: #f472b6;        --tint-pink-subtle: rgba(236, 72, 153, 0.12);
+  --tint-amber: #fbbf24;       --tint-amber-subtle: rgba(245, 158, 11, 0.12);
+  --tint-emerald: #34d399;     --tint-emerald-subtle: rgba(16, 185, 129, 0.12);
+  --tint-cyan: #22d3ee;        --tint-cyan-subtle: rgba(6, 182, 212, 0.12);
+  --tint-rose: #fb7185;        --tint-rose-subtle: rgba(244, 63, 94, 0.12);
+  --tint-indigo: #818cf8;      --tint-indigo-subtle: rgba(99, 102, 241, 0.12);
+  --tint-teal: #2dd4bf;        --tint-teal-subtle: rgba(20, 184, 166, 0.12);
+  --tint-orange: #fb923c;      --tint-orange-subtle: rgba(249, 115, 22, 0.12);
+  --tint-violet: #a78bfa;      --tint-violet-subtle: rgba(139, 92, 246, 0.12);
+  --tint-red: #f87171;         --tint-red-subtle: rgba(239, 68, 68, 0.12);
+  --tint-green: #4ade80;       --tint-green-subtle: rgba(34, 197, 94, 0.12);
+  --tint-yellow: #facc15;      --tint-yellow-subtle: rgba(234, 179, 8, 0.12);
 }
 
 
@@ -127,10 +205,17 @@
 @layer base {
   h1 {
     font-family: var(--font-serif);
-    font-size: 2rem;
+    font-size: 2.25rem;
     font-weight: 400;
     margin-bottom: 1rem;
     line-height: 1.2;
+    letter-spacing: -0.015em;
+  }
+
+  @media (width >= 48rem) {
+    h1 {
+      font-size: 3rem;
+    }
   }
 
   h2 {
@@ -138,6 +223,8 @@
     font-weight: 400;
     margin-top: 2rem;
     margin-bottom: 1rem;
+    line-height: 1.4;
+    letter-spacing: 0.02em;
   }
 
   h3 {
@@ -145,6 +232,8 @@
     font-weight: 400;
     margin-top: 1.5rem;
     margin-bottom: 0.75rem;
+    line-height: 1.4;
+    letter-spacing: 0.02em;
   }
 
   a {
@@ -390,22 +479,19 @@ body > header > nav {
 main > section {
   position: relative;
   padding-inline: 1rem;
+  padding-block: 3rem;
 }
 
-main > section + section {
-  padding-top: 1.5rem;
-}
 @media (width >= 48rem) {
   main > section {
     padding-inline: 2.5rem;
-  }
-  main > section + section {
-    padding-top: 2rem;
+    padding-block: 3rem;
   }
 }
 @media (width >= 80rem) {
   main > section {
     padding-inline: 4rem;
+    padding-block: 4rem;
   }
 }
 
@@ -592,7 +678,7 @@ section.fade-in-stagger > .visible {
 
 .carousel-track {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
@@ -609,7 +695,7 @@ section.fade-in-stagger > .visible {
 }
 
 .carousel-slide {
-  flex: 0 0 calc(100% - 3rem);
+  flex: 0 0 min(64rem, calc(100% - 3rem));
   scroll-snap-align: start;
   min-width: 0;
 }
@@ -645,10 +731,10 @@ section.fade-in-stagger > .visible {
 
 @media (width >= 48rem) {
   .carousel-track {
-    gap: 1.5rem;
+    gap: 2.25rem;
   }
   .carousel-slide {
-    flex: 0 0 calc(100% - 5rem);
+    flex: 0 0 min(64rem, calc(100% - 5rem));
   }
   .carousel--contained .carousel-slide {
     flex: 0 0 calc(100% - 1.5rem);
@@ -657,10 +743,10 @@ section.fade-in-stagger > .visible {
 
 @media (width >= 80rem) {
   .carousel-track {
-    gap: 2rem;
+    gap: 3rem;
   }
   .carousel-slide {
-    flex: 0 0 calc(100% - 6rem);
+    flex: 0 0 min(64rem, calc(100% - 6rem));
   }
   .carousel--contained .carousel-slide {
     flex: 0 0 calc(100% - 1.5rem);
@@ -1085,7 +1171,7 @@ section.fade-in-stagger > .visible {
   font-family: var(--font-serif);
   font-size: 1.5rem;
   color: var(--color-fg-1);
-  letter-spacing: -0.01em;
+  letter-spacing: 0.02em;
 }
 
 @media (width >= 48rem) {
