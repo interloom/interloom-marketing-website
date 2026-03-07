@@ -437,6 +437,62 @@
 
 body {
   overflow-x: clip;
+  position: relative;
+}
+
+/* Ruler tick marks — scroll with content, layered above fixed gutters */
+body::before,
+body::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: var(--gutter-w);
+  z-index: 42;
+  pointer-events: none;
+  background-image:
+    /* Major graduations — every 40px */
+    repeating-linear-gradient(
+      to bottom,
+      var(--color-line) 0,
+      var(--color-line) 1px,
+      transparent 1px,
+      transparent 40px
+    ),
+    /* Minor graduations — every 8px, skipping every 5th (major) position */
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 8px,
+      var(--color-line) 8px,
+      var(--color-line) 9px,
+      transparent 9px,
+      transparent 16px,
+      var(--color-line) 16px,
+      var(--color-line) 17px,
+      transparent 17px,
+      transparent 24px,
+      var(--color-line) 24px,
+      var(--color-line) 25px,
+      transparent 25px,
+      transparent 32px,
+      var(--color-line) 32px,
+      var(--color-line) 33px,
+      transparent 33px,
+      transparent 40px
+    );
+  background-size: 14px 100%, 6px 100%;
+  background-repeat: repeat-y;
+}
+
+body::before {
+  left: 0;
+  background-position: left top, left top;
+}
+
+body::after {
+  right: 0;
+  background-position: right top, right top;
 }
 
 main,
@@ -513,12 +569,6 @@ main > section::before {
 footer {
   position: relative;
   padding-inline: var(--gutter-w);
-  margin-top: 4rem;
-}
-
-/* Docs pages should connect content directly to footer divider. */
-.docs-page footer {
-  margin-top: 0;
 }
 
 /* Ensure docs two-column shell fills the same vertical space as main. */
@@ -773,9 +823,9 @@ section.fade-in-stagger > .visible {
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   padding-block: 0.75rem;
-  /* Left inset aligns first slide with max-w-5xl content measure */
+  /* Symmetric inset keeps the first and last slides aligned to the content measure */
   padding-left: var(--_inset);
-  padding-right: 0.75rem;
+  padding-right: var(--_inset);
   scroll-padding-inline-start: var(--_inset);
 }
 
@@ -787,6 +837,16 @@ section.fade-in-stagger > .visible {
   flex: 0 0 min(64rem, calc(100% - 3rem));
   scroll-snap-align: start;
   min-width: 0;
+}
+
+.carousel-track.is-draggable {
+  cursor: grab;
+}
+
+.carousel-track.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+  user-select: none;
 }
 
 .carousel-frame {
@@ -801,6 +861,35 @@ section.fade-in-stagger > .visible {
   display: block;
   width: 100%;
   border-radius: 0.5rem;
+}
+
+.carousel-zoom {
+  cursor: zoom-in;
+  border: none;
+  background: none;
+  padding: 0;
+  text-align: left;
+  color: inherit;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.carousel-zoom:hover {
+  transform: translateY(-2px);
+}
+
+.carousel-zoom:focus-visible {
+  outline: 2px solid var(--color-tint-blue-vivid);
+  outline-offset: 6px;
+}
+
+.carousel-track.is-dragging .carousel-zoom,
+.carousel-track.is-dragging .carousel-zoom:hover {
+  cursor: grabbing;
+  transform: none;
+}
+
+.carousel-zoom img {
+  pointer-events: none;
 }
 
 /* Contained variant: fills its parent, no negative margins */
@@ -891,6 +980,184 @@ section.fade-in-stagger > .visible {
 
 .carousel-dot.active {
   background: var(--color-fg-1);
+}
+
+.carousel-lightbox-open {
+  overflow: hidden;
+}
+
+.carousel-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.carousel-lightbox[hidden] {
+  display: none;
+}
+
+.carousel-lightbox__scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.72);
+  backdrop-filter: blur(10px);
+  opacity: 0;
+}
+
+.carousel-lightbox__chrome {
+  position: relative;
+  z-index: 1;
+  width: min(96vw, 92rem);
+  max-height: calc(100vh - 2rem);
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.75rem;
+  opacity: 0;
+  transform: translateY(18px) scale(0.985);
+}
+
+.carousel-lightbox__figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.carousel-lightbox__viewport {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+}
+
+.carousel-lightbox__image {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: calc(100vh - 8rem);
+  border-radius: 1rem;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.32);
+}
+
+.carousel-lightbox__caption {
+  max-width: min(100%, 56rem);
+  text-align: center;
+  color: rgba(255, 255, 255, 0.84);
+  font-size: 0.9375rem;
+  line-height: 1.45;
+  text-wrap: balance;
+}
+
+.carousel-lightbox__caption:empty {
+  display: none;
+}
+
+.carousel-lightbox__close,
+.carousel-lightbox__nav {
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.carousel-lightbox__close:hover,
+.carousel-lightbox__nav:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.32);
+  transform: translateY(-1px);
+}
+
+.carousel-lightbox__close:focus-visible,
+.carousel-lightbox__nav:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 3px;
+}
+
+.carousel-lightbox__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
+}
+
+.carousel-lightbox__ghost {
+  position: fixed;
+  z-index: 81;
+  margin: 0;
+  transform-origin: top left;
+  pointer-events: none;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+}
+
+@media (width < 48rem) {
+  .carousel-lightbox {
+    padding: 0.75rem;
+  }
+
+  .carousel-lightbox__chrome {
+    width: 100%;
+    max-height: calc(100vh - 1.5rem);
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    padding-top: 3.5rem;
+  }
+
+  .carousel-lightbox__figure {
+    gap: 0.5rem;
+  }
+
+  .carousel-lightbox__viewport {
+    order: 1;
+  }
+
+  .carousel-lightbox__nav {
+    position: absolute;
+    bottom: 1rem;
+    z-index: 2;
+  }
+
+  .carousel-lightbox__nav--prev {
+    left: 1rem;
+  }
+
+  .carousel-lightbox__nav--next {
+    right: 1rem;
+  }
+
+  .carousel-lightbox__image {
+    max-height: calc(100vh - 10rem);
+  }
+
+  .carousel-lightbox__caption {
+    padding-inline: 0.5rem;
+    font-size: 0.875rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel-zoom,
+  .carousel-lightbox__chrome,
+  .carousel-lightbox__scrim,
+  .carousel-lightbox__close,
+  .carousel-lightbox__nav {
+    transition: none;
+    animation: none;
+  }
 }
 
 /* =================================================================

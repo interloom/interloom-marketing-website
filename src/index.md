@@ -25,27 +25,27 @@ title: Workspace for Business Operations
 <div class="carousel mt-16" role="region" aria-label="Feature slides">
 <div class="carousel-track">
 <div class="carousel-slide">
-<div class="relative rounded-lg shadow-[0_0_0_1px_rgba(0,0,0,0.08),0_2px_8px_rgba(0,0,0,0.06),0_8px_32px_rgba(0,0,0,0.08)]">
-<img src="{{ '/images/screenshot1.png' | url }}" alt="Interloom workflow editor" class="block w-full rounded-lg">
-</div>
+<button type="button" class="carousel-zoom relative block w-full rounded-lg shadow-[0_0_0_1px_rgba(0,0,0,0.08),0_2px_8px_rgba(0,0,0,0.06),0_8px_32px_rgba(0,0,0,0.08)]" aria-label="Expand slide image: Interloom workflow editor" aria-haspopup="dialog">
+<img src="{{ '/images/screenshot1.png' | url }}" alt="Interloom workflow editor" class="block w-full rounded-lg" draggable="false">
+</button>
 <p class="text-base md:text-lg text-fg-3 leading-snug tracking-tight max-w-2xl mt-8 mx-auto text-center" data-scramble><span class="text-fg-1">Built for operational experts.</span> You write workflows in natural language, adding code only where you need it. Each one combines AI steps like extraction and classification with deterministic steps like validation and formatting.</p>
 </div>
 <div class="carousel-slide">
-<div class="relative rounded-lg shadow-[0_0_0_1px_rgba(0,0,0,0.08),0_2px_8px_rgba(0,0,0,0.06),0_8px_32px_rgba(0,0,0,0.08)]">
-<img src="{{ '/images/screenshot2.png' | url }}" alt="Interloom context layer" class="block w-full rounded-lg">
-</div>
+<button type="button" class="carousel-zoom relative block w-full rounded-lg shadow-[0_0_0_1px_rgba(0,0,0,0.08),0_2px_8px_rgba(0,0,0,0.06),0_8px_32px_rgba(0,0,0,0.08)]" aria-label="Expand slide image: Interloom context layer" aria-haspopup="dialog">
+<img src="{{ '/images/screenshot2.png' | url }}" alt="Interloom context layer" class="block w-full rounded-lg" draggable="false">
+</button>
 <p class="text-base md:text-lg text-fg-3 leading-snug tracking-tight max-w-2xl mt-8 mx-auto text-center" data-scramble><span class="text-fg-1">Context Layer.</span> A corporate knowledge base, structured as readable articles like a wiki. It gives every workflow grounding context at execution time. It grows incrementally as workflows process cases, and you can import existing sources. Fully portable, never locked in.</p>
 </div>
 <div class="carousel-slide">
-<div class="relative rounded-lg shadow-[0_0_0_1px_rgba(0,0,0,0.08),0_2px_8px_rgba(0,0,0,0.06),0_8px_32px_rgba(0,0,0,0.08)]">
-<img src="{{ '/images/screenshot3.png' | url }}" alt="Interloom agent automation" class="block w-full rounded-lg">
-</div>
+<button type="button" class="carousel-zoom relative block w-full rounded-lg shadow-[0_0_0_1px_rgba(0,0,0,0.08),0_2px_8px_rgba(0,0,0,0.06),0_8px_32px_rgba(0,0,0,0.08)]" aria-label="Expand slide image: Interloom agent automation" aria-haspopup="dialog">
+<img src="{{ '/images/screenshot3.png' | url }}" alt="Interloom agent automation" class="block w-full rounded-lg" draggable="false">
+</button>
 <p class="text-base md:text-lg text-fg-3 leading-snug tracking-tight max-w-2xl mt-8 mx-auto text-center" data-scramble><span class="text-fg-1">Agents in the loop.</span> Repetitive steps like extraction, triage, and follow-ups run autonomously inside controlled workflows. Agents operate within boundaries you set, and every action is grounded in context your team has already built. Over time, the system gets sharper.</p>
 </div>
 <div class="carousel-slide">
-<div class="relative rounded-lg shadow-[0_0_0_1px_rgba(0,0,0,0.08),0_2px_8px_rgba(0,0,0,0.06),0_8px_32px_rgba(0,0,0,0.08)]">
-<img src="{{ '/images/screenshot4.png' | url }}" alt="Interloom coding agents with subject matter experts" class="block w-full rounded-lg">
-</div>
+<button type="button" class="carousel-zoom relative block w-full rounded-lg shadow-[0_0_0_1px_rgba(0,0,0,0.08),0_2px_8px_rgba(0,0,0,0.06),0_8px_32px_rgba(0,0,0,0.08)]" aria-label="Expand slide image: Interloom coding agents with subject matter experts" aria-haspopup="dialog">
+<img src="{{ '/images/screenshot4.png' | url }}" alt="Interloom coding agents with subject matter experts" class="block w-full rounded-lg" draggable="false">
+</button>
 <p class="text-base md:text-lg text-fg-3 leading-snug tracking-tight max-w-2xl mt-8 mx-auto text-center" data-scramble><span class="text-fg-1">Coding for Everyone.</span> Unlock your subject matter experts to program, test, and deploy tools and integrations using natural language only.</p>
 </div>
 </div>
@@ -161,6 +161,6 @@ title: Workspace for Business Operations
 
 </div>
 
-<iframe src="{{ '/images/landscape-sculpted-93661-512-interactive.html' | url }}" loading="lazy" class="w-full mt-12 border-0" style="height:400px; margin-inline: calc(-1 * var(--_section-px)); width: calc(100% + 2 * var(--_section-px));" allow="webgl" aria-hidden="true"></iframe>
+<iframe src="{{ '/images/landscape-sculpted-93661-512-interactive.html?zoom=15' | url }}" loading="lazy" class="w-full mt-12 border-0" style="height:600px; margin-inline: calc(-1 * var(--_section-px)); width: calc(100% + 2 * var(--_section-px));" allow="webgl" aria-hidden="true"></iframe>
 
 </section>
