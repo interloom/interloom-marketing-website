@@ -481,7 +481,7 @@ body::after {
       transparent 33px,
       transparent 40px
     );
-  background-size: 14px 100%, 6px 100%;
+  background-size: 24px 100%, 12px 100%;
   background-repeat: repeat-y;
 }
 
