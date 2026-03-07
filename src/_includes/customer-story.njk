@@ -106,9 +106,9 @@ layout: base.njk
       <div class="carousel-track" style="padding-left: 0; padding-right: 0; scroll-padding-inline-start: 0; max-width: 64rem; margin: 0 auto;">
         {% for img in slides %}
         <div class="carousel-slide" style="flex: 0 0 100%;">
-          <div class="relative rounded-lg overflow-hidden shadow-[inset_0_0_0_1px_var(--color-line)] ring-[6px] ring-[var(--color-line)] outline-1 outline-[var(--color-line)]">
-            <img src="{{ img | url }}" alt="{{ title }} – Screenshot {{ loop.index }}" class="block w-full" loading="lazy">
-          </div>
+          <button type="button" class="carousel-zoom relative block w-full rounded-lg overflow-hidden shadow-[inset_0_0_0_1px_var(--color-line)] ring-[6px] ring-[var(--color-line)] outline-1 outline-[var(--color-line)]" aria-label="Expand screenshot {{ loop.index }} for {{ title }}" aria-haspopup="dialog">
+            <img src="{{ img | url }}" alt="{{ title }} – Screenshot {{ loop.index }}" class="block w-full" loading="lazy" draggable="false">
+          </button>
         </div>
         {% endfor %}
       </div>

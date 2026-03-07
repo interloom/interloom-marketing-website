@@ -269,56 +269,456 @@
   -->
   <script>
     (function () {
-      var carousel = document.querySelector('.carousel');
-      if (!carousel) return;
+      var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      var track = carousel.querySelector('.carousel-track');
-      var slides = carousel.querySelectorAll('.carousel-slide');
-      var dots = carousel.querySelectorAll('.carousel-dot');
-      var prevBtn = carousel.querySelector('.carousel-prev');
-      var nextBtn = carousel.querySelector('.carousel-next');
-      var current = 0;
-
-      function getStep() {
-        var gap = parseFloat(getComputedStyle(track).gap) || 0;
-        return slides[0].offsetWidth + gap;
+      function toArray(list) {
+        return Array.prototype.slice.call(list || []);
       }
 
-      function updateDots(index) {
-        dots.forEach(function (dot, i) {
-          dot.classList.toggle('active', i === index);
+      function clamp(value, min, max) {
+        return Math.min(Math.max(value, min), max);
+      }
+
+      function getSlideImage(slide) {
+        var zoomTarget = slide.querySelector('.carousel-zoom');
+        return zoomTarget ? zoomTarget.querySelector('img') : slide.querySelector('img');
+      }
+
+      function getSlideCaption(slide) {
+        var caption = slide.querySelector('p');
+        return caption ? caption.textContent.trim() : '';
+      }
+
+      function getViewportRect(image) {
+        var naturalWidth = image.naturalWidth || image.width || image.offsetWidth || 1;
+        var naturalHeight = image.naturalHeight || image.height || image.offsetHeight || 1;
+        var viewportWidth = window.innerWidth;
+        var viewportHeight = window.innerHeight;
+        var inset = viewportWidth >= 768 ? 48 : 20;
+        var maxWidth = viewportWidth - inset * 2;
+        var maxHeight = viewportHeight - (viewportWidth >= 768 ? 120 : 112);
+        var scale = Math.min(maxWidth / naturalWidth, maxHeight / naturalHeight);
+        var width = Math.max(1, naturalWidth * scale);
+        var height = Math.max(1, naturalHeight * scale);
+        return {
+          left: (viewportWidth - width) / 2,
+          top: (viewportHeight - height) / 2,
+          width: width,
+          height: height
+        };
+      }
+
+      function createGhost(image, rect) {
+        var ghost = image.cloneNode(true);
+        ghost.className = 'carousel-lightbox__ghost';
+        ghost.style.top = rect.top + 'px';
+        ghost.style.left = rect.left + 'px';
+        ghost.style.width = rect.width + 'px';
+        ghost.style.height = rect.height + 'px';
+        ghost.style.borderRadius = getComputedStyle(image).borderRadius || '1rem';
+        document.body.appendChild(ghost);
+        return ghost;
+      }
+
+      function createLightbox() {
+        var root = document.createElement('div');
+        root.className = 'carousel-lightbox';
+        root.hidden = true;
+        root.setAttribute('role', 'dialog');
+        root.setAttribute('aria-modal', 'true');
+        root.setAttribute('aria-label', 'Expanded carousel image');
+        root.innerHTML = '' +
+          '<div class="carousel-lightbox__scrim"></div>' +
+          '<button type="button" class="carousel-lightbox__close" aria-label="Close image viewer">&times;</button>' +
+          '<div class="carousel-lightbox__chrome">' +
+            '<button type="button" class="carousel-lightbox__nav carousel-lightbox__nav--prev" aria-label="Previous image">&larr;</button>' +
+            '<figure class="carousel-lightbox__figure">' +
+              '<div class="carousel-lightbox__viewport">' +
+                '<img class="carousel-lightbox__image" alt="">' +
+              '</div>' +
+              '<figcaption class="carousel-lightbox__caption"></figcaption>' +
+            '</figure>' +
+            '<button type="button" class="carousel-lightbox__nav carousel-lightbox__nav--next" aria-label="Next image">&rarr;</button>' +
+          '</div>';
+        document.body.appendChild(root);
+
+        var scrim = root.querySelector('.carousel-lightbox__scrim');
+        var chrome = root.querySelector('.carousel-lightbox__chrome');
+        var image = root.querySelector('.carousel-lightbox__image');
+        var caption = root.querySelector('.carousel-lightbox__caption');
+        var closeBtn = root.querySelector('.carousel-lightbox__close');
+        var prevBtn = root.querySelector('.carousel-lightbox__nav--prev');
+        var nextBtn = root.querySelector('.carousel-lightbox__nav--next');
+        var state = {
+          carousel: null,
+          slides: [],
+          index: 0,
+          trigger: null
+        };
+
+        function setSlide(index) {
+          state.index = ((index % state.slides.length) + state.slides.length) % state.slides.length;
+          var slide = state.slides[state.index];
+          image.src = slide.src;
+          image.alt = slide.alt;
+          caption.textContent = slide.caption || slide.alt || '';
+
+          if (state.carousel && state.carousel.__carouselApi) {
+            state.carousel.__carouselApi.scrollToSlide(state.index, 'auto');
+          }
+        }
+
+        function animateChrome(opening) {
+          var opacity = opening ? ['0', '1'] : ['1', '0'];
+          var transform = opening
+            ? ['translateY(18px) scale(0.985)', 'translateY(0) scale(1)']
+            : ['translateY(0) scale(1)', 'translateY(18px) scale(0.985)'];
+
+          if (prefersReducedMotion) {
+            scrim.style.opacity = opening ? '1' : '0';
+            chrome.style.opacity = opening ? '1' : '0';
+            chrome.style.transform = opening ? 'translateY(0) scale(1)' : 'translateY(18px) scale(0.985)';
+            return;
+          }
+
+          scrim.animate(
+            [{ opacity: opacity[0] }, { opacity: opacity[1] }],
+            { duration: 260, easing: 'ease', fill: 'forwards' }
+          );
+          chrome.animate(
+            [{ opacity: opacity[0], transform: transform[0] }, { opacity: opacity[1], transform: transform[1] }],
+            { duration: 320, easing: 'cubic-bezier(0.22, 1, 0.36, 1)', fill: 'forwards' }
+          );
+        }
+
+        function finishClose() {
+          root.hidden = true;
+          image.style.opacity = '1';
+          document.body.classList.remove('carousel-lightbox-open');
+          if (state.trigger && state.trigger.focus) {
+            state.trigger.focus({ preventScroll: true });
+          }
+        }
+
+        function close() {
+          if (root.hidden) return;
+
+          var targetImage = state.slides[state.index] && state.slides[state.index].image;
+          var targetRect = targetImage ? targetImage.getBoundingClientRect() : null;
+          var startRect = image.getBoundingClientRect();
+
+          animateChrome(false);
+
+          if (
+            prefersReducedMotion ||
+            !targetRect ||
+            !targetRect.width ||
+            !targetRect.height ||
+            !startRect.width ||
+            !startRect.height
+          ) {
+            setTimeout(finishClose, prefersReducedMotion ? 0 : 220);
+            return;
+          }
+
+          image.style.opacity = '0';
+          var ghost = createGhost(image, startRect);
+          var animation = ghost.animate(
+            [
+              {
+                top: startRect.top + 'px',
+                left: startRect.left + 'px',
+                width: startRect.width + 'px',
+                height: startRect.height + 'px',
+                borderRadius: getComputedStyle(image).borderRadius || '1rem'
+              },
+              {
+                top: targetRect.top + 'px',
+                left: targetRect.left + 'px',
+                width: targetRect.width + 'px',
+                height: targetRect.height + 'px',
+                borderRadius: getComputedStyle(targetImage).borderRadius || '0.5rem'
+              }
+            ],
+            { duration: 280, easing: 'cubic-bezier(0.4, 0, 0.2, 1)', fill: 'forwards' }
+          );
+
+          animation.onfinish = function () {
+            ghost.remove();
+            finishClose();
+          };
+        }
+
+        function open(carousel, index, trigger) {
+          var slides = toArray(carousel.querySelectorAll('.carousel-slide')).map(function (slide) {
+            var slideImage = getSlideImage(slide);
+            return slideImage ? {
+              image: slideImage,
+              src: slideImage.currentSrc || slideImage.src,
+              alt: slideImage.alt || '',
+              caption: getSlideCaption(slide)
+            } : null;
+          }).filter(Boolean);
+
+          if (!slides.length || !slides[index]) return;
+
+          state.carousel = carousel;
+          state.slides = slides;
+          state.trigger = trigger;
+          setSlide(index);
+
+          root.hidden = false;
+          image.style.opacity = '0';
+          scrim.style.opacity = '0';
+          chrome.style.opacity = '0';
+          chrome.style.transform = 'translateY(18px) scale(0.985)';
+          document.body.classList.add('carousel-lightbox-open');
+
+          var sourceImage = slides[index].image;
+          var sourceRect = sourceImage.getBoundingClientRect();
+          var viewportRect = getViewportRect(sourceImage);
+
+          animateChrome(true);
+
+          if (prefersReducedMotion || !sourceRect.width || !sourceRect.height) {
+            image.style.opacity = '1';
+            closeBtn.focus({ preventScroll: true });
+            return;
+          }
+
+          var ghost = createGhost(sourceImage, sourceRect);
+          var animation = ghost.animate(
+            [
+              {
+                top: sourceRect.top + 'px',
+                left: sourceRect.left + 'px',
+                width: sourceRect.width + 'px',
+                height: sourceRect.height + 'px',
+                borderRadius: getComputedStyle(sourceImage).borderRadius || '0.5rem'
+              },
+              {
+                top: viewportRect.top + 'px',
+                left: viewportRect.left + 'px',
+                width: viewportRect.width + 'px',
+                height: viewportRect.height + 'px',
+                borderRadius: '1rem'
+              }
+            ],
+            { duration: 320, easing: 'cubic-bezier(0.22, 1, 0.36, 1)', fill: 'forwards' }
+          );
+
+          animation.onfinish = function () {
+            ghost.remove();
+            image.style.opacity = '1';
+            closeBtn.focus({ preventScroll: true });
+          };
+        }
+
+        function step(delta) {
+          if (!state.slides.length) return;
+          var previousIndex = state.index;
+          setSlide(state.index + delta);
+
+          if (prefersReducedMotion || state.index === previousIndex) return;
+
+          image.animate(
+            [
+              { opacity: 0.45, transform: 'translateX(' + (delta > 0 ? 18 : -18) + 'px)' },
+              { opacity: 1, transform: 'translateX(0)' }
+            ],
+            { duration: 220, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' }
+          );
+        }
+
+        root.addEventListener('click', function (event) {
+          if (event.target === scrim) {
+            close();
+          }
         });
-        current = index;
+
+        closeBtn.addEventListener('click', close);
+        prevBtn.addEventListener('click', function () { step(-1); });
+        nextBtn.addEventListener('click', function () { step(1); });
+
+        document.addEventListener('keydown', function (event) {
+          if (root.hidden) return;
+          if (event.key === 'Escape') {
+            event.preventDefault();
+            close();
+          } else if (event.key === 'ArrowLeft') {
+            event.preventDefault();
+            step(-1);
+          } else if (event.key === 'ArrowRight') {
+            event.preventDefault();
+            step(1);
+          }
+        });
+
+        return {
+          open: open,
+          close: close
+        };
       }
 
-      // Detect active slide on scroll
-      var scrollTimer;
-      track.addEventListener('scroll', function () {
-        clearTimeout(scrollTimer);
-        scrollTimer = setTimeout(function () {
-          var index = Math.round(track.scrollLeft / getStep());
-          updateDots(index);
-        }, 50);
-      });
+      var lightbox = createLightbox();
 
-      // Arrow navigation
-      prevBtn.addEventListener('click', function () {
-        var target = Math.max(current - 1, 0);
-        updateDots(target);
-        track.scrollTo({ left: target * getStep(), behavior: 'smooth' });
-      });
+      toArray(document.querySelectorAll('.carousel')).forEach(function (carousel) {
+        var track = carousel.querySelector('.carousel-track');
+        var slides = toArray(carousel.querySelectorAll('.carousel-slide'));
+        var dots = toArray(carousel.querySelectorAll('.carousel-dot'));
+        var prevBtn = carousel.querySelector('.carousel-prev');
+        var nextBtn = carousel.querySelector('.carousel-next');
+        var current = 0;
+        var suppressClick = false;
+        var dragState = {
+          pointerId: null,
+          startX: 0,
+          startScrollLeft: 0,
+          active: false,
+          moved: false
+        };
 
-      nextBtn.addEventListener('click', function () {
-        var target = Math.min(current + 1, slides.length - 1);
-        updateDots(target);
-        track.scrollTo({ left: target * getStep(), behavior: 'smooth' });
-      });
+        if (!track || !slides.length) return;
 
-      // Dot navigation
-      dots.forEach(function (dot, i) {
-        dot.addEventListener('click', function () {
-          updateDots(i);
-          track.scrollTo({ left: i * getStep(), behavior: 'smooth' });
+        function getStep() {
+          var gap = parseFloat(getComputedStyle(track).gap) || 0;
+          return slides[0].offsetWidth + gap;
+        }
+
+        function updateDots(index) {
+          var clamped = clamp(index, 0, slides.length - 1);
+          dots.forEach(function (dot, i) {
+            dot.classList.toggle('active', i === clamped);
+          });
+          current = clamped;
+        }
+
+        function scrollToSlide(index, behavior) {
+          var target = clamp(index, 0, slides.length - 1);
+          updateDots(target);
+          track.scrollTo({ left: target * getStep(), behavior: behavior || 'smooth' });
+        }
+
+        carousel.__carouselApi = {
+          scrollToSlide: scrollToSlide
+        };
+
+        // Detect active slide on scroll
+        var scrollTimer;
+        track.addEventListener('scroll', function () {
+          clearTimeout(scrollTimer);
+          scrollTimer = setTimeout(function () {
+            var index = Math.round(track.scrollLeft / getStep());
+            updateDots(index);
+          }, 50);
+        });
+
+        // Arrow navigation
+        if (prevBtn) {
+          prevBtn.addEventListener('click', function () {
+            scrollToSlide(current - 1);
+          });
+        }
+
+        if (nextBtn) {
+          nextBtn.addEventListener('click', function () {
+            scrollToSlide(current + 1);
+          });
+        }
+
+        // Dot navigation
+        dots.forEach(function (dot, i) {
+          dot.addEventListener('click', function () {
+            scrollToSlide(i);
+          });
+        });
+
+        // Desktop pointer dragging
+        track.classList.add('is-draggable');
+        track.addEventListener('dragstart', function (event) {
+          event.preventDefault();
+        });
+
+        function endDrag() {
+          if (!dragState.active) return;
+
+          if (dragState.pointerId !== null && track.releasePointerCapture) {
+            try {
+              track.releasePointerCapture(dragState.pointerId);
+            } catch (error) {}
+          }
+
+          track.classList.remove('is-dragging');
+          dragState.active = false;
+          dragState.pointerId = null;
+
+          if (dragState.moved) {
+            suppressClick = true;
+            setTimeout(function () {
+              suppressClick = false;
+            }, 0);
+          }
+
+          dragState.moved = false;
+        }
+
+        track.addEventListener('pointerdown', function (event) {
+          if (event.pointerType === 'touch' || event.button !== 0) return;
+          dragState.pointerId = event.pointerId;
+          dragState.startX = event.clientX;
+          dragState.startScrollLeft = track.scrollLeft;
+          dragState.active = true;
+          dragState.moved = false;
+          if (track.setPointerCapture) {
+            track.setPointerCapture(event.pointerId);
+          }
+        });
+
+        track.addEventListener('pointermove', function (event) {
+          if (!dragState.active || event.pointerId !== dragState.pointerId) return;
+          var delta = event.clientX - dragState.startX;
+
+          if (!dragState.moved && Math.abs(delta) > 6) {
+            dragState.moved = true;
+            track.classList.add('is-dragging');
+          }
+
+          if (!dragState.moved) return;
+
+          event.preventDefault();
+          track.scrollLeft = dragState.startScrollLeft - delta;
+        });
+
+        track.addEventListener('pointerup', endDrag);
+        track.addEventListener('pointercancel', endDrag);
+        track.addEventListener('lostpointercapture', endDrag);
+
+        slides.forEach(function (slide, i) {
+          var zoomTarget = slide.querySelector('.carousel-zoom');
+
+          slide.addEventListener('click', function (event) {
+            if (suppressClick || event.target.closest('.carousel-zoom')) return;
+            if (i === current) return;
+            scrollToSlide(i);
+          });
+
+          if (!zoomTarget) return;
+
+          zoomTarget.addEventListener('click', function (event) {
+            if (suppressClick) {
+              event.preventDefault();
+              return;
+            }
+
+            event.stopPropagation();
+
+            if (i !== current) {
+              scrollToSlide(i);
+              return;
+            }
+
+            lightbox.open(carousel, i, zoomTarget);
+          });
         });
       });
     })();
