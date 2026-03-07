@@ -34,5 +34,5 @@ title: Seed Round Announcement
 <div class="video-container">
   <h1 class="video-title">Seed Round Announcement</h1>
   <p class="video-subtitle">Interloom raises $16.5m from DN Capital, BEK Ventures and Air Street Capital to redefine business process automation.</p>
-  <video src="{{ '/videos/seed-round.mp4' | url }}" controls playsinline preload="metadata"></video>
+  <p style="color: rgba(255,255,255,0.4); font-style: italic;">Video coming soon — will be available on YouTube.</p>
 </div>
