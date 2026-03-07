@@ -270,6 +270,7 @@
   <script>
     (function () {
       var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var supportsAnimate = typeof Element !== 'undefined' && Element.prototype && Element.prototype.animate;
 
       function toArray(list) {
         return Array.prototype.slice.call(list || []);
@@ -282,11 +283,6 @@
       function getSlideImage(slide) {
         var zoomTarget = slide.querySelector('.carousel-zoom');
         return zoomTarget ? zoomTarget.querySelector('img') : slide.querySelector('img');
-      }
-
-      function getSlideCaption(slide) {
-        var caption = slide.querySelector('p');
-        return caption ? caption.textContent.trim() : '';
       }
 
       function getViewportRect(image) {
@@ -320,6 +316,15 @@
         return ghost;
       }
 
+      function focusElement(element) {
+        if (!element || !element.focus) return;
+        try {
+          element.focus({ preventScroll: true });
+        } catch (error) {
+          element.focus();
+        }
+      }
+
       function createLightbox() {
         var root = document.createElement('div');
         root.className = 'carousel-lightbox';
@@ -336,7 +341,6 @@
               '<div class="carousel-lightbox__viewport">' +
                 '<img class="carousel-lightbox__image" alt="">' +
               '</div>' +
-              '<figcaption class="carousel-lightbox__caption"></figcaption>' +
             '</figure>' +
             '<button type="button" class="carousel-lightbox__nav carousel-lightbox__nav--next" aria-label="Next image">&rarr;</button>' +
           '</div>';
@@ -345,7 +349,6 @@
         var scrim = root.querySelector('.carousel-lightbox__scrim');
         var chrome = root.querySelector('.carousel-lightbox__chrome');
         var image = root.querySelector('.carousel-lightbox__image');
-        var caption = root.querySelector('.carousel-lightbox__caption');
         var closeBtn = root.querySelector('.carousel-lightbox__close');
         var prevBtn = root.querySelector('.carousel-lightbox__nav--prev');
         var nextBtn = root.querySelector('.carousel-lightbox__nav--next');
@@ -361,7 +364,6 @@
           var slide = state.slides[state.index];
           image.src = slide.src;
           image.alt = slide.alt;
-          caption.textContent = slide.caption || slide.alt || '';
 
           if (state.carousel && state.carousel.__carouselApi) {
             state.carousel.__carouselApi.scrollToSlide(state.index, 'auto');
@@ -375,6 +377,13 @@
             : ['translateY(0) scale(1)', 'translateY(18px) scale(0.985)'];
 
           if (prefersReducedMotion) {
+            scrim.style.opacity = opening ? '1' : '0';
+            chrome.style.opacity = opening ? '1' : '0';
+            chrome.style.transform = opening ? 'translateY(0) scale(1)' : 'translateY(18px) scale(0.985)';
+            return;
+          }
+
+          if (!supportsAnimate) {
             scrim.style.opacity = opening ? '1' : '0';
             chrome.style.opacity = opening ? '1' : '0';
             chrome.style.transform = opening ? 'translateY(0) scale(1)' : 'translateY(18px) scale(0.985)';
@@ -395,9 +404,7 @@
           root.hidden = true;
           image.style.opacity = '1';
           document.body.classList.remove('carousel-lightbox-open');
-          if (state.trigger && state.trigger.focus) {
-            state.trigger.focus({ preventScroll: true });
-          }
+          focusElement(state.trigger);
         }
 
         function close() {
@@ -411,6 +418,7 @@
 
           if (
             prefersReducedMotion ||
+            !supportsAnimate ||
             !targetRect ||
             !targetRect.width ||
             !targetRect.height ||
@@ -455,8 +463,7 @@
             return slideImage ? {
               image: slideImage,
               src: slideImage.currentSrc || slideImage.src,
-              alt: slideImage.alt || '',
-              caption: getSlideCaption(slide)
+              alt: slideImage.alt || ''
             } : null;
           }).filter(Boolean);
 
@@ -480,9 +487,9 @@
 
           animateChrome(true);
 
-          if (prefersReducedMotion || !sourceRect.width || !sourceRect.height) {
+          if (prefersReducedMotion || !supportsAnimate || !sourceRect.width || !sourceRect.height) {
             image.style.opacity = '1';
-            closeBtn.focus({ preventScroll: true });
+            focusElement(closeBtn);
             return;
           }
 
@@ -510,7 +517,7 @@
           animation.onfinish = function () {
             ghost.remove();
             image.style.opacity = '1';
-            closeBtn.focus({ preventScroll: true });
+            focusElement(closeBtn);
           };
         }
 
@@ -519,7 +526,7 @@
           var previousIndex = state.index;
           setSlide(state.index + delta);
 
-          if (prefersReducedMotion || state.index === previousIndex) return;
+          if (prefersReducedMotion || !supportsAnimate || state.index === previousIndex) return;
 
           image.animate(
             [
@@ -569,14 +576,6 @@
         var prevBtn = carousel.querySelector('.carousel-prev');
         var nextBtn = carousel.querySelector('.carousel-next');
         var current = 0;
-        var suppressClick = false;
-        var dragState = {
-          pointerId: null,
-          startX: 0,
-          startScrollLeft: 0,
-          active: false,
-          moved: false
-        };
 
         if (!track || !slides.length) return;
 
@@ -633,71 +632,11 @@
           });
         });
 
-        // Desktop pointer dragging
-        track.classList.add('is-draggable');
-        track.addEventListener('dragstart', function (event) {
-          event.preventDefault();
-        });
-
-        function endDrag() {
-          if (!dragState.active) return;
-
-          if (dragState.pointerId !== null && track.releasePointerCapture) {
-            try {
-              track.releasePointerCapture(dragState.pointerId);
-            } catch (error) {}
-          }
-
-          track.classList.remove('is-dragging');
-          dragState.active = false;
-          dragState.pointerId = null;
-
-          if (dragState.moved) {
-            suppressClick = true;
-            setTimeout(function () {
-              suppressClick = false;
-            }, 0);
-          }
-
-          dragState.moved = false;
-        }
-
-        track.addEventListener('pointerdown', function (event) {
-          if (event.pointerType === 'touch' || event.button !== 0) return;
-          dragState.pointerId = event.pointerId;
-          dragState.startX = event.clientX;
-          dragState.startScrollLeft = track.scrollLeft;
-          dragState.active = true;
-          dragState.moved = false;
-          if (track.setPointerCapture) {
-            track.setPointerCapture(event.pointerId);
-          }
-        });
-
-        track.addEventListener('pointermove', function (event) {
-          if (!dragState.active || event.pointerId !== dragState.pointerId) return;
-          var delta = event.clientX - dragState.startX;
-
-          if (!dragState.moved && Math.abs(delta) > 6) {
-            dragState.moved = true;
-            track.classList.add('is-dragging');
-          }
-
-          if (!dragState.moved) return;
-
-          event.preventDefault();
-          track.scrollLeft = dragState.startScrollLeft - delta;
-        });
-
-        track.addEventListener('pointerup', endDrag);
-        track.addEventListener('pointercancel', endDrag);
-        track.addEventListener('lostpointercapture', endDrag);
-
         slides.forEach(function (slide, i) {
           var zoomTarget = slide.querySelector('.carousel-zoom');
 
           slide.addEventListener('click', function (event) {
-            if (suppressClick || event.target.closest('.carousel-zoom')) return;
+            if (event.target.closest('.carousel-zoom')) return;
             if (i === current) return;
             scrollToSlide(i);
           });
@@ -705,18 +644,8 @@
           if (!zoomTarget) return;
 
           zoomTarget.addEventListener('click', function (event) {
-            if (suppressClick) {
-              event.preventDefault();
-              return;
-            }
-
             event.stopPropagation();
-
-            if (i !== current) {
-              scrollToSlide(i);
-              return;
-            }
-
+            if (i !== current) scrollToSlide(i, 'auto');
             lightbox.open(carousel, i, zoomTarget);
           });
         });

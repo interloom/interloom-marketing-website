@@ -92,16 +92,13 @@ title: Workspace for Business Operations
 <a href="{{ '/customer-stories/' | url }}" class="inline-flex pt-3 text-sm text-fg-1 hover:opacity-80" style="margin-top: auto;">Read story &rarr;</a>
 </article>
 </div>
-</div>
-</section>
-
-<section class="bg-surface-2">
-<div class="mx-auto max-w-5xl flex items-center justify-center gap-10 md:gap-14 flex-wrap">
+<div class="mt-16 flex items-center justify-center gap-10 md:gap-14 flex-wrap">
 <img src="{{ '/images/logos/JLL_logo 1.svg' | url }}" alt="JLL" class="h-6 md:h-7 w-auto">
 <img src="{{ '/images/logos/thuega_claim 1.svg' | url }}" alt="Thüga" class="h-6 md:h-7 w-auto">
 <img src="{{ '/images/logos/Comdirect_Bank_AG_Logo 2.svg' | url }}" alt="Comdirect" class="h-6 md:h-7 w-auto">
 <img src="{{ '/images/logos/irish-life.svg' | url }}" alt="Irish Life" class="h-6 md:h-7 w-auto">
 <img src="{{ '/images/logos/fiege svg15599.svg' | url }}" alt="Fiege" class="h-6 md:h-7 w-auto">
+</div>
 </div>
 </section>
 

@@ -839,16 +839,6 @@ section.fade-in-stagger > .visible {
   min-width: 0;
 }
 
-.carousel-track.is-draggable {
-  cursor: grab;
-}
-
-.carousel-track.is-dragging {
-  cursor: grabbing;
-  scroll-snap-type: none;
-  user-select: none;
-}
-
 .carousel-frame {
   position: relative;
   border-radius: 0.5rem;
@@ -880,12 +870,6 @@ section.fade-in-stagger > .visible {
 .carousel-zoom:focus-visible {
   outline: 2px solid var(--color-tint-blue-vivid);
   outline-offset: 6px;
-}
-
-.carousel-track.is-dragging .carousel-zoom,
-.carousel-track.is-dragging .carousel-zoom:hover {
-  cursor: grabbing;
-  transform: none;
 }
 
 .carousel-zoom img {
@@ -1003,7 +987,7 @@ section.fade-in-stagger > .visible {
 .carousel-lightbox__scrim {
   position: absolute;
   inset: 0;
-  background: rgba(10, 10, 10, 0.72);
+  background: color-mix(in srgb, var(--color-surface-2) 82%, transparent);
   backdrop-filter: blur(10px);
   opacity: 0;
 }
@@ -1044,19 +1028,6 @@ section.fade-in-stagger > .visible {
   max-height: calc(100vh - 8rem);
   border-radius: 1rem;
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.32);
-}
-
-.carousel-lightbox__caption {
-  max-width: min(100%, 56rem);
-  text-align: center;
-  color: rgba(255, 255, 255, 0.84);
-  font-size: 0.9375rem;
-  line-height: 1.45;
-  text-wrap: balance;
-}
-
-.carousel-lightbox__caption:empty {
-  display: none;
 }
 
 .carousel-lightbox__close,
@@ -1141,11 +1112,6 @@ section.fade-in-stagger > .visible {
 
   .carousel-lightbox__image {
     max-height: calc(100vh - 10rem);
-  }
-
-  .carousel-lightbox__caption {
-    padding-inline: 0.5rem;
-    font-size: 0.875rem;
   }
 }
 
