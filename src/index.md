@@ -149,7 +149,7 @@ title: Workspace for Business Operations
 </div>
 </section>
 
-<section class="min-h-[40vh] flex flex-col" id="contact">
+<section class="min-h-[40vh] flex flex-col !pb-0" id="contact">
 <div class="mx-auto max-w-5xl w-full relative z-10">
 
 <p class="text-xl md:text-2xl text-fg-3 leading-snug tracking-tight max-w-2xl" data-scramble>Every week your team spends on manual workflows is a week your competitors are not. <span class="text-fg-1">Start deploying production workflows with a forward-deployed Interloom engineer.</span></p>
@@ -158,7 +158,9 @@ title: Workspace for Business Operations
 <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2eEwV1c880TGi16I1QWst6PTzbawnSjH9mV1e49ihrW3raJf-nKrwUIua0S59qEtt5TkGFmrfr" class="inline-flex items-center h-[32px] border border-line text-fg-2 px-3 rounded font-medium no-underline hover:bg-surface-3 transition-colors">Join the waitlist</a>
 </div>
 
-<iframe src="{{ '/images/landscape-sculpted-93661-512-interactive.html' | url }}" loading="lazy" class="w-full mt-12 border-0" style="height:400px;" allow="webgl" aria-hidden="true"></iframe>
 
 </div>
+
+<iframe src="{{ '/images/landscape-sculpted-93661-512-interactive.html' | url }}" loading="lazy" class="w-full mt-12 border-0" style="height:400px; margin-inline: calc(-1 * var(--_section-px)); width: calc(100% + 2 * var(--_section-px));" allow="webgl" aria-hidden="true"></iframe>
+
 </section>

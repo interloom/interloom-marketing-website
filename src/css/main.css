@@ -477,21 +477,22 @@ body > header > nav {
 }
 
 main > section {
+  --_section-px: 1rem;
   position: relative;
-  padding-inline: 1rem;
-  padding-block: 5rem;
+  padding-inline: var(--_section-px);
+  padding-block: 4rem;
 }
 
 @media (width >= 48rem) {
   main > section {
-    padding-inline: 2.5rem;
-    padding-block: 6rem;
+    --_section-px: 2.5rem;
+    padding-block: 4.5rem;
   }
 }
 @media (width >= 80rem) {
   main > section {
-    padding-inline: 4rem;
-    padding-block: 8rem;
+    --_section-px: 4rem;
+    padding-block: 6rem;
   }
 }
 
