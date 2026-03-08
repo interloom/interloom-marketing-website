@@ -1860,7 +1860,7 @@ section.fade-in-stagger > .visible {
   display: none;
 }
 .carousel-slide {
-  flex: 0 0 min(64rem, calc(100% - 3rem));
+  flex: 0 0 min(64rem, 100%);
   scroll-snap-align: start;
   min-width: 0;
 }
@@ -1911,7 +1911,7 @@ section.fade-in-stagger > .visible {
     gap: 2.25rem;
   }
   .carousel-slide {
-    flex: 0 0 min(64rem, calc(100% - 5rem));
+    flex: 0 0 min(64rem, 100%);
   }
   .carousel--contained .carousel-slide {
     flex: 0 0 calc(100% - 1.5rem);
@@ -1922,7 +1922,7 @@ section.fade-in-stagger > .visible {
     gap: 3rem;
   }
   .carousel-slide {
-    flex: 0 0 min(64rem, calc(100% - 6rem));
+    flex: 0 0 min(64rem, 100%);
   }
   .carousel--contained .carousel-slide {
     flex: 0 0 calc(100% - 1.5rem);
