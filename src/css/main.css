@@ -742,6 +742,7 @@ section.fade-in-stagger > .visible {
 }
 .announcement-pill--inverted:hover {
   color: var(--color-surface-1);
+  border-color: transparent;
 }
 /* Gradient fade masks on both edges */
 .announcement-pill::before,
@@ -762,12 +763,28 @@ section.fade-in-stagger > .visible {
 }
 .announcement-pill::before {
   left: 0;
-  background: linear-gradient(to right, var(--_pill-bg), transparent);
+  width: 3rem;
+  background: linear-gradient(to right, var(--_pill-bg) 60%, transparent);
 }
 .announcement-pill::after {
   right: 0;
   width: 2.5rem;
   background: linear-gradient(to left, var(--_pill-bg) 40%, transparent);
+}
+.announcement-pill-label {
+  position: absolute;
+  left: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+.announcement-pill:hover .announcement-pill-label {
+  opacity: 1;
 }
 .announcement-pill-arrow {
   position: absolute;
@@ -786,7 +803,8 @@ section.fade-in-stagger > .visible {
 .announcement-pill-track {
   display: block;
   overflow: hidden;
-  padding-inline: 0.75rem; /* breathing room inside fade zones */
+  padding-left: 2.25rem;   /* room for floating "News" label */
+  padding-right: 0.75rem;  /* breathing room inside fade zone */
 }
 .announcement-pill-text {
   display: inline-block;
@@ -967,6 +985,7 @@ section.fade-in-stagger > .visible {
   background: var(--color-fg-1);
 }
 
+/* --- Lightbox overlay --- */
 .carousel-lightbox-open {
   overflow: hidden;
 }
@@ -990,7 +1009,9 @@ section.fade-in-stagger > .visible {
   inset: 0;
   background: color-mix(in srgb, var(--color-surface-2) 82%, transparent);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   opacity: 0;
+  will-change: opacity;
 }
 
 .carousel-lightbox__chrome {
@@ -1002,8 +1023,11 @@ section.fade-in-stagger > .visible {
   grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
   gap: 0.75rem;
-  opacity: 0;
-  transform: translateY(18px) scale(0.985);
+  pointer-events: none;
+}
+
+.carousel-lightbox__chrome > * {
+  pointer-events: auto;
 }
 
 .carousel-lightbox__figure {
@@ -1029,6 +1053,13 @@ section.fade-in-stagger > .visible {
   max-height: calc(100vh - 8rem);
   border-radius: 1rem;
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.32);
+  will-change: transform, opacity;
+  transform-origin: center center;
+}
+
+/* FLIP animation: image starts at thumbnail position via transform, animates to identity */
+.carousel-lightbox__image[data-animating] {
+  pointer-events: none;
 }
 
 .carousel-lightbox__close,
@@ -1044,14 +1075,16 @@ section.fade-in-stagger > .visible {
   justify-content: center;
   cursor: pointer;
   backdrop-filter: blur(10px);
-  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  -webkit-backdrop-filter: blur(10px);
+  opacity: 0;
+  will-change: opacity;
+  transition: background 0.2s ease, border-color 0.2s ease;
 }
 
 .carousel-lightbox__close:hover,
 .carousel-lightbox__nav:hover {
   background: rgba(255, 255, 255, 0.14);
   border-color: rgba(255, 255, 255, 0.32);
-  transform: translateY(-1px);
 }
 
 .carousel-lightbox__close:focus-visible,
@@ -1067,13 +1100,21 @@ section.fade-in-stagger > .visible {
   z-index: 2;
 }
 
-.carousel-lightbox__ghost {
-  position: fixed;
-  z-index: 81;
-  margin: 0;
-  transform-origin: top left;
-  pointer-events: none;
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+/* View Transitions API: morph thumbnail ↔ lightbox image */
+::view-transition-group(carousel-hero) {
+  animation-duration: 0.38s;
+  animation-timing-function: cubic-bezier(0.32, 0.72, 0, 1);
+}
+::view-transition-old(carousel-hero),
+::view-transition-new(carousel-hero) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-old(carousel-hero) {
+  opacity: 1;
+}
+::view-transition-new(carousel-hero) {
+  opacity: 1;
 }
 
 @media (width < 48rem) {
@@ -1122,8 +1163,11 @@ section.fade-in-stagger > .visible {
   .carousel-lightbox__scrim,
   .carousel-lightbox__close,
   .carousel-lightbox__nav {
-    transition: none;
-    animation: none;
+    transition: none !important;
+    animation: none !important;
+  }
+  ::view-transition-group(carousel-hero) {
+    animation-duration: 0s;
   }
 }
 
