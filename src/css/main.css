@@ -253,10 +253,12 @@
    ================================================================= */
 .prose {
   color: var(--color-fg-2);
+  font-size: 1.0625rem;
+  line-height: 1.7;
 }
 
 .prose p {
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
 }
 
 .prose strong {
@@ -532,7 +534,8 @@ body > header > nav {
   grid-column: 3;
 }
 
-main > section {
+main > section,
+main > article {
   --_section-px: 1rem;
   position: relative;
   padding-inline: var(--_section-px);
@@ -540,23 +543,27 @@ main > section {
 }
 
 @media (width >= 48rem) {
-  main > section {
+  main > section,
+  main > article {
     --_section-px: 2.5rem;
     padding-block: 4.5rem;
   }
 }
 @media (width >= 80rem) {
-  main > section {
+  main > section,
+  main > article {
     --_section-px: 4rem;
     padding-block: 6rem;
   }
 }
 
-main > section:first-child::before {
+main > section:first-child::before,
+main > article:first-child::before {
   display: none;
 }
 
-main > section::before {
+main > section::before,
+main > article::before {
   content: "";
   position: absolute;
   top: 0;
