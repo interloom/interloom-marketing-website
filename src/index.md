@@ -27,25 +27,25 @@ title: Workspace for Business Operations
 <div class="carousel-track">
 <div class="carousel-slide">
 <button type="button" class="carousel-zoom relative block w-full rounded-lg" aria-label="Expand slide image: Interloom workflow editor" aria-haspopup="dialog">
-<img src="{{ '/images/screenshot1.png' | url }}" alt="Interloom workflow editor" class="carousel-zoom__img block w-full rounded-lg" width="1920" height="1080" draggable="false" decoding="async">
+<img src="{{ '/images/screenshot1.png' | url }}" alt="Interloom workflow editor" class="block w-full rounded-lg" width="1920" height="1080" draggable="false" decoding="async">
 </button>
 <p class="text-base md:text-lg text-fg-3 leading-snug tracking-tight max-w-2xl mt-8 mx-auto text-center" data-scramble><span class="text-fg-1">Built for operational experts.</span> Build workflows by describing them in natural language. Ask the AI assistant to add code where you need it. Combine expert intelligence, artificial intelligence and traditional code on a workflow canvas.</p>
 </div>
 <div class="carousel-slide">
 <button type="button" class="carousel-zoom relative block w-full rounded-lg" aria-label="Expand slide image: Interloom context layer" aria-haspopup="dialog">
-<img src="{{ '/images/screenshot2.png' | url }}" alt="Interloom context layer" class="carousel-zoom__img block w-full rounded-lg" width="1920" height="1080" loading="lazy" draggable="false" decoding="async">
+<img src="{{ '/images/screenshot2.png' | url }}" alt="Interloom context layer" class="block w-full rounded-lg" width="1920" height="1080" loading="lazy" draggable="false" decoding="async">
 </button>
 <p class="text-base md:text-lg text-fg-3 leading-snug tracking-tight max-w-2xl mt-8 mx-auto text-center" data-scramble><span class="text-fg-1">Context Graph.</span> As your workflows run, they learn from their own outcomes. Over time they build up a semantic context graph of the entities involves, and crucially: what worked last time, and what didn’t.</p>
 </div>
 <div class="carousel-slide">
 <button type="button" class="carousel-zoom relative block w-full rounded-lg" aria-label="Expand slide image: Interloom agent automation" aria-haspopup="dialog">
-<img src="{{ '/images/screenshot3.png' | url }}" alt="Interloom agent automation" class="carousel-zoom__img block w-full rounded-lg" width="1920" height="1080" loading="lazy" draggable="false" decoding="async">
+<img src="{{ '/images/screenshot3.png' | url }}" alt="Interloom agent automation" class="block w-full rounded-lg" width="1920" height="1080" loading="lazy" draggable="false" decoding="async">
 </button>
 <p class="text-base md:text-lg text-fg-3 leading-snug tracking-tight max-w-2xl mt-8 mx-auto text-center" data-scramble><span class="text-fg-1">Agents in the loop.</span> Repetitive steps like extraction, triage, and follow-ups run autonomously inside controlled workflows. Agents operate within boundaries you set, and every action is grounded in context your team has already built.</p>
 </div>
 <div class="carousel-slide">
 <button type="button" class="carousel-zoom relative block w-full rounded-lg" aria-label="Expand slide image: Interloom coding agents with subject matter experts" aria-haspopup="dialog">
-<img src="{{ '/images/screenshot4.png' | url }}" alt="Interloom coding agents with subject matter experts" class="carousel-zoom__img block w-full rounded-lg" width="1920" height="1080" loading="lazy" draggable="false" decoding="async">
+<img src="{{ '/images/screenshot4.png' | url }}" alt="Interloom coding agents with subject matter experts" class="block w-full rounded-lg" width="1920" height="1080" loading="lazy" draggable="false" decoding="async">
 </button>
 <p class="text-base md:text-lg text-fg-3 leading-snug tracking-tight max-w-2xl mt-8 mx-auto text-center" data-scramble><span class="text-fg-1">Coding for Everyone.</span> Unlock your subject matter experts to program, test, and deploy tools and integrations using natural language only.</p>
 </div>
@@ -147,7 +147,9 @@ title: Workspace for Business Operations
 </div>
 </section>
 
-<section class="relative min-h-[40vh] flex flex-col !pb-0 overflow-hidden" id="contact">
+<section class="relative !pb-0 overflow-hidden" id="contact" style="min-height: 900px;">
+
+<iframe src="{{ '/images/landscape-sculpted-93661-512-interactive.html?zoom=27&enableZoom=false&ty=5' | url }}" loading="lazy" class="absolute inset-0 w-full h-full border-0 z-0" aria-hidden="true"></iframe>
 
 <div class="mx-auto max-w-5xl w-full relative z-10">
 <p class="text-xl md:text-2xl text-fg-3 leading-snug tracking-tight max-w-2xl" data-scramble>Every week your team spends on manual workflows is a week your competitors are not. <span class="text-fg-1">Start deploying production workflows with a forward-deployed Interloom engineer.</span></p>
@@ -155,11 +157,6 @@ title: Workspace for Business Operations
 <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2eEwV1c880TGi16I1QWst6PTzbawnSjH9mV1e49ihrW3raJf-nKrwUIua0S59qEtt5TkGFmrfr" class="inline-flex items-center h-[32px] bg-fg-1 text-surface-1 px-3 rounded font-medium no-underline hover:opacity-85 transition-opacity">Book a demo</a>
 <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2eEwV1c880TGi16I1QWst6PTzbawnSjH9mV1e49ihrW3raJf-nKrwUIua0S59qEtt5TkGFmrfr" class="inline-flex items-center h-[32px] border border-line text-fg-2 px-3 rounded font-medium no-underline hover:bg-surface-3 transition-colors">Join the waitlist</a>
 </div>
-</div>
-
-<div class="relative z-0 mt-auto" style="height: 600px; margin-inline: calc(-1 * var(--_section-px)); width: calc(100% + 2 * var(--_section-px));">
-<div class="absolute inset-x-0 top-0 h-32 z-10 pointer-events-none" style="background: linear-gradient(to bottom, var(--color-surface-1), transparent);"></div>
-<iframe src="{{ '/images/landscape-sculpted-93661-512-interactive.html?zoom=15&enableZoom=false' | url }}" loading="lazy" class="absolute inset-0 w-full h-full border-0" aria-hidden="true"></iframe>
 </div>
 
 </section>

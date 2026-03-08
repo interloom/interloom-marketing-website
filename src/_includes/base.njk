@@ -135,6 +135,7 @@
         root.classList.toggle('light', !dark);
         localStorage.setItem('theme', dark ? 'dark' : 'light');
         label.textContent = dark ? 'Light' : 'Dark';
+        updateLandscapeIframe(dark);
       });
     })();
   </script>
@@ -295,62 +296,24 @@
   -->
   <script>
     (function () {
-      var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      var supportsAnimate = typeof Element !== 'undefined' && Element.prototype && Element.prototype.animate;
+      /* ── Helpers ── */
+      var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var hasViewTransitions = typeof document.startViewTransition === 'function';
+      var EASE = 'cubic-bezier(0.32, 0.72, 0, 1)';
+      var DURATION = 380;
 
-      function toArray(list) {
-        return Array.prototype.slice.call(list || []);
+      function toArray(l) { return Array.prototype.slice.call(l || []); }
+      function clamp(v, lo, hi) { return Math.min(Math.max(v, lo), hi); }
+      function getSlideImage(s) {
+        var z = s.querySelector('.carousel-zoom');
+        return z ? z.querySelector('img') : s.querySelector('img');
+      }
+      function focusEl(el) {
+        if (!el) return;
+        try { el.focus({ preventScroll: true }); } catch (_) { el.focus(); }
       }
 
-      function clamp(value, min, max) {
-        return Math.min(Math.max(value, min), max);
-      }
-
-      function getSlideImage(slide) {
-        var zoomTarget = slide.querySelector('.carousel-zoom');
-        return zoomTarget ? zoomTarget.querySelector('img') : slide.querySelector('img');
-      }
-
-      function getViewportRect(image) {
-        var naturalWidth = image.naturalWidth || image.width || image.offsetWidth || 1;
-        var naturalHeight = image.naturalHeight || image.height || image.offsetHeight || 1;
-        var viewportWidth = window.innerWidth;
-        var viewportHeight = window.innerHeight;
-        var inset = viewportWidth >= 768 ? 48 : 20;
-        var maxWidth = viewportWidth - inset * 2;
-        var maxHeight = viewportHeight - (viewportWidth >= 768 ? 120 : 112);
-        var scale = Math.min(maxWidth / naturalWidth, maxHeight / naturalHeight);
-        var width = Math.max(1, naturalWidth * scale);
-        var height = Math.max(1, naturalHeight * scale);
-        return {
-          left: (viewportWidth - width) / 2,
-          top: (viewportHeight - height) / 2,
-          width: width,
-          height: height
-        };
-      }
-
-      function createGhost(image, rect) {
-        var ghost = image.cloneNode(true);
-        ghost.className = 'carousel-lightbox__ghost';
-        ghost.style.top = rect.top + 'px';
-        ghost.style.left = rect.left + 'px';
-        ghost.style.width = rect.width + 'px';
-        ghost.style.height = rect.height + 'px';
-        ghost.style.borderRadius = getComputedStyle(image).borderRadius || '1rem';
-        document.body.appendChild(ghost);
-        return ghost;
-      }
-
-      function focusElement(element) {
-        if (!element || !element.focus) return;
-        try {
-          element.focus({ preventScroll: true });
-        } catch (error) {
-          element.focus();
-        }
-      }
-
+      /* ── Lightbox ── */
       function createLightbox() {
         var root = document.createElement('div');
         root.className = 'carousel-lightbox';
@@ -358,7 +321,7 @@
         root.setAttribute('role', 'dialog');
         root.setAttribute('aria-modal', 'true');
         root.setAttribute('aria-label', 'Expanded carousel image');
-        root.innerHTML = '' +
+        root.innerHTML =
           '<div class="carousel-lightbox__scrim"></div>' +
           '<button type="button" class="carousel-lightbox__close" aria-label="Close image viewer">&times;</button>' +
           '<div class="carousel-lightbox__chrome">' +
@@ -374,227 +337,263 @@
 
         var scrim = root.querySelector('.carousel-lightbox__scrim');
         var chrome = root.querySelector('.carousel-lightbox__chrome');
-        var image = root.querySelector('.carousel-lightbox__image');
+        var lbImage = root.querySelector('.carousel-lightbox__image');
         var closeBtn = root.querySelector('.carousel-lightbox__close');
         var prevBtn = root.querySelector('.carousel-lightbox__nav--prev');
         var nextBtn = root.querySelector('.carousel-lightbox__nav--next');
-        var state = {
-          carousel: null,
-          slides: [],
-          index: 0,
-          trigger: null
-        };
+        var controls = [closeBtn, prevBtn, nextBtn];
+        var busy = false;
 
-        function setSlide(index) {
-          state.index = ((index % state.slides.length) + state.slides.length) % state.slides.length;
-          var slide = state.slides[state.index];
-          image.src = slide.src;
-          image.alt = slide.alt;
+        var state = { carousel: null, slides: [], index: 0, trigger: null };
 
+        function setSlide(idx) {
+          state.index = ((idx % state.slides.length) + state.slides.length) % state.slides.length;
+          var s = state.slides[state.index];
+          lbImage.src = s.src;
+          lbImage.alt = s.alt;
           if (state.carousel && state.carousel.__carouselApi) {
             state.carousel.__carouselApi.scrollToSlide(state.index, 'auto');
           }
         }
 
-        function animateChrome(opening) {
-          var opacity = opening ? ['0', '1'] : ['1', '0'];
-          var transform = opening
-            ? ['translateY(18px) scale(0.985)', 'translateY(0) scale(1)']
-            : ['translateY(0) scale(1)', 'translateY(18px) scale(0.985)'];
-
-          if (prefersReducedMotion) {
-            scrim.style.opacity = opening ? '1' : '0';
-            chrome.style.opacity = opening ? '1' : '0';
-            chrome.style.transform = opening ? 'translateY(0) scale(1)' : 'translateY(18px) scale(0.985)';
-            return;
-          }
-
-          if (!supportsAnimate) {
-            scrim.style.opacity = opening ? '1' : '0';
-            chrome.style.opacity = opening ? '1' : '0';
-            chrome.style.transform = opening ? 'translateY(0) scale(1)' : 'translateY(18px) scale(0.985)';
-            return;
-          }
-
+        /* Fade controls (scrim, close, nav) */
+        function fadeControls(show) {
+          var dur = reducedMotion ? 0 : (show ? 280 : 200);
+          var target = show ? '1' : '0';
           scrim.animate(
-            [{ opacity: opacity[0] }, { opacity: opacity[1] }],
-            { duration: 260, easing: 'ease', fill: 'forwards' }
+            [{ opacity: scrim.style.opacity || '0' }, { opacity: target }],
+            { duration: dur, easing: 'ease', fill: 'forwards' }
           );
-          chrome.animate(
-            [{ opacity: opacity[0], transform: transform[0] }, { opacity: opacity[1], transform: transform[1] }],
-            { duration: 320, easing: 'cubic-bezier(0.22, 1, 0.36, 1)', fill: 'forwards' }
-          );
+          controls.forEach(function (btn) {
+            btn.animate(
+              [{ opacity: btn.style.opacity || '0' }, { opacity: target }],
+              { duration: dur, easing: 'ease', fill: 'forwards', delay: show ? 80 : 0 }
+            );
+          });
         }
 
-        function finishClose() {
-          root.hidden = true;
-          image.style.opacity = '1';
-          document.body.classList.remove('carousel-lightbox-open');
-          focusElement(state.trigger);
-        }
+        /* ── FLIP-based open/close (transform-only, zero layout thrash) ── */
+        function flipOpen(sourceImg) {
+          var srcRect = sourceImg.getBoundingClientRect();
+          /* Show lightbox so we can measure the final image rect */
+          root.hidden = false;
+          document.body.classList.add('carousel-lightbox-open');
+          /* Force layout so lbImage gets its final size */
+          lbImage.style.opacity = '1';
+          lbImage.style.visibility = 'hidden';
+          var destRect = lbImage.getBoundingClientRect();
+          lbImage.style.visibility = '';
 
-        function close() {
-          if (root.hidden) return;
-
-          var targetImage = state.slides[state.index] && state.slides[state.index].image;
-          var targetRect = targetImage ? targetImage.getBoundingClientRect() : null;
-          var startRect = image.getBoundingClientRect();
-
-          animateChrome(false);
-
-          if (
-            prefersReducedMotion ||
-            !supportsAnimate ||
-            !targetRect ||
-            !targetRect.width ||
-            !targetRect.height ||
-            !startRect.width ||
-            !startRect.height
-          ) {
-            setTimeout(finishClose, prefersReducedMotion ? 0 : 220);
+          if (!srcRect.width || !destRect.width || reducedMotion) {
+            fadeControls(true);
+            focusEl(closeBtn);
             return;
           }
 
-          image.style.opacity = '0';
-          var ghost = createGhost(image, startRect);
-          var animation = ghost.animate(
+          /* Calculate the inverse transform: where was the source relative to dest? */
+          var scaleX = srcRect.width / destRect.width;
+          var scaleY = srcRect.height / destRect.height;
+          var dx = srcRect.left + srcRect.width / 2 - (destRect.left + destRect.width / 2);
+          var dy = srcRect.top + srcRect.height / 2 - (destRect.top + destRect.height / 2);
+
+          /* Hide the source thumbnail during animation */
+          sourceImg.style.opacity = '0';
+
+          lbImage.setAttribute('data-animating', '');
+          var anim = lbImage.animate(
             [
-              {
-                top: startRect.top + 'px',
-                left: startRect.left + 'px',
-                width: startRect.width + 'px',
-                height: startRect.height + 'px',
-                borderRadius: getComputedStyle(image).borderRadius || '1rem'
-              },
-              {
-                top: targetRect.top + 'px',
-                left: targetRect.left + 'px',
-                width: targetRect.width + 'px',
-                height: targetRect.height + 'px',
-                borderRadius: getComputedStyle(targetImage).borderRadius || '0.5rem'
-              }
+              { transform: 'translate(' + dx + 'px, ' + dy + 'px) scale(' + scaleX + ', ' + scaleY + ')' },
+              { transform: 'translate(0, 0) scale(1, 1)' }
             ],
-            { duration: 280, easing: 'cubic-bezier(0.4, 0, 0.2, 1)', fill: 'forwards' }
+            { duration: DURATION, easing: EASE, fill: 'forwards' }
+          );
+          fadeControls(true);
+
+          anim.onfinish = function () {
+            lbImage.removeAttribute('data-animating');
+            lbImage.style.transform = '';
+            sourceImg.style.opacity = '';
+            focusEl(closeBtn);
+            busy = false;
+          };
+        }
+
+        function flipClose() {
+          var targetImg = state.slides[state.index] && state.slides[state.index].image;
+          var destRect = targetImg ? targetImg.getBoundingClientRect() : null;
+          var srcRect = lbImage.getBoundingClientRect();
+
+          fadeControls(false);
+
+          if (reducedMotion || !destRect || !destRect.width || !srcRect.width) {
+            setTimeout(finishClose, reducedMotion ? 0 : 200);
+            return;
+          }
+
+          var scaleX = destRect.width / srcRect.width;
+          var scaleY = destRect.height / srcRect.height;
+          var dx = destRect.left + destRect.width / 2 - (srcRect.left + srcRect.width / 2);
+          var dy = destRect.top + destRect.height / 2 - (srcRect.top + srcRect.height / 2);
+
+          targetImg.style.opacity = '0';
+          lbImage.setAttribute('data-animating', '');
+          var anim = lbImage.animate(
+            [
+              { transform: 'translate(0, 0) scale(1, 1)' },
+              { transform: 'translate(' + dx + 'px, ' + dy + 'px) scale(' + scaleX + ', ' + scaleY + ')' }
+            ],
+            { duration: DURATION * 0.8, easing: EASE, fill: 'forwards' }
           );
 
-          animation.onfinish = function () {
-            ghost.remove();
+          anim.onfinish = function () {
+            lbImage.removeAttribute('data-animating');
+            lbImage.style.transform = '';
+            targetImg.style.opacity = '';
             finishClose();
           };
         }
 
-        function open(carousel, index, trigger) {
-          var slides = toArray(carousel.querySelectorAll('.carousel-slide')).map(function (slide) {
-            var slideImage = getSlideImage(slide);
-            return slideImage ? {
-              image: slideImage,
-              src: slideImage.currentSrc || slideImage.src,
-              alt: slideImage.alt || ''
-            } : null;
-          }).filter(Boolean);
+        /* ── View Transitions API open/close ── */
+        function vtOpen(sourceImg) {
+          /* Assign view-transition-name to source before snapshot */
+          sourceImg.style.viewTransitionName = 'carousel-hero';
+          sourceImg.style.contain = 'layout';
 
-          if (!slides.length || !slides[index]) return;
+          var transition = document.startViewTransition(function () {
+            /* Move the name to the lightbox image */
+            sourceImg.style.viewTransitionName = '';
+            sourceImg.style.contain = '';
+            root.hidden = false;
+            lbImage.style.opacity = '1';
+            lbImage.style.viewTransitionName = 'carousel-hero';
+            document.body.classList.add('carousel-lightbox-open');
+          });
+
+          transition.ready.then(function () {
+            fadeControls(true);
+          });
+          transition.finished.then(function () {
+            lbImage.style.viewTransitionName = '';
+            focusEl(closeBtn);
+            busy = false;
+          });
+        }
+
+        function vtClose() {
+          var targetImg = state.slides[state.index] && state.slides[state.index].image;
+          if (!targetImg) { finishClose(); return; }
+
+          lbImage.style.viewTransitionName = 'carousel-hero';
+          fadeControls(false);
+
+          var transition = document.startViewTransition(function () {
+            lbImage.style.viewTransitionName = '';
+            root.hidden = true;
+            document.body.classList.remove('carousel-lightbox-open');
+            targetImg.style.viewTransitionName = 'carousel-hero';
+            targetImg.style.contain = 'layout';
+          });
+
+          transition.finished.then(function () {
+            targetImg.style.viewTransitionName = '';
+            targetImg.style.contain = '';
+            focusEl(state.trigger);
+            busy = false;
+          });
+        }
+
+        function finishClose() {
+          root.hidden = true;
+          lbImage.style.opacity = '';
+          lbImage.style.transform = '';
+          document.body.classList.remove('carousel-lightbox-open');
+          focusEl(state.trigger);
+          busy = false;
+        }
+
+        /* ── Public API ── */
+        function open(carousel, index, trigger) {
+          if (busy) return;
+          busy = true;
+
+          var slides = toArray(carousel.querySelectorAll('.carousel-slide')).map(function (slide) {
+            var img = getSlideImage(slide);
+            return img ? { image: img, src: img.currentSrc || img.src, alt: img.alt || '' } : null;
+          }).filter(Boolean);
+          if (!slides.length || !slides[index]) { busy = false; return; }
 
           state.carousel = carousel;
           state.slides = slides;
           state.trigger = trigger;
-          setSlide(index);
 
-          root.hidden = false;
-          image.style.opacity = '0';
+          /* Set the image src and wait for it to be ready */
+          lbImage.src = slides[index].src;
+          lbImage.alt = slides[index].alt;
+          lbImage.style.opacity = '0';
           scrim.style.opacity = '0';
-          chrome.style.opacity = '0';
-          chrome.style.transform = 'translateY(18px) scale(0.985)';
-          document.body.classList.add('carousel-lightbox-open');
+          controls.forEach(function (b) { b.style.opacity = '0'; });
 
-          var sourceImage = slides[index].image;
-          var sourceRect = sourceImage.getBoundingClientRect();
-          var viewportRect = getViewportRect(sourceImage);
+          var sourceImg = slides[index].image;
 
-          animateChrome(true);
+          /* Ensure the lightbox image is decoded before animating */
+          var ready = lbImage.decode ? lbImage.decode().catch(function () {}) : Promise.resolve();
+          ready.then(function () {
+            if (hasViewTransitions && !reducedMotion) {
+              vtOpen(sourceImg);
+            } else {
+              flipOpen(sourceImg);
+            }
+          });
+        }
 
-          if (prefersReducedMotion || !supportsAnimate || !sourceRect.width || !sourceRect.height) {
-            image.style.opacity = '1';
-            focusElement(closeBtn);
-            return;
+        function close() {
+          if (root.hidden || busy) return;
+          busy = true;
+
+          if (hasViewTransitions && !reducedMotion) {
+            vtClose();
+          } else {
+            flipClose();
           }
-
-          var ghost = createGhost(sourceImage, sourceRect);
-          var animation = ghost.animate(
-            [
-              {
-                top: sourceRect.top + 'px',
-                left: sourceRect.left + 'px',
-                width: sourceRect.width + 'px',
-                height: sourceRect.height + 'px',
-                borderRadius: getComputedStyle(sourceImage).borderRadius || '0.5rem'
-              },
-              {
-                top: viewportRect.top + 'px',
-                left: viewportRect.left + 'px',
-                width: viewportRect.width + 'px',
-                height: viewportRect.height + 'px',
-                borderRadius: '1rem'
-              }
-            ],
-            { duration: 320, easing: 'cubic-bezier(0.22, 1, 0.36, 1)', fill: 'forwards' }
-          );
-
-          animation.onfinish = function () {
-            ghost.remove();
-            image.style.opacity = '1';
-            focusElement(closeBtn);
-          };
         }
 
         function step(delta) {
-          if (!state.slides.length) return;
-          var previousIndex = state.index;
+          if (!state.slides.length || busy) return;
+          var prev = state.index;
           setSlide(state.index + delta);
+          if (state.index === prev) return;
+          if (reducedMotion) return;
 
-          if (prefersReducedMotion || !supportsAnimate || state.index === previousIndex) return;
-
-          image.animate(
+          lbImage.animate(
             [
-              { opacity: 0.45, transform: 'translateX(' + (delta > 0 ? 18 : -18) + 'px)' },
-              { opacity: 1, transform: 'translateX(0)' }
+              { opacity: 0.4, transform: 'translateX(' + (delta > 0 ? 24 : -24) + 'px) scale(0.97)' },
+              { opacity: 1, transform: 'translateX(0) scale(1)' }
             ],
-            { duration: 220, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' }
+            { duration: 260, easing: EASE }
           );
         }
 
-        root.addEventListener('click', function (event) {
-          if (event.target === scrim) {
-            close();
-          }
+        /* Events */
+        root.addEventListener('click', function (e) {
+          if (e.target === scrim) close();
         });
-
         closeBtn.addEventListener('click', close);
         prevBtn.addEventListener('click', function () { step(-1); });
         nextBtn.addEventListener('click', function () { step(1); });
 
-        document.addEventListener('keydown', function (event) {
+        document.addEventListener('keydown', function (e) {
           if (root.hidden) return;
-          if (event.key === 'Escape') {
-            event.preventDefault();
-            close();
-          } else if (event.key === 'ArrowLeft') {
-            event.preventDefault();
-            step(-1);
-          } else if (event.key === 'ArrowRight') {
-            event.preventDefault();
-            step(1);
-          }
+          if (e.key === 'Escape') { e.preventDefault(); close(); }
+          else if (e.key === 'ArrowLeft') { e.preventDefault(); step(-1); }
+          else if (e.key === 'ArrowRight') { e.preventDefault(); step(1); }
         });
 
-        return {
-          open: open,
-          close: close
-        };
+        return { open: open, close: close };
       }
 
       var lightbox = createLightbox();
 
+      /* ── Carousel scroll control ── */
       toArray(document.querySelectorAll('.carousel')).forEach(function (carousel) {
         var track = carousel.querySelector('.carousel-track');
         var slides = toArray(carousel.querySelectorAll('.carousel-slide'));
@@ -606,71 +605,50 @@
         if (!track || !slides.length) return;
 
         function getStep() {
-          var gap = parseFloat(getComputedStyle(track).gap) || 0;
-          return slides[0].offsetWidth + gap;
+          return slides[0].offsetWidth + (parseFloat(getComputedStyle(track).gap) || 0);
         }
 
-        function updateDots(index) {
-          var clamped = clamp(index, 0, slides.length - 1);
-          dots.forEach(function (dot, i) {
-            dot.classList.toggle('active', i === clamped);
-          });
-          current = clamped;
+        function updateDots(idx) {
+          var c = clamp(idx, 0, slides.length - 1);
+          dots.forEach(function (d, i) { d.classList.toggle('active', i === c); });
+          current = c;
         }
 
-        function scrollToSlide(index, behavior) {
-          var target = clamp(index, 0, slides.length - 1);
-          updateDots(target);
-          track.scrollTo({ left: target * getStep(), behavior: behavior || 'smooth' });
+        function scrollToSlide(idx, behavior) {
+          var t = clamp(idx, 0, slides.length - 1);
+          updateDots(t);
+          track.scrollTo({ left: t * getStep(), behavior: behavior || 'smooth' });
         }
 
-        carousel.__carouselApi = {
-          scrollToSlide: scrollToSlide
-        };
+        carousel.__carouselApi = { scrollToSlide: scrollToSlide };
 
-        // Detect active slide on scroll
         var scrollTimer;
         track.addEventListener('scroll', function () {
           clearTimeout(scrollTimer);
           scrollTimer = setTimeout(function () {
-            var index = Math.round(track.scrollLeft / getStep());
-            updateDots(index);
+            updateDots(Math.round(track.scrollLeft / getStep()));
           }, 50);
         });
 
-        // Arrow navigation
-        if (prevBtn) {
-          prevBtn.addEventListener('click', function () {
-            scrollToSlide(current - 1);
-          });
-        }
+        if (prevBtn) prevBtn.addEventListener('click', function () { scrollToSlide(current - 1); });
+        if (nextBtn) nextBtn.addEventListener('click', function () { scrollToSlide(current + 1); });
 
-        if (nextBtn) {
-          nextBtn.addEventListener('click', function () {
-            scrollToSlide(current + 1);
-          });
-        }
-
-        // Dot navigation
         dots.forEach(function (dot, i) {
-          dot.addEventListener('click', function () {
-            scrollToSlide(i);
-          });
+          dot.addEventListener('click', function () { scrollToSlide(i); });
         });
 
         slides.forEach(function (slide, i) {
           var zoomTarget = slide.querySelector('.carousel-zoom');
 
-          slide.addEventListener('click', function (event) {
-            if (event.target.closest('.carousel-zoom')) return;
+          slide.addEventListener('click', function (e) {
+            if (e.target.closest('.carousel-zoom')) return;
             if (i === current) return;
             scrollToSlide(i);
           });
 
           if (!zoomTarget) return;
-
-          zoomTarget.addEventListener('click', function (event) {
-            event.stopPropagation();
+          zoomTarget.addEventListener('click', function (e) {
+            e.stopPropagation();
             if (i !== current) scrollToSlide(i, 'auto');
             lightbox.open(carousel, i, zoomTarget);
           });

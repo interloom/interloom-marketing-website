@@ -879,7 +879,7 @@ section.fade-in-stagger > .visible {
   padding: 0;
   text-align: left;
   color: inherit;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease;
 }
 
 .carousel-zoom:hover {
@@ -893,6 +893,17 @@ section.fade-in-stagger > .visible {
 
 .carousel-zoom img {
   pointer-events: none;
+  outline: 1px solid rgba(0, 0, 0, 0.1);
+  outline-offset: -1px;
+}
+
+/* Shadow lives on the button wrapper — NOT the img — so the View Transition
+   snapshot of the img is shadow-free and scales cleanly during the morph. */
+.carousel-zoom {
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.06),
+    0 8px 32px rgba(0, 0, 0, 0.08);
+  border-radius: 0.5rem;
 }
 
 /* Contained variant: fills its parent, no negative margins */
@@ -1007,11 +1018,8 @@ section.fade-in-stagger > .visible {
 .carousel-lightbox__scrim {
   position: absolute;
   inset: 0;
-  background: color-mix(in srgb, var(--color-surface-2) 82%, transparent);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: color-mix(in srgb, var(--color-surface-2) 92%, transparent);
   opacity: 0;
-  will-change: opacity;
 }
 
 .carousel-lightbox__chrome {
@@ -1039,21 +1047,21 @@ section.fade-in-stagger > .visible {
 }
 
 .carousel-lightbox__viewport {
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 0;
+  width: fit-content;
 }
 
 .carousel-lightbox__image {
   display: block;
   width: auto;
-  max-width: 100%;
+  max-width: min(96vw, 92rem);
   max-height: calc(100vh - 8rem);
-  border-radius: 1rem;
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.32);
-  will-change: transform, opacity;
+  border-radius: 0.5rem;
+  outline: 1px solid rgba(0, 0, 0, 0.1);
+  outline-offset: -1px;
   transform-origin: center center;
 }
 
@@ -1074,10 +1082,7 @@ section.fade-in-stagger > .visible {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   opacity: 0;
-  will-change: opacity;
   transition: background 0.2s ease, border-color 0.2s ease;
 }
 
