@@ -29,13 +29,7 @@
           </svg>
       </a>
       <div class="desktop-nav absolute left-1/2 -translate-x-1/2 flex items-center gap-2 text-sm">
-        <div class="relative" data-dropdown>
-          <button type="button" class="{{ 'text-fg-1' if page.url.startsWith('/product/') else 'text-fg-3' }} px-2 py-0.5 rounded no-underline hover:text-fg-1 transition-colors cursor-pointer flex items-center gap-1" style="background:color-mix(in srgb,var(--color-fg-1) {{ '8%' if page.url.startsWith('/product/') else '0%' }},transparent)" aria-expanded="false">Product <svg width="10" height="6" viewBox="0 0 10 6" fill="none" style="margin-top:1px"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-          <div class="absolute top-full right-0 mt-1 py-1 bg-surface-1 border border-line rounded-lg shadow-lg opacity-0 invisible transition-all" data-dropdown-menu style="z-index:60; width: max-content; min-width: 160px;">
-            <a href="{{ '/product/workspace/' | url }}" class="block px-3 py-1.5 text-sm text-fg-2 no-underline hover:bg-surface-3 hover:text-fg-1 transition-colors whitespace-nowrap">Workspace</a>
-            <a href="{{ '/product/context-graph/' | url }}" class="block px-3 py-1.5 text-sm text-fg-2 no-underline hover:bg-surface-3 hover:text-fg-1 transition-colors whitespace-nowrap">Context Graph</a>
-          </div>
-        </div>
+        <a href="{{ '/product/context-graph/' | url }}" class="{{ 'text-fg-1' if page.url == '/product/context-graph/' else 'text-fg-3' }} px-2 py-0.5 rounded no-underline hover:text-fg-1 transition-colors" style="background:color-mix(in srgb,var(--color-fg-1) {{ '8%' if page.url == '/product/context-graph/' else '0%' }},transparent)">Context Graph</a>
         <a href="{{ '/blog/' | url }}" class="{{ 'text-fg-1' if page.url.startsWith('/blog/') else 'text-fg-3' }} px-2 py-0.5 rounded no-underline hover:text-fg-1 transition-colors" style="background:color-mix(in srgb,var(--color-fg-1) {{ '8%' if page.url.startsWith('/blog/') else '0%' }},transparent)">Blog</a>
         <a href="{{ '/releases/' | url }}" class="{{ 'text-fg-1' if page.url.startsWith('/releases/') else 'text-fg-3' }} px-2 py-0.5 rounded no-underline hover:text-fg-1 transition-colors" style="background:color-mix(in srgb,var(--color-fg-1) {{ '8%' if page.url.startsWith('/releases/') else '0%' }},transparent)">Releases</a>
         <a href="{{ '/docs/' | url }}" class="{{ 'text-fg-1' if page.url.startsWith('/docs/') else 'text-fg-3' }} px-2 py-0.5 rounded no-underline hover:text-fg-1 transition-colors" style="background:color-mix(in srgb,var(--color-fg-1) {{ '8%' if page.url.startsWith('/docs/') else '0%' }},transparent)">Documentation</a>
@@ -48,16 +42,7 @@
     </nav>
     <div id="mobile-menu" class="mobile-menu" inert>
       <div class="mobile-menu__inner">
-        <div class="mobile-menu__section" data-mobile-dropdown>
-          <button type="button" class="mobile-menu__link mobile-menu__link--parent" aria-expanded="false">
-            Product
-            <svg width="10" height="6" viewBox="0 0 10 6" fill="none" class="mobile-menu__chevron"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <div class="mobile-menu__sub" hidden>
-            <a href="{{ '/product/workspace/' | url }}" class="mobile-menu__sublink">Workspace</a>
-            <a href="{{ '/product/context-graph/' | url }}" class="mobile-menu__sublink">Context Graph</a>
-          </div>
-        </div>
+        <a href="{{ '/product/context-graph/' | url }}" class="mobile-menu__link">Context Graph</a>
         <a href="{{ '/blog/' | url }}" class="mobile-menu__link">Blog</a>
         <a href="{{ '/releases/' | url }}" class="mobile-menu__link">Releases</a>
         <a href="{{ '/docs/' | url }}" class="mobile-menu__link">Documentation</a>
@@ -129,13 +114,26 @@
       // Theme class already applied by <head> script; just sync the label
       label.textContent = root.classList.contains('dark') ? 'Light' : 'Dark';
 
+      // Set initial bg on landscape iframe to match exact theme token
+      var lf0 = document.getElementById('landscape-iframe');
+      if (lf0) {
+        var url0 = new URL(lf0.src, location.href);
+        url0.searchParams.set('bg', root.classList.contains('dark') ? '#131313' : '#fcfcfc');
+        lf0.src = url0.href;
+      }
+
       btn.addEventListener('click', function () {
         const dark = !root.classList.contains('dark');
         root.classList.toggle('dark', dark);
         root.classList.toggle('light', !dark);
         localStorage.setItem('theme', dark ? 'dark' : 'light');
         label.textContent = dark ? 'Light' : 'Dark';
-        updateLandscapeIframe(dark);
+        var lf = document.getElementById('landscape-iframe');
+        if (lf) {
+          var url = new URL(lf.src, location.href);
+          url.searchParams.set('bg', dark ? '#131313' : '#fcfcfc');
+          lf.src = url.href;
+        }
       });
     })();
   </script>
