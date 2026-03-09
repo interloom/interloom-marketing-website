@@ -1,0 +1,33 @@
+---
+layout: base.njk
+---
+<article class="py-12 px-4">
+  <div class="mx-auto max-w-5xl">
+    <div class="max-w-2xl">
+    <header class="mb-8 pb-4 border-b border-line">
+      <a href="{{ '/releases/' | url }}" class="inline-flex items-center text-xs text-fg-3 no-underline hover:text-fg-1 transition-colors mb-4">
+        ← Back to roadmap
+      </a>
+      <h1 class="mb-2">{{ title }}</h1>
+      {% if description %}<p class="text-fg-2 mt-3 mb-4">{{ description }}</p>{% endif %}
+      <div class="text-sm text-fg-3 flex flex-wrap items-center gap-x-4 gap-y-1">
+        {% if author %}<span>{{ author }}</span>{% endif %}
+        <time>Published {{ date | dateFormat }}</time>
+        {% if updated %}<time>Updated {{ updated | dateFormat }}</time>{% endif %}
+      </div>
+    </header>
+    {% if heroImage %}
+    <figure class="article-hero">
+      <img src="{{ heroImage }}" alt="{{ heroImageAlt or title }}" loading="lazy">
+    </figure>
+    {% endif %}
+    <div class="prose max-w-none">
+      {% if sourceUrl %}
+      {{ content | normalizeImportedRichText | safe }}
+      {% else %}
+      {{ content | safe }}
+      {% endif %}
+    </div>
+    </div>
+  </div>
+</article>

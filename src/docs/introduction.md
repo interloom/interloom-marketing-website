@@ -21,3 +21,7 @@ Work in Interloom flows through a clear hierarchy:
 - **[Getting Started](/docs/getting-started/)** — Set up your first space, create a case, and apply a procedure
 - **[Core Concepts](/docs/core-concepts/)** — The complete domain model: Cases, Stages, Procedures, Actors, and more
 - **[API Reference](/docs/api-reference/)** — REST endpoints for every entity in the platform
+
+## Need Help?
+
+Contact us at [hello@interloom.com](mailto:hello@interloom.com) to get started with your first workflow.

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="140" height="48" viewBox="0 0 140 48" role="img" aria-labelledby="title desc">
+  <title id="title">TLS Monochrome Badge</title>
+  <desc id="desc">Black and white TLS badge with lock icon.</desc>
+  <rect x="1" y="1" width="138" height="46" rx="8" fill="#fff" stroke="#111" stroke-width="2"/>
+  <g fill="#111">
+    <path d="M28 24a6 6 0 1 1 12 0v2h2v12H26V26h2v-2Zm3 0v2h6v-2a3 3 0 1 0-6 0Z"/>
+    <path d="M56 17h26v4H71v20h-4V21H56v-4Z"/>
+    <path d="M86 17h4v20h12v4H86V17Z"/>
+    <path d="M106 17h24v4h-20v6h16v4h-16v6h20v4h-24V17Z"/>
+  </g>
+</svg>

@@ -1,4 +1,4 @@
 {
-  "layout": "post.njk",
+  "layout": "release-post.njk",
   "tags": "releases"
 }

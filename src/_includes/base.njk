@@ -5,32 +5,53 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ title }} | Interloom</title>
   <meta name="description" content="{{ description or 'Interloom - Custom automation that fits how you work' }}">
+  <link rel="icon" href="{{ '/images/favicon.ico' | url }}" sizes="32x32">
+  <link rel="icon" href="{{ '/images/favicon.svg' | url }}" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&family=Hedvig+Letters+Serif:opsz@12..24&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ '/css/main.css' | url }}">
+  <link rel="stylesheet" href="{{ '/css/main.generated.css' | url }}">
+  <style>[data-scramble]{opacity:1}@media(prefers-reduced-motion:reduce){[data-scramble]{opacity:1}}</style>
+  <script>
+    (function(){var s=localStorage.getItem('theme');var d=s?s==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.classList.add(d?'dark':'light');})();
+  </script>
 </head>
-<body class="bg-surface-2 text-fg-1 font-sans text-base leading-relaxed antialiased">
+<body class="bg-surface-2 text-fg-1 font-sans text-base leading-relaxed antialiased{{ ' docs-page' if page.url.startsWith('/docs/') else '' }}">
   <div class="scaffold" aria-hidden="true">
     <div class="gutter gutter-left"></div>
     <div class="gutter gutter-right"></div>
   </div>
   <header class="sticky top-0 z-50 bg-surface-2">
-    <nav class="flex items-center justify-between px-4 py-3">
+    <nav class="relative flex items-center justify-between px-4 py-3">
       <a href="{{ '/' | url }}" class="no-underline text-fg-1 flex items-center">
-        <svg class="h-6 w-auto" viewBox="0 0 247 45" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Interloom">
-          <path d="M234.027 33.3122L230.772 24.3667L229.766 21.3231L229.872 25.6371V33.3122H225.294V12.6687H231.222L234.451 21.4554L236.065 26.2193L237.68 21.4554L240.882 12.6687H246.678V33.3122H242.205V25.6371L242.285 21.3231L241.305 24.3667L238.024 33.3122H234.027Z" fill="currentColor"/><path d="M210.691 29.2894C214.131 29.2894 216.804 27.0398 216.804 22.9905C216.804 18.9411 214.131 16.6915 210.691 16.6915C207.25 16.6915 204.577 18.9411 204.577 22.9905C204.577 27.0398 207.25 29.2894 210.691 29.2894ZM210.691 12.2452C216.831 12.2452 221.621 16.4269 221.621 22.9905C221.621 29.554 216.831 33.7357 210.691 33.7357C204.551 33.7357 199.76 29.554 199.76 22.9905C199.76 16.4269 204.551 12.2452 210.691 12.2452Z" fill="currentColor"/><path d="M185.538 29.2894C188.978 29.2894 191.651 27.0398 191.651 22.9905C191.651 18.9411 188.978 16.6915 185.538 16.6915C182.097 16.6915 179.424 18.9411 179.424 22.9905C179.424 27.0398 182.097 29.2894 185.538 29.2894ZM185.538 12.2452C191.678 12.2452 196.468 16.4269 196.468 22.9905C196.468 29.554 191.678 33.7357 185.538 33.7357C179.398 33.7357 174.607 29.554 174.607 22.9905C174.607 16.4269 179.398 12.2452 185.538 12.2452Z" fill="currentColor"/><path d="M163.774 12.6687V28.9453H173.275V33.3122H159.116V12.6687H163.774Z" fill="currentColor"/><path d="M142.832 25.8488V33.3122H138.174V12.6687H148.503C152.552 12.6687 154.775 15.7917 154.775 19.2587C154.775 21.9847 153.319 24.6049 150.673 25.5047L155.41 33.3122H149.958L145.697 25.8488H142.832ZM142.832 21.4819H147.788C149.402 21.4819 150.064 20.3439 150.064 19.2587C150.064 18.0942 149.402 17.0091 147.788 17.0091H142.832V21.4819Z" fill="currentColor"/><path d="M118.319 12.6687H133.537V17.0091H122.977V20.5556H132.478V24.8695H122.977V28.9453H134.066V33.3122H118.319V12.6687Z" fill="currentColor"/><path d="M108.61 17.0091V33.3122H103.952V17.0091H97.8387V12.6687H114.724V17.0091H108.61Z" fill="currentColor"/><path d="M80.1763 12.7452L89.7835 24.9196L89.6776 20.4204V12.7452H94.2298V33.3888H90.2334L80.5998 21.2144L80.7321 25.7136V33.3888H76.1799V12.7452H80.1763Z" fill="currentColor"/><path d="M66.134 14.9952V33.1388H61.476V14.9952H66.134Z" fill="currentColor"/><rect x="55.976" y="12.7452" width="15.5" height="4.5" fill="currentColor"/><rect x="55.976" y="28.7921" width="15.5" height="4.5" fill="currentColor"/><path d="M25.3764 36.5107C24.3658 32.3823 22.857 26.529 22.857 22.5C22.857 18.4709 24.3658 12.6176 25.3764 8.48918C25.6738 7.27428 25.9825 6.01289 26.2994 4.6248C26.4175 4.10765 26.9872 3.83199 27.463 4.0662L30.8386 5.72784C31.2831 5.94668 31.4343 6.50989 31.2107 6.95222C30.4311 8.49455 29.7936 10.7234 29.2153 12.7453C28.7009 14.5434 28.2334 16.1778 27.7545 17.0199C26.9075 18.5093 26.7353 20.4319 26.6214 21.7043C26.5938 22.013 26.5695 22.2833 26.54 22.5C26.5695 22.7166 26.5938 22.987 26.6214 23.2956C26.7353 24.568 26.9075 26.4907 27.7545 27.98C28.2334 28.8221 28.7009 30.4565 29.2153 32.2546C29.7936 34.2765 30.4311 36.5054 31.2107 38.0477C31.4343 38.49 31.2831 39.0532 30.8386 39.2721L27.463 40.9337C26.9872 41.1679 26.4175 40.8923 26.2994 40.3751C25.9825 38.987 25.6738 37.7257 25.3764 36.5107Z" fill="currentColor"/><path d="M28.2485 22.5818C28.3184 24.2494 29.4414 25.9796 30.7805 27.4075C32.1479 28.8655 33.48 29.5347 35.1636 30.3804C35.9953 30.7982 36.9128 31.2591 37.9627 31.8795C38.283 32.0687 38.6992 31.963 38.8818 31.6388L40.779 28.2716C40.9489 27.97 40.855 27.5877 40.5532 27.4184C39.7633 26.9755 38.7688 26.5259 37.7525 26.0664C35.2851 24.9509 32.6891 23.7772 32.5819 22.5C32.6891 21.2227 35.2851 20.0491 37.7525 18.9335C38.7688 18.4741 39.7633 18.0244 40.5532 17.5815C40.855 17.4122 40.9489 17.0299 40.779 16.7283L38.8818 13.3611C38.6992 13.0369 38.283 12.9312 37.9627 13.1205C36.9128 13.7408 35.9953 14.2017 35.1636 14.6195C33.48 15.4652 32.1479 16.1344 30.7805 17.5924C29.4414 19.0203 28.3184 20.7505 28.2485 22.4182L28.2451 22.4182C28.2451 22.4454 28.2454 22.4727 28.246 22.5C28.2454 22.5272 28.2451 22.5545 28.2451 22.5818L28.2485 22.5818Z" fill="currentColor"/><path d="M21.3691 22.5C21.3691 26.529 19.8603 32.3823 18.8497 36.5107C18.5523 37.7257 18.2436 38.987 17.9267 40.3751C17.8086 40.8923 17.2389 41.1679 16.7631 40.9337L13.3875 39.2721C12.9429 39.0532 12.7918 38.49 13.0154 38.0477C13.795 36.5054 14.4325 34.2765 15.0108 32.2547C15.5251 30.4565 15.9926 28.8221 16.4715 27.98C17.3186 26.4907 17.4908 24.568 17.6047 23.2956L17.6047 23.2955C17.6323 22.9869 17.6565 22.7166 17.6861 22.5C17.6565 22.2833 17.6323 22.013 17.6047 21.7043C17.4908 20.4319 17.3186 18.5093 16.4716 17.0199C15.9926 16.1778 15.5251 14.5434 15.0108 12.7452C14.4325 10.7234 13.795 8.49455 13.0154 6.95222C12.7918 6.50989 12.9429 5.94668 13.3875 5.72784L16.7631 4.06619C17.2389 3.83199 17.8086 4.10764 17.9267 4.6248C18.2436 6.01289 18.5523 7.27423 18.8497 8.48912C19.8603 12.6176 21.3691 18.4709 21.3691 22.5Z" fill="currentColor"/><path d="M15.9775 22.5818C15.9077 24.2494 14.7847 25.9796 13.4456 27.4075C12.0782 28.8655 10.7461 29.5347 9.06251 30.3804C8.23081 30.7982 7.31332 31.2591 6.26339 31.8795C5.94312 32.0687 5.52691 31.963 5.34427 31.6388L3.44711 28.2716C3.27718 27.97 3.37104 27.5877 3.67292 27.4184C4.46274 26.9755 5.45724 26.5259 6.47354 26.0664C8.941 24.9509 11.537 23.7772 11.6442 22.5C11.537 21.2227 8.941 20.0491 6.47354 18.9335C5.45724 18.4741 4.46274 18.0244 3.67292 17.5815C3.37104 17.4122 3.27718 17.0299 3.44711 16.7283L5.34427 13.3611C5.52691 13.0369 5.94312 12.9312 6.26339 13.1205C7.31331 13.7408 8.23081 14.2017 9.06251 14.6195C10.7461 15.4653 12.0782 16.1344 13.4456 17.5924C14.7847 19.0203 15.9077 20.7505 15.9775 22.4182L15.981 22.4182C15.981 22.4454 15.9807 22.4727 15.9801 22.5C15.9807 22.5272 15.981 22.5545 15.981 22.5818L15.9775 22.5818Z" fill="currentColor"/>
-        </svg>
+          <svg class="h-6 w-auto" viewBox="0 0 247 45" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Interloom">
+            <path d="M234.027 33.3122L230.772 24.3667L229.766 21.3231L229.872 25.6371V33.3122H225.294V12.6687H231.222L234.451 21.4554L236.065 26.2193L237.68 21.4554L240.882 12.6687H246.678V33.3122H242.205V25.6371L242.285 21.3231L241.305 24.3667L238.024 33.3122H234.027Z" fill="currentColor"/><path d="M210.691 29.2894C214.131 29.2894 216.804 27.0398 216.804 22.9905C216.804 18.9411 214.131 16.6915 210.691 16.6915C207.25 16.6915 204.577 18.9411 204.577 22.9905C204.577 27.0398 207.25 29.2894 210.691 29.2894ZM210.691 12.2452C216.831 12.2452 221.621 16.4269 221.621 22.9905C221.621 29.554 216.831 33.7357 210.691 33.7357C204.551 33.7357 199.76 29.554 199.76 22.9905C199.76 16.4269 204.551 12.2452 210.691 12.2452Z" fill="currentColor"/><path d="M185.538 29.2894C188.978 29.2894 191.651 27.0398 191.651 22.9905C191.651 18.9411 188.978 16.6915 185.538 16.6915C182.097 16.6915 179.424 18.9411 179.424 22.9905C179.424 27.0398 182.097 29.2894 185.538 29.2894ZM185.538 12.2452C191.678 12.2452 196.468 16.4269 196.468 22.9905C196.468 29.554 191.678 33.7357 185.538 33.7357C179.398 33.7357 174.607 29.554 174.607 22.9905C174.607 16.4269 179.398 12.2452 185.538 12.2452Z" fill="currentColor"/><path d="M163.774 12.6687V28.9453H173.275V33.3122H159.116V12.6687H163.774Z" fill="currentColor"/><path d="M142.832 25.8488V33.3122H138.174V12.6687H148.503C152.552 12.6687 154.775 15.7917 154.775 19.2587C154.775 21.9847 153.319 24.6049 150.673 25.5047L155.41 33.3122H149.958L145.697 25.8488H142.832ZM142.832 21.4819H147.788C149.402 21.4819 150.064 20.3439 150.064 19.2587C150.064 18.0942 149.402 17.0091 147.788 17.0091H142.832V21.4819Z" fill="currentColor"/><path d="M118.319 12.6687H133.537V17.0091H122.977V20.5556H132.478V24.8695H122.977V28.9453H134.066V33.3122H118.319V12.6687Z" fill="currentColor"/><path d="M108.61 17.0091V33.3122H103.952V17.0091H97.8387V12.6687H114.724V17.0091H108.61Z" fill="currentColor"/><path d="M80.1763 12.7452L89.7835 24.9196L89.6776 20.4204V12.7452H94.2298V33.3888H90.2334L80.5998 21.2144L80.7321 25.7136V33.3888H76.1799V12.7452H80.1763Z" fill="currentColor"/><path d="M66.134 14.9952V33.1388H61.476V14.9952H66.134Z" fill="currentColor"/><rect x="55.976" y="12.7452" width="15.5" height="4.5" fill="currentColor"/><rect x="55.976" y="28.7921" width="15.5" height="4.5" fill="currentColor"/><path d="M25.3764 36.5107C24.3658 32.3823 22.857 26.529 22.857 22.5C22.857 18.4709 24.3658 12.6176 25.3764 8.48918C25.6738 7.27428 25.9825 6.01289 26.2994 4.6248C26.4175 4.10765 26.9872 3.83199 27.463 4.0662L30.8386 5.72784C31.2831 5.94668 31.4343 6.50989 31.2107 6.95222C30.4311 8.49455 29.7936 10.7234 29.2153 12.7453C28.7009 14.5434 28.2334 16.1778 27.7545 17.0199C26.9075 18.5093 26.7353 20.4319 26.6214 21.7043C26.5938 22.013 26.5695 22.2833 26.54 22.5C26.5695 22.7166 26.5938 22.987 26.6214 23.2956C26.7353 24.568 26.9075 26.4907 27.7545 27.98C28.2334 28.8221 28.7009 30.4565 29.2153 32.2546C29.7936 34.2765 30.4311 36.5054 31.2107 38.0477C31.4343 38.49 31.2831 39.0532 30.8386 39.2721L27.463 40.9337C26.9872 41.1679 26.4175 40.8923 26.2994 40.3751C25.9825 38.987 25.6738 37.7257 25.3764 36.5107Z" fill="currentColor"/><path d="M28.2485 22.5818C28.3184 24.2494 29.4414 25.9796 30.7805 27.4075C32.1479 28.8655 33.48 29.5347 35.1636 30.3804C35.9953 30.7982 36.9128 31.2591 37.9627 31.8795C38.283 32.0687 38.6992 31.963 38.8818 31.6388L40.779 28.2716C40.9489 27.97 40.855 27.5877 40.5532 27.4184C39.7633 26.9755 38.7688 26.5259 37.7525 26.0664C35.2851 24.9509 32.6891 23.7772 32.5819 22.5C32.6891 21.2227 35.2851 20.0491 37.7525 18.9335C38.7688 18.4741 39.7633 18.0244 40.5532 17.5815C40.855 17.4122 40.9489 17.0299 40.779 16.7283L38.8818 13.3611C38.6992 13.0369 38.283 12.9312 37.9627 13.1205C36.9128 13.7408 35.9953 14.2017 35.1636 14.6195C33.48 15.4652 32.1479 16.1344 30.7805 17.5924C29.4414 19.0203 28.3184 20.7505 28.2485 22.4182L28.2451 22.4182C28.2451 22.4454 28.2454 22.4727 28.246 22.5C28.2454 22.5272 28.2451 22.5545 28.2451 22.5818L28.2485 22.5818Z" fill="currentColor"/><path d="M21.3691 22.5C21.3691 26.529 19.8603 32.3823 18.8497 36.5107C18.5523 37.7257 18.2436 38.987 17.9267 40.3751C17.8086 40.8923 17.2389 41.1679 16.7631 40.9337L13.3875 39.2721C12.9429 39.0532 12.7918 38.49 13.0154 38.0477C13.795 36.5054 14.4325 34.2765 15.0108 32.2547C15.5251 30.4565 15.9926 28.8221 16.4715 27.98C17.3186 26.4907 17.4908 24.568 17.6047 23.2956L17.6047 23.2955C17.6323 22.9869 17.6565 22.7166 17.6861 22.5C17.6565 22.2833 17.6323 22.013 17.6047 21.7043C17.4908 20.4319 17.3186 18.5093 16.4716 17.0199C15.9926 16.1778 15.5251 14.5434 15.0108 12.7452C14.4325 10.7234 13.795 8.49455 13.0154 6.95222C12.7918 6.50989 12.9429 5.94668 13.3875 5.72784L16.7631 4.06619C17.2389 3.83199 17.8086 4.10764 17.9267 4.6248C18.2436 6.01289 18.5523 7.27423 18.8497 8.48912C19.8603 12.6176 21.3691 18.4709 21.3691 22.5Z" fill="currentColor"/><path d="M15.9775 22.5818C15.9077 24.2494 14.7847 25.9796 13.4456 27.4075C12.0782 28.8655 10.7461 29.5347 9.06251 30.3804C8.23081 30.7982 7.31332 31.2591 6.26339 31.8795C5.94312 32.0687 5.52691 31.963 5.34427 31.6388L3.44711 28.2716C3.27718 27.97 3.37104 27.5877 3.67292 27.4184C4.46274 26.9755 5.45724 26.5259 6.47354 26.0664C8.941 24.9509 11.537 23.7772 11.6442 22.5C11.537 21.2227 8.941 20.0491 6.47354 18.9335C5.45724 18.4741 4.46274 18.0244 3.67292 17.5815C3.37104 17.4122 3.27718 17.0299 3.44711 16.7283L5.34427 13.3611C5.52691 13.0369 5.94312 12.9312 6.26339 13.1205C7.31331 13.7408 8.23081 14.2017 9.06251 14.6195C10.7461 15.4653 12.0782 16.1344 13.4456 17.5924C14.7847 19.0203 15.9077 20.7505 15.9775 22.4182L15.981 22.4182C15.981 22.4454 15.9807 22.4727 15.9801 22.5C15.9807 22.5272 15.981 22.5545 15.981 22.5818L15.9775 22.5818Z" fill="currentColor"/>
+          </svg>
       </a>
-      <div class="flex items-center gap-2 text-sm">
+      <div class="desktop-nav absolute left-1/2 -translate-x-1/2 flex items-center gap-2 text-sm">
+        <a href="{{ '/product/context-graph/' | url }}" class="{{ 'text-fg-1' if page.url == '/product/context-graph/' else 'text-fg-3' }} px-2 py-0.5 rounded no-underline hover:text-fg-1 transition-colors" style="background:color-mix(in srgb,var(--color-fg-1) {{ '8%' if page.url == '/product/context-graph/' else '0%' }},transparent)">Context Graph</a>
         <a href="{{ '/blog/' | url }}" class="{{ 'text-fg-1' if page.url.startsWith('/blog/') else 'text-fg-3' }} px-2 py-0.5 rounded no-underline hover:text-fg-1 transition-colors" style="background:color-mix(in srgb,var(--color-fg-1) {{ '8%' if page.url.startsWith('/blog/') else '0%' }},transparent)">Blog</a>
         <a href="{{ '/releases/' | url }}" class="{{ 'text-fg-1' if page.url.startsWith('/releases/') else 'text-fg-3' }} px-2 py-0.5 rounded no-underline hover:text-fg-1 transition-colors" style="background:color-mix(in srgb,var(--color-fg-1) {{ '8%' if page.url.startsWith('/releases/') else '0%' }},transparent)">Releases</a>
         <a href="{{ '/docs/' | url }}" class="{{ 'text-fg-1' if page.url.startsWith('/docs/') else 'text-fg-3' }} px-2 py-0.5 rounded no-underline hover:text-fg-1 transition-colors" style="background:color-mix(in srgb,var(--color-fg-1) {{ '8%' if page.url.startsWith('/docs/') else '0%' }},transparent)">Documentation</a>
-        <a href="#contact" class="inline-flex items-center h-6 bg-fg-1 text-surface-1 px-2 text-sm rounded font-medium no-underline hover:opacity-85 transition-opacity">Demo</a>
       </div>
+      <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2eEwV1c880TGi16I1QWst6PTzbawnSjH9mV1e49ihrW3raJf-nKrwUIua0S59qEtt5TkGFmrfr" class="desktop-nav inline-flex items-center h-6 bg-fg-1 text-surface-1 px-2 text-sm rounded font-medium no-underline hover:opacity-85 transition-opacity">Demo</a>
+      <button type="button" class="mobile-menu-toggle" aria-controls="mobile-menu" aria-expanded="false" aria-label="Open menu">
+        <svg class="mobile-menu-icon-open" width="18" height="14" viewBox="0 0 18 14" fill="none" aria-hidden="true"><line x1="0" y1="1" x2="18" y2="1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="7" x2="18" y2="7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="13" x2="18" y2="13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <svg class="mobile-menu-icon-close" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><line x1="1" y1="1" x2="15" y2="15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="15" y1="1" x2="1" y2="15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
     </nav>
+    <div id="mobile-menu" class="mobile-menu" inert>
+      <div class="mobile-menu__inner">
+        <a href="{{ '/product/context-graph/' | url }}" class="mobile-menu__link">Context Graph</a>
+        <a href="{{ '/blog/' | url }}" class="mobile-menu__link">Blog</a>
+        <a href="{{ '/releases/' | url }}" class="mobile-menu__link">Releases</a>
+        <a href="{{ '/docs/' | url }}" class="mobile-menu__link">Documentation</a>
+        <div class="mobile-menu__cta">
+          <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2eEwV1c880TGi16I1QWst6PTzbawnSjH9mV1e49ihrW3raJf-nKrwUIua0S59qEtt5TkGFmrfr" class="mobile-menu__demo">Book a Demo</a>
+        </div>
+      </div>
+    </div>
   </header>
-
   <main class="min-h-[calc(100vh-200px)]">
     {{ content | safe }}
   </main>
@@ -47,15 +68,16 @@
           <h4 class="text-sm font-medium text-fg-1 mb-2">Product</h4>
           <a href="#" class="text-sm text-fg-3 no-underline hover:text-fg-1 transition-colors">Features</a>
           <a href="#" class="text-sm text-fg-3 no-underline hover:text-fg-1 transition-colors">Integrations</a>
-          <a href="#" class="text-sm text-fg-3 no-underline hover:text-fg-1 transition-colors">Pricing</a>
+          <a href="{{ '/pricing/' | url }}" class="text-sm text-fg-3 no-underline hover:text-fg-1 transition-colors">Pricing</a>
           <a href="#" class="text-sm text-fg-3 no-underline hover:text-fg-1 transition-colors">Changelog</a>
         </div>
         <div class="flex flex-col gap-2">
           <h4 class="text-sm font-medium text-fg-1 mb-2">Company</h4>
-          <a href="#" class="text-sm text-fg-3 no-underline hover:text-fg-1 transition-colors">About</a>
+          <a href="{{ '/about/' | url }}" class="text-sm text-fg-3 no-underline hover:text-fg-1 transition-colors">About</a>
+          <a href="{{ '/customer-stories/' | url }}" class="text-sm text-fg-3 no-underline hover:text-fg-1 transition-colors">Customers</a>
           <a href="{{ '/blog/' | url }}" class="text-sm text-fg-3 no-underline hover:text-fg-1 transition-colors">Blog</a>
           <a href="#" class="text-sm text-fg-3 no-underline hover:text-fg-1 transition-colors">Careers</a>
-          <a href="mailto:hello@interloom.io" class="text-sm text-fg-3 no-underline hover:text-fg-1 transition-colors">Contact</a>
+          <a href="mailto:hello@interloom.com" class="text-sm text-fg-3 no-underline hover:text-fg-1 transition-colors">Contact</a>
         </div>
         <div class="flex flex-col gap-2">
           <h4 class="text-sm font-medium text-fg-1 mb-2">Resources</h4>
@@ -64,14 +86,15 @@
           <a href="#" class="text-sm text-fg-3 no-underline hover:text-fg-1 transition-colors">API Reference</a>
         </div>
         <div class="flex flex-col gap-2">
-          <h4 class="text-sm font-medium text-fg-1 mb-2">Legal</h4>
-          <a href="#" class="text-sm text-fg-3 no-underline hover:text-fg-1 transition-colors">Privacy</a>
-          <a href="#" class="text-sm text-fg-3 no-underline hover:text-fg-1 transition-colors">Terms</a>
-          <a href="#" class="text-sm text-fg-3 no-underline hover:text-fg-1 transition-colors">Security</a>
+          <a href="{{ '/legal/' | url }}" class="text-sm text-fg-3 no-underline hover:text-fg-1 transition-colors">Legal</a>
+          <a href="{{ '/privacy/' | url }}" class="text-sm text-fg-3 no-underline hover:text-fg-1 transition-colors">Privacy</a>
+          <a href="{{ '/terms/' | url }}" class="text-sm text-fg-3 no-underline hover:text-fg-1 transition-colors">Terms</a>
+          <a href="{{ '/security/' | url }}" class="text-sm text-fg-3 no-underline hover:text-fg-1 transition-colors">Security</a>
         </div>
       </div>
-      <div class="mt-12 pt-6 border-t border-line-faint flex items-center justify-between">
-        <p class="text-sm text-fg-3">&copy; 2025 Interloom. All rights reserved.</p>
+      <svg class="w-full text-surface-3 mt-12" viewBox="55.976 12.2452 190.702 21.4905" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Interloom"><path d="M234.027 33.3122L230.772 24.3667L229.766 21.3231L229.872 25.6371V33.3122H225.294V12.6687H231.222L234.451 21.4554L236.065 26.2193L237.68 21.4554L240.882 12.6687H246.678V33.3122H242.205V25.6371L242.285 21.3231L241.305 24.3667L238.024 33.3122H234.027Z" fill="currentColor"/><path d="M210.691 29.2894C214.131 29.2894 216.804 27.0398 216.804 22.9905C216.804 18.9411 214.131 16.6915 210.691 16.6915C207.25 16.6915 204.577 18.9411 204.577 22.9905C204.577 27.0398 207.25 29.2894 210.691 29.2894ZM210.691 12.2452C216.831 12.2452 221.621 16.4269 221.621 22.9905C221.621 29.554 216.831 33.7357 210.691 33.7357C204.551 33.7357 199.76 29.554 199.76 22.9905C199.76 16.4269 204.551 12.2452 210.691 12.2452Z" fill="currentColor"/><path d="M185.538 29.2894C188.978 29.2894 191.651 27.0398 191.651 22.9905C191.651 18.9411 188.978 16.6915 185.538 16.6915C182.097 16.6915 179.424 18.9411 179.424 22.9905C179.424 27.0398 182.097 29.2894 185.538 29.2894ZM185.538 12.2452C191.678 12.2452 196.468 16.4269 196.468 22.9905C196.468 29.554 191.678 33.7357 185.538 33.7357C179.398 33.7357 174.607 29.554 174.607 22.9905C174.607 16.4269 179.398 12.2452 185.538 12.2452Z" fill="currentColor"/><path d="M163.774 12.6687V28.9453H173.275V33.3122H159.116V12.6687H163.774Z" fill="currentColor"/><path d="M142.832 25.8488V33.3122H138.174V12.6687H148.503C152.552 12.6687 154.775 15.7917 154.775 19.2587C154.775 21.9847 153.319 24.6049 150.673 25.5047L155.41 33.3122H149.958L145.697 25.8488H142.832ZM142.832 21.4819H147.788C149.402 21.4819 150.064 20.3439 150.064 19.2587C150.064 18.0942 149.402 17.0091 147.788 17.0091H142.832V21.4819Z" fill="currentColor"/><path d="M118.319 12.6687H133.537V17.0091H122.977V20.5556H132.478V24.8695H122.977V28.9453H134.066V33.3122H118.319V12.6687Z" fill="currentColor"/><path d="M108.61 17.0091V33.3122H103.952V17.0091H97.8387V12.6687H114.724V17.0091H108.61Z" fill="currentColor"/><path d="M80.1763 12.7452L89.7835 24.9196L89.6776 20.4204V12.7452H94.2298V33.3888H90.2334L80.5998 21.2144L80.7321 25.7136V33.3888H76.1799V12.7452H80.1763Z" fill="currentColor"/><path d="M66.134 14.9952V33.1388H61.476V14.9952H66.134Z" fill="currentColor"/><rect x="55.976" y="12.7452" width="15.5" height="4.5" fill="currentColor"/><rect x="55.976" y="28.7921" width="15.5" height="4.5" fill="currentColor"/></svg>
+      <div class="mt-4 pt-4 border-t border-line-faint flex items-center justify-between">
+        <p class="text-sm text-fg-3">&copy; 2026 Interloom. All rights reserved.</p>
         <button
           id="theme-toggle"
           class="text-xs text-fg-4 no-underline hover:text-fg-2 transition-colors cursor-pointer"
@@ -87,25 +110,30 @@
       const root = document.documentElement;
       const btn = document.getElementById('theme-toggle');
       const label = document.getElementById('theme-label');
-      const stored = localStorage.getItem('theme');
 
-      function apply(dark) {
-        root.classList.toggle('dark', dark);
-        root.classList.toggle('light', !dark);
-        label.textContent = dark ? 'Light' : 'Dark';
-      }
+      // Theme class already applied by <head> script; just sync the label
+      label.textContent = root.classList.contains('dark') ? 'Light' : 'Dark';
 
-      // Init: respect stored preference, else follow system
-      if (stored) {
-        apply(stored === 'dark');
-      } else {
-        apply(window.matchMedia('(prefers-color-scheme: dark)').matches);
+      // Set initial bg on landscape iframe to match exact theme token
+      var lf0 = document.getElementById('landscape-iframe');
+      if (lf0) {
+        var url0 = new URL(lf0.src, location.href);
+        url0.searchParams.set('bg', root.classList.contains('dark') ? '#131313' : '#fcfcfc');
+        lf0.src = url0.href;
       }
 
       btn.addEventListener('click', function () {
         const dark = !root.classList.contains('dark');
+        root.classList.toggle('dark', dark);
+        root.classList.toggle('light', !dark);
         localStorage.setItem('theme', dark ? 'dark' : 'light');
-        apply(dark);
+        label.textContent = dark ? 'Light' : 'Dark';
+        var lf = document.getElementById('landscape-iframe');
+        if (lf) {
+          var url = new URL(lf.src, location.href);
+          url.searchParams.set('bg', dark ? '#131313' : '#fcfcfc');
+          lf.src = url.href;
+        }
       });
     })();
   </script>
@@ -125,58 +153,624 @@
   </script>
   <script>
     (function () {
-      var carousel = document.querySelector('.carousel');
-      if (!carousel) return;
+      var filterWrap = document.querySelector('[data-release-filters]');
+      if (!filterWrap) return;
 
-      var track = carousel.querySelector('.carousel-track');
-      var slides = carousel.querySelectorAll('.carousel-slide');
-      var dots = carousel.querySelectorAll('.carousel-dot');
-      var prevBtn = carousel.querySelector('.carousel-prev');
-      var nextBtn = carousel.querySelector('.carousel-next');
-      var current = 0;
+      var buttons = Array.prototype.slice.call(filterWrap.querySelectorAll('[data-filter]'));
+      var entries = Array.prototype.slice.call(document.querySelectorAll('[data-release-entry]'));
+      if (!buttons.length || !entries.length) return;
 
-      function getStep() {
-        var gap = parseFloat(getComputedStyle(track).gap) || 0;
-        return slides[0].offsetWidth + gap;
+      function applyFilter(tag) {
+        entries.forEach(function (entry) {
+          var show = tag === 'all' || entry.getAttribute('data-tag') === tag;
+          entry.style.display = show ? '' : 'none';
+        });
+
+        buttons.forEach(function (btn) {
+          var active = btn.getAttribute('data-filter') === tag;
+          btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+          btn.classList.toggle('bg-fg-1', active);
+          btn.classList.toggle('text-surface-1', active);
+          btn.classList.toggle('hover:opacity-85', active);
+          btn.classList.toggle('text-fg-2', !active);
+          btn.classList.toggle('hover:bg-surface-3', !active);
+        });
       }
 
-      function updateDots(index) {
+      buttons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          applyFilter(btn.getAttribute('data-filter'));
+        });
+      });
+    })();
+  </script>
+  <script>
+    (function () {
+      var filterWrap = document.querySelector('[data-blog-filters]');
+      if (!filterWrap) return;
+
+      var buttons = Array.prototype.slice.call(filterWrap.querySelectorAll('[data-year-filter]'));
+      var entries = Array.prototype.slice.call(document.querySelectorAll('[data-blog-entry]'));
+      if (!buttons.length || !entries.length) return;
+
+      function applyFilter(year) {
+        entries.forEach(function (entry) {
+          var show = year === 'all' || entry.getAttribute('data-year') === year;
+          entry.style.display = show ? '' : 'none';
+        });
+
+        buttons.forEach(function (btn) {
+          var active = btn.getAttribute('data-year-filter') === year;
+          btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+          btn.classList.toggle('bg-fg-1', active);
+          btn.classList.toggle('text-surface-1', active);
+          btn.classList.toggle('hover:opacity-85', active);
+          btn.classList.toggle('text-fg-2', !active);
+          btn.classList.toggle('hover:bg-surface-3', !active);
+        });
+      }
+
+      buttons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          applyFilter(btn.getAttribute('data-year-filter'));
+        });
+      });
+    })();
+  </script>
+  <!-- Scramble animation disabled for now
+  <script>
+    (function () {
+      var TICK_MIN = 10;
+      var TICK_MAX = 45;
+      var TICKS = 30;
+
+      function getTextNodes(el) {
+        var nodes = [];
+        var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false);
+        while (walker.nextNode()) nodes.push(walker.currentNode);
+        return nodes;
+      }
+
+      function reveal(el) {
+        var textNodes = getTextNodes(el);
+        var chars = [];
+
+        textNodes.forEach(function (node) {
+          var text = node.textContent;
+          var frag = document.createDocumentFragment();
+          for (var i = 0; i < text.length; i++) {
+            var span = document.createElement('span');
+            span.textContent = text[i];
+            if (text[i] !== ' ' && text[i] !== '\n') {
+              span.style.opacity = '0';
+              chars.push(span);
+            }
+            frag.appendChild(span);
+          }
+          node.parentNode.replaceChild(frag, node);
+        });
+
+        el.style.opacity = '1';
+        if (chars.length === 0) return;
+
+        var idx = 0;
+        var perTick = Math.max(1, Math.ceil(chars.length / TICKS));
+
+        function tick() {
+          for (var i = 0; i < perTick && idx < chars.length; i++, idx++) {
+            chars[idx].style.opacity = '1';
+          }
+          if (idx < chars.length) {
+            var delay = TICK_MIN + Math.random() * (TICK_MAX - TICK_MIN);
+            requestAnimationFrame(function () { setTimeout(tick, delay); });
+          }
+        }
+        tick();
+      }
+
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.querySelectorAll('[data-scramble]').forEach(function (el) {
+          el.style.opacity = '1';
+        });
+        return;
+      }
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            var base = +(entry.target.getAttribute('data-scramble') || 0);
+            var jitter = Math.round(Math.random() * 350);
+            setTimeout(function () { reveal(entry.target); }, base + jitter);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      document.querySelectorAll('[data-scramble]').forEach(function (el) {
+        observer.observe(el);
+      });
+    })();
+  </script>
+  -->
+  <script>
+    (function () {
+      /* ── Helpers ── */
+      var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var hasViewTransitions = typeof document.startViewTransition === 'function';
+      var EASE = 'cubic-bezier(0.32, 0.72, 0, 1)';
+      var DURATION = 380;
+
+      function toArray(l) { return Array.prototype.slice.call(l || []); }
+      function clamp(v, lo, hi) { return Math.min(Math.max(v, lo), hi); }
+      function getSlideImage(s) {
+        var z = s.querySelector('.carousel-zoom');
+        return z ? z.querySelector('img') : s.querySelector('img');
+      }
+      function focusEl(el) {
+        if (!el) return;
+        try { el.focus({ preventScroll: true }); } catch (_) { el.focus(); }
+      }
+
+      /* ── Lightbox ── */
+      function createLightbox() {
+        var root = document.createElement('div');
+        root.className = 'carousel-lightbox';
+        root.hidden = true;
+        root.setAttribute('role', 'dialog');
+        root.setAttribute('aria-modal', 'true');
+        root.setAttribute('aria-label', 'Expanded carousel image');
+        root.innerHTML =
+          '<div class="carousel-lightbox__scrim"></div>' +
+          '<button type="button" class="carousel-lightbox__close" aria-label="Close image viewer">&times;</button>' +
+          '<div class="carousel-lightbox__chrome">' +
+            '<button type="button" class="carousel-lightbox__nav carousel-lightbox__nav--prev" aria-label="Previous image">&larr;</button>' +
+            '<figure class="carousel-lightbox__figure">' +
+              '<div class="carousel-lightbox__viewport">' +
+                '<img class="carousel-lightbox__image" alt="">' +
+              '</div>' +
+            '</figure>' +
+            '<button type="button" class="carousel-lightbox__nav carousel-lightbox__nav--next" aria-label="Next image">&rarr;</button>' +
+          '</div>';
+        document.body.appendChild(root);
+
+        var scrim = root.querySelector('.carousel-lightbox__scrim');
+        var chrome = root.querySelector('.carousel-lightbox__chrome');
+        var lbImage = root.querySelector('.carousel-lightbox__image');
+        var closeBtn = root.querySelector('.carousel-lightbox__close');
+        var prevBtn = root.querySelector('.carousel-lightbox__nav--prev');
+        var nextBtn = root.querySelector('.carousel-lightbox__nav--next');
+        var controls = [closeBtn, prevBtn, nextBtn];
+        var busy = false;
+
+        var state = { carousel: null, slides: [], index: 0, trigger: null };
+
+        function setSlide(idx) {
+          state.index = ((idx % state.slides.length) + state.slides.length) % state.slides.length;
+          var s = state.slides[state.index];
+          lbImage.src = s.src;
+          lbImage.alt = s.alt;
+          if (state.carousel && state.carousel.__carouselApi) {
+            state.carousel.__carouselApi.scrollToSlide(state.index, 'auto');
+          }
+        }
+
+        /* Fade controls (scrim, close, nav) */
+        function fadeControls(show) {
+          var dur = reducedMotion ? 0 : (show ? 280 : 200);
+          var target = show ? '1' : '0';
+          scrim.animate(
+            [{ opacity: scrim.style.opacity || '0' }, { opacity: target }],
+            { duration: dur, easing: 'ease', fill: 'forwards' }
+          );
+          controls.forEach(function (btn) {
+            btn.animate(
+              [{ opacity: btn.style.opacity || '0' }, { opacity: target }],
+              { duration: dur, easing: 'ease', fill: 'forwards', delay: show ? 80 : 0 }
+            );
+          });
+        }
+
+        /* ── FLIP-based open/close (transform-only, zero layout thrash) ── */
+        function flipOpen(sourceImg) {
+          var srcRect = sourceImg.getBoundingClientRect();
+          /* Show lightbox so we can measure the final image rect */
+          root.hidden = false;
+          document.body.classList.add('carousel-lightbox-open');
+          /* Force layout so lbImage gets its final size */
+          lbImage.style.opacity = '1';
+          lbImage.style.visibility = 'hidden';
+          var destRect = lbImage.getBoundingClientRect();
+          lbImage.style.visibility = '';
+
+          if (!srcRect.width || !destRect.width || reducedMotion) {
+            fadeControls(true);
+            focusEl(closeBtn);
+            return;
+          }
+
+          /* Calculate the inverse transform: where was the source relative to dest? */
+          var scaleX = srcRect.width / destRect.width;
+          var scaleY = srcRect.height / destRect.height;
+          var dx = srcRect.left + srcRect.width / 2 - (destRect.left + destRect.width / 2);
+          var dy = srcRect.top + srcRect.height / 2 - (destRect.top + destRect.height / 2);
+
+          /* Hide the source thumbnail during animation */
+          sourceImg.style.opacity = '0';
+
+          lbImage.setAttribute('data-animating', '');
+          var anim = lbImage.animate(
+            [
+              { transform: 'translate(' + dx + 'px, ' + dy + 'px) scale(' + scaleX + ', ' + scaleY + ')' },
+              { transform: 'translate(0, 0) scale(1, 1)' }
+            ],
+            { duration: DURATION, easing: EASE, fill: 'forwards' }
+          );
+          fadeControls(true);
+
+          anim.onfinish = function () {
+            lbImage.removeAttribute('data-animating');
+            lbImage.style.transform = '';
+            sourceImg.style.opacity = '';
+            focusEl(closeBtn);
+            busy = false;
+          };
+        }
+
+        function flipClose() {
+          var targetImg = state.slides[state.index] && state.slides[state.index].image;
+          var destRect = targetImg ? targetImg.getBoundingClientRect() : null;
+          var srcRect = lbImage.getBoundingClientRect();
+
+          fadeControls(false);
+
+          if (reducedMotion || !destRect || !destRect.width || !srcRect.width) {
+            setTimeout(finishClose, reducedMotion ? 0 : 200);
+            return;
+          }
+
+          var scaleX = destRect.width / srcRect.width;
+          var scaleY = destRect.height / srcRect.height;
+          var dx = destRect.left + destRect.width / 2 - (srcRect.left + srcRect.width / 2);
+          var dy = destRect.top + destRect.height / 2 - (srcRect.top + srcRect.height / 2);
+
+          targetImg.style.opacity = '0';
+          lbImage.setAttribute('data-animating', '');
+          var anim = lbImage.animate(
+            [
+              { transform: 'translate(0, 0) scale(1, 1)' },
+              { transform: 'translate(' + dx + 'px, ' + dy + 'px) scale(' + scaleX + ', ' + scaleY + ')' }
+            ],
+            { duration: DURATION * 0.8, easing: EASE, fill: 'forwards' }
+          );
+
+          anim.onfinish = function () {
+            lbImage.removeAttribute('data-animating');
+            lbImage.style.transform = '';
+            targetImg.style.opacity = '';
+            finishClose();
+          };
+        }
+
+        /* ── View Transitions API open/close ── */
+        function vtOpen(sourceImg) {
+          /* Assign view-transition-name to source before snapshot */
+          sourceImg.style.viewTransitionName = 'carousel-hero';
+          sourceImg.style.contain = 'layout';
+
+          var transition = document.startViewTransition(function () {
+            /* Move the name to the lightbox image */
+            sourceImg.style.viewTransitionName = '';
+            sourceImg.style.contain = '';
+            root.hidden = false;
+            lbImage.style.opacity = '1';
+            lbImage.style.viewTransitionName = 'carousel-hero';
+            document.body.classList.add('carousel-lightbox-open');
+          });
+
+          transition.ready.then(function () {
+            fadeControls(true);
+          });
+          transition.finished.then(function () {
+            lbImage.style.viewTransitionName = '';
+            focusEl(closeBtn);
+            busy = false;
+          });
+        }
+
+        function vtClose() {
+          var targetImg = state.slides[state.index] && state.slides[state.index].image;
+          if (!targetImg) { finishClose(); return; }
+
+          lbImage.style.viewTransitionName = 'carousel-hero';
+          fadeControls(false);
+
+          var transition = document.startViewTransition(function () {
+            lbImage.style.viewTransitionName = '';
+            root.hidden = true;
+            document.body.classList.remove('carousel-lightbox-open');
+            targetImg.style.viewTransitionName = 'carousel-hero';
+            targetImg.style.contain = 'layout';
+          });
+
+          transition.finished.then(function () {
+            targetImg.style.viewTransitionName = '';
+            targetImg.style.contain = '';
+            focusEl(state.trigger);
+            busy = false;
+          });
+        }
+
+        function finishClose() {
+          root.hidden = true;
+          lbImage.style.opacity = '';
+          lbImage.style.transform = '';
+          document.body.classList.remove('carousel-lightbox-open');
+          focusEl(state.trigger);
+          busy = false;
+        }
+
+        /* ── Public API ── */
+        function open(carousel, index, trigger) {
+          if (busy) return;
+          busy = true;
+
+          var slides = toArray(carousel.querySelectorAll('.carousel-slide')).map(function (slide) {
+            var img = getSlideImage(slide);
+            return img ? { image: img, src: img.currentSrc || img.src, alt: img.alt || '' } : null;
+          }).filter(Boolean);
+          if (!slides.length || !slides[index]) { busy = false; return; }
+
+          state.carousel = carousel;
+          state.slides = slides;
+          state.trigger = trigger;
+
+          /* Set the image src and wait for it to be ready */
+          lbImage.src = slides[index].src;
+          lbImage.alt = slides[index].alt;
+          lbImage.style.opacity = '0';
+          scrim.style.opacity = '0';
+          controls.forEach(function (b) { b.style.opacity = '0'; });
+
+          var sourceImg = slides[index].image;
+
+          /* Ensure the lightbox image is decoded before animating */
+          var ready = lbImage.decode ? lbImage.decode().catch(function () {}) : Promise.resolve();
+          ready.then(function () {
+            if (hasViewTransitions && !reducedMotion) {
+              vtOpen(sourceImg);
+            } else {
+              flipOpen(sourceImg);
+            }
+          });
+        }
+
+        function close() {
+          if (root.hidden || busy) return;
+          busy = true;
+
+          if (hasViewTransitions && !reducedMotion) {
+            vtClose();
+          } else {
+            flipClose();
+          }
+        }
+
+        function step(delta) {
+          if (!state.slides.length || busy) return;
+          var prev = state.index;
+          setSlide(state.index + delta);
+          if (state.index === prev) return;
+          if (reducedMotion) return;
+
+          lbImage.animate(
+            [
+              { opacity: 0.4, transform: 'translateX(' + (delta > 0 ? 24 : -24) + 'px) scale(0.97)' },
+              { opacity: 1, transform: 'translateX(0) scale(1)' }
+            ],
+            { duration: 260, easing: EASE }
+          );
+        }
+
+        /* Events */
+        root.addEventListener('click', function (e) {
+          if (e.target === scrim) close();
+        });
+        closeBtn.addEventListener('click', close);
+        prevBtn.addEventListener('click', function () { step(-1); });
+        nextBtn.addEventListener('click', function () { step(1); });
+
+        document.addEventListener('keydown', function (e) {
+          if (root.hidden) return;
+          if (e.key === 'Escape') { e.preventDefault(); close(); }
+          else if (e.key === 'ArrowLeft') { e.preventDefault(); step(-1); }
+          else if (e.key === 'ArrowRight') { e.preventDefault(); step(1); }
+        });
+
+        return { open: open, close: close };
+      }
+
+      var lightbox = createLightbox();
+
+      /* ── Carousel scroll control ── */
+      toArray(document.querySelectorAll('.carousel')).forEach(function (carousel) {
+        var track = carousel.querySelector('.carousel-track');
+        var slides = toArray(carousel.querySelectorAll('.carousel-slide'));
+        var dots = toArray(carousel.querySelectorAll('.carousel-dot'));
+        var prevBtn = carousel.querySelector('.carousel-prev');
+        var nextBtn = carousel.querySelector('.carousel-next');
+        var current = 0;
+
+        if (!track || !slides.length) return;
+
+        function getStep() {
+          return slides[0].offsetWidth + (parseFloat(getComputedStyle(track).gap) || 0);
+        }
+
+        function updateDots(idx) {
+          var c = clamp(idx, 0, slides.length - 1);
+          dots.forEach(function (d, i) { d.classList.toggle('active', i === c); });
+          current = c;
+        }
+
+        function scrollToSlide(idx, behavior) {
+          var t = clamp(idx, 0, slides.length - 1);
+          updateDots(t);
+          track.scrollTo({ left: t * getStep(), behavior: behavior || 'smooth' });
+        }
+
+        carousel.__carouselApi = { scrollToSlide: scrollToSlide };
+
+        var scrollTimer;
+        track.addEventListener('scroll', function () {
+          clearTimeout(scrollTimer);
+          scrollTimer = setTimeout(function () {
+            updateDots(Math.round(track.scrollLeft / getStep()));
+          }, 50);
+        });
+
+        if (prevBtn) prevBtn.addEventListener('click', function () { scrollToSlide(current - 1); });
+        if (nextBtn) nextBtn.addEventListener('click', function () { scrollToSlide(current + 1); });
+
         dots.forEach(function (dot, i) {
-          dot.classList.toggle('active', i === index);
+          dot.addEventListener('click', function () { scrollToSlide(i); });
         });
-        current = index;
+
+        slides.forEach(function (slide, i) {
+          var zoomTarget = slide.querySelector('.carousel-zoom');
+
+          slide.addEventListener('click', function (e) {
+            if (e.target.closest('.carousel-zoom')) return;
+            if (i === current) return;
+            scrollToSlide(i);
+          });
+
+          if (!zoomTarget) return;
+          zoomTarget.addEventListener('click', function (e) {
+            e.stopPropagation();
+            if (i !== current) scrollToSlide(i, 'auto');
+            lightbox.open(carousel, i, zoomTarget);
+          });
+        });
+      });
+    })();
+  </script>
+  <script>
+    (function () {
+      document.querySelectorAll('[data-dropdown]').forEach(function (drop) {
+        var btn = drop.querySelector('button');
+        var menu = drop.querySelector('[data-dropdown-menu]');
+        var timer;
+        function show() { clearTimeout(timer); menu.style.opacity = '1'; menu.style.visibility = 'visible'; btn.setAttribute('aria-expanded', 'true'); }
+        function hide() { timer = setTimeout(function () { menu.style.opacity = '0'; menu.style.visibility = 'hidden'; btn.setAttribute('aria-expanded', 'false'); }, 120); }
+        drop.addEventListener('mouseenter', show);
+        drop.addEventListener('mouseleave', hide);
+        btn.addEventListener('click', function () {
+          if (menu.style.visibility === 'visible') { hide(); } else { show(); }
+        });
+        menu.addEventListener('mouseenter', function () { clearTimeout(timer); });
+      });
+    })();
+  </script>
+  <script>
+    (function () {
+      var pill = document.querySelector('.announcement-pill');
+      if (!pill) return;
+      var track = pill.querySelector('.announcement-pill-track');
+      var text = pill.querySelector('.announcement-pill-text');
+      if (!track || !text) return;
+
+      function init() {
+        // Measure one copy, then duplicate with dot separators for seamless loop
+        var sep = ' \u00B7 ';
+        var original = text.textContent;
+        var unitWidth = text.scrollWidth;
+
+        // Add separator width to the unit
+        var measure = document.createElement('span');
+        measure.style.cssText = 'visibility:hidden;position:absolute;white-space:nowrap';
+        measure.textContent = sep;
+        text.appendChild(measure);
+        var sepWidth = measure.offsetWidth;
+        text.removeChild(measure);
+        var unit = unitWidth + sepWidth;
+
+        // Fill with enough copies to cover the track + one extra
+        var copies = Math.ceil(track.offsetWidth / unit) + 2;
+        var content = '';
+        for (var i = 0; i < copies; i++) {
+          content += original + sep;
+        }
+        text.textContent = content;
+
+        text.style.setProperty('--ticker-unit', unit + 'px');
+        var duration = Math.max(8, unit / 25);
+        text.style.animation = 'ticker-scroll ' + duration + 's linear 1.5s infinite';
       }
 
-      // Detect active slide on scroll
-      var scrollTimer;
-      track.addEventListener('scroll', function () {
-        clearTimeout(scrollTimer);
-        scrollTimer = setTimeout(function () {
-          var index = Math.round(track.scrollLeft / getStep());
-          updateDots(index);
-        }, 50);
+      // Wait for fonts then measure
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(init);
+      } else {
+        setTimeout(init, 300);
+      }
+    })();
+  </script>
+  <script>
+    (function () {
+      var toggle = document.querySelector('.mobile-menu-toggle');
+      var menu = document.getElementById('mobile-menu');
+      var header = toggle && toggle.closest('header');
+      if (!toggle || !menu || !header) return;
+
+      function openMenu() {
+        menu.style.top = header.offsetHeight + 'px';
+        menu.inert = false;
+        menu.classList.add('is-open');
+        toggle.setAttribute('aria-expanded', 'true');
+        toggle.setAttribute('aria-label', 'Close menu');
+        document.body.classList.add('mobile-menu-open');
+      }
+
+      function closeMenu() {
+        menu.classList.remove('is-open');
+        menu.inert = true;
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Open menu');
+        document.body.classList.remove('mobile-menu-open');
+      }
+
+      toggle.addEventListener('click', function () {
+        var isOpen = toggle.getAttribute('aria-expanded') === 'true';
+        if (isOpen) { closeMenu(); } else { openMenu(); }
       });
 
-      // Arrow navigation
-      prevBtn.addEventListener('click', function () {
-        var target = Math.max(current - 1, 0);
-        updateDots(target);
-        track.scrollTo({ left: target * getStep(), behavior: 'smooth' });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && menu.classList.contains('is-open')) {
+          closeMenu();
+          toggle.focus();
+        }
       });
 
-      nextBtn.addEventListener('click', function () {
-        var target = Math.min(current + 1, slides.length - 1);
-        updateDots(target);
-        track.scrollTo({ left: target * getStep(), behavior: 'smooth' });
-      });
-
-      // Dot navigation
-      dots.forEach(function (dot, i) {
-        dot.addEventListener('click', function () {
-          updateDots(i);
-          track.scrollTo({ left: i * getStep(), behavior: 'smooth' });
+      // Sub-menu toggles
+      menu.querySelectorAll('[data-mobile-dropdown] button').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var sub = btn.parentElement.querySelector('.mobile-menu__sub');
+          var expanded = btn.getAttribute('aria-expanded') === 'true';
+          btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+          sub.hidden = expanded;
         });
       });
+
+      // Close on link click
+      menu.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () { closeMenu(); });
+      });
+
+      // Close on resize past mobile breakpoint
+      var mq = window.matchMedia('(min-width: 48rem)');
+      function onBreakpoint(e) { if (e.matches && !menu.hidden) closeMenu(); }
+      if (mq.addEventListener) { mq.addEventListener('change', onBreakpoint); }
+      else if (mq.addListener) { mq.addListener(onBreakpoint); }
     })();
   </script>
 </body>
