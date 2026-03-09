@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "scripts": {
     "dev:11ty": "eleventy --serve",
-    "dev:css": "tailwindcss -i ./src/css/main.css -o ./src/css/main.generated.css --watch",
-    "start": "npm-run-all build:css --parallel dev:*",
-    "build:css": "tailwindcss -i ./src/css/main.css -o ./src/css/main.generated.css --minify",
+    "dev:css": "tailwindcss -i ./src/css/main.css -o ./_site/css/main.css --watch=always",
+    "start": "npm-run-all --parallel dev:*",
+    "build:css": "tailwindcss -i ./src/css/main.css -o ./_site/css/main.css --minify",
     "build:11ty": "eleventy",
     "build": "npm-run-all build:css build:11ty"
   },
