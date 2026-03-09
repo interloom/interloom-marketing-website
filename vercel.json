@@ -1,5 +1,15 @@
 {
   "buildCommand": "npm run build",
   "framework": null,
-  "installCommand": "npm install"
+  "installCommand": "npm install",
+  "rewrites": [
+    {
+      "source": "/xlog/static/:path*",
+      "destination": "https://eu-assets.i.posthog.com/static/:path*"
+    },
+    {
+      "source": "/xlog/:path*",
+      "destination": "https://eu.i.posthog.com/:path*"
+    }
+  ]
 }
