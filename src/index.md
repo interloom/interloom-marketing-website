@@ -15,7 +15,7 @@ title: Workspace for Business Operations
 <svg class="announcement-pill-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a>
 </div>
-<h1 class="max-w-3xl text-3xl md:text-4xl" data-scramble>Workflows that learn from every case to make operations faster, smarter, and more reliable.</h1>
+<h1 class="max-w-3xl text-3xl md:text-4xl" data-scramble>Workflows that Learn from your Experts. One Case at a Time.</h1>
 <p class="text-base md:text-lg text-fg-3 leading-snug tracking-tight max-w-3xl mt-6" data-scramble="150"><span class="text-fg-2">Deploy production workflows in natural language.</span> Designed for the people who know the domain best, powered by a context graph that constantly gets smarter.</p>
 <div class="flex flex-wrap items-center gap-3 mt-10">
 <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2eEwV1c880TGi16I1QWst6PTzbawnSjH9mV1e49ihrW3raJf-nKrwUIua0S59qEtt5TkGFmrfr" class="inline-flex items-center h-[32px] bg-fg-1 text-surface-1 px-3 rounded font-medium no-underline hover:opacity-85 transition-opacity">Schedule Demo</a>
@@ -99,6 +99,35 @@ title: Workspace for Business Operations
 <img src="{{ '/images/logos/Comdirect_Bank_AG_Logo 2.svg' | url }}" alt="Comdirect" class="h-6 md:h-7 w-auto">
 <img src="{{ '/images/logos/irish-life.svg' | url }}" alt="Irish Life" class="h-6 md:h-7 w-auto">
 <img src="{{ '/images/logos/fiege svg15599.svg' | url }}" alt="Fiege" class="h-6 md:h-7 w-auto">
+</div>
+</div>
+</section>
+
+<section>
+<div class="mx-auto max-w-5xl">
+<p class="text-xl md:text-2xl text-fg-3 leading-snug tracking-tight max-w-3xl" data-scramble><span class="text-fg-1">Experts in the loop.</span> Interloom does not replace expert judgment. It turns expert judgment into the operating logic that guides agents, evaluates decisions, and controls when tools and integrations can act.</p>
+<div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-4">
+<article class="rounded-lg border border-line bg-surface-1 flex flex-col overflow-hidden">
+<img src="{{ '/images/expert-guidance.svg' | url }}" alt="Precedent cases feeding into execution logic" class="w-full border-b border-line bg-surface-2" style="height: 160px; object-fit: cover;">
+<div style="padding: 1.25rem;">
+<h3 class="text-fg-1 text-base font-medium">Grounded in expert guidance</h3>
+<p class="mt-2 text-fg-3 text-sm leading-relaxed">Workflows learn from precedent. Every completed case adds context for what good execution looks like in the real world.</p>
+</div>
+</article>
+<article class="rounded-lg border border-line bg-surface-1 flex flex-col overflow-hidden">
+<img src="{{ '/images/expert-evaluations.svg' | url }}" alt="Thumbs up and thumbs down evaluation" class="w-full border-b border-line bg-surface-2" style="height: 160px; object-fit: cover;">
+<div style="padding: 1.25rem;">
+<h3 class="text-fg-1 text-base font-medium">Governed by expert evaluations</h3>
+<p class="mt-2 text-fg-3 text-sm leading-relaxed">For every decision an agent makes, Interloom can compare the outcome against expert evaluations and use that feedback to improve future runs.</p>
+</div>
+</article>
+<article class="rounded-lg border border-line bg-surface-1 flex flex-col overflow-hidden">
+<img src="{{ '/images/expert-approvals.svg' | url }}" alt="Human approving a proposed action" class="w-full border-b border-line bg-surface-2" style="height: 160px; object-fit: cover;">
+<div style="padding: 1.25rem;">
+<h3 class="text-fg-1 text-base font-medium">Controlled by expert approvals</h3>
+<p class="mt-2 text-fg-3 text-sm leading-relaxed">Tool use, integrations, and high-impact actions stay inside approval boundaries your operators define.</p>
+</div>
+</article>
 </div>
 </div>
 </section>

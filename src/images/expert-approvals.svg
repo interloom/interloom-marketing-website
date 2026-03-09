@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 160" width="100%" height="100%">
+  <style>
+    .stroke-main { stroke: #171717; }
+    .stroke-secondary { stroke: #D4D4D4; }
+    .fill-base { fill: #FFFFFF; stroke: #E5E5E5; }
+    
+    .btn-approve-bg { fill: #171717; stroke: #171717; }
+    .btn-approve-fg { stroke: #FFFFFF; }
+    
+    .cursor-bg { fill: #171717; stroke: #FFFFFF; }
+    
+    @media (prefers-color-scheme: dark) {
+      .stroke-main { stroke: #F5F5F5; }
+      .stroke-secondary { stroke: #404040; }
+      .fill-base { fill: #0A0A0A; stroke: #262626; }
+      
+      .btn-approve-bg { fill: #F5F5F5; stroke: #F5F5F5; }
+      .btn-approve-fg { stroke: #171717; }
+      
+      .cursor-bg { fill: #F5F5F5; stroke: #171717; }
+    }
+  </style>
+
+  <!-- Mail Card -->
+  <g transform="translate(60, 20)">
+    <rect x="0" y="0" width="200" height="120" rx="12" class="fill-base" stroke-width="1.5" />
+    
+    <!-- Mail Icon -->
+    <g transform="translate(16, 16)" class="stroke-main" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <rect width="16" height="12" x="2" y="4" rx="2"/>
+      <path d="m20 6-7.2 4.5a1.5 1.5 0 0 1-1.6 0L4 6"/>
+    </g>
+    
+    <!-- Header lines -->
+    <path d="M 44 22 L 180 22" class="stroke-secondary" stroke-width="1.5" stroke-linecap="round" fill="none" />
+    <path d="M 44 32 L 120 32" class="stroke-secondary" stroke-width="1.5" stroke-linecap="round" fill="none" />
+    
+    <!-- Divider -->
+    <path d="M 16 48 L 184 48" class="stroke-secondary" stroke-width="1" stroke-dasharray="2 2" fill="none" />
+    
+    <!-- Body lines -->
+    <path d="M 16 64 L 160 64" class="stroke-secondary" stroke-width="1.5" stroke-linecap="round" fill="none" />
+    <path d="M 16 76 L 140 76" class="stroke-secondary" stroke-width="1.5" stroke-linecap="round" fill="none" />
+    <path d="M 16 88 L 90 88" class="stroke-secondary" stroke-width="1.5" stroke-linecap="round" fill="none" />
+    
+    <!-- Approve Button -->
+    <rect x="110" y="80" width="74" height="28" rx="6" class="btn-approve-bg" stroke-width="1.5" />
+    <!-- Checkmark inside Button -->
+    <g transform="translate(141, 90)" class="btn-approve-fg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <path d="M 1 5 L 4 8 L 10 2" />
+    </g>
+  </g>
+  
+  <!-- Mouse Cursor pointing at the Approve button -->
+  <g transform="translate(205, 106)">
+    <!-- Apple style cursor -->
+    <path d="M2.5 0 L2.5 20 L7.5 15 L11.5 23 L14.5 21.5 L10.5 13.5 L17.5 13.5 Z" class="cursor-bg" stroke-width="1.5" stroke-linejoin="round" />
+  </g>
+</svg>
