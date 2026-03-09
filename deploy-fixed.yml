@@ -29,6 +29,7 @@ jobs:
       - run: npm run build
         env:
           ELEVENTY_ENV: production
+          POSTHOG_PROJECT_TOKEN: ${{ secrets.POSTHOG_PROJECT_TOKEN }}
 
       - uses: actions/upload-pages-artifact@v3
         with:
