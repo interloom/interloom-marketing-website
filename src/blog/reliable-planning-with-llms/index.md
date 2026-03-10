@@ -1,5 +1,5 @@
 ---
-title: Reliable planning with LLMs
+title: Reliable Planning with LLMs
 date: 2024-09-23
 updated: 2025-08-20
 author: Denys Lazarenko

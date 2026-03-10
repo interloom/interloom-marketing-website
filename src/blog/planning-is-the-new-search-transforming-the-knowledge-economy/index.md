@@ -1,5 +1,5 @@
 ---
-title: "Planning is the New Search: Transforming the Knowledge Economy"
+title: "Planning Is the New Search: Transforming the Knowledge Economy"
 date: 2025-01-20
 updated: 2025-08-20
 author: Fabian Jakobi

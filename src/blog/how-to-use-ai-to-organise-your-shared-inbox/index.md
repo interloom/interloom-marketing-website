@@ -1,5 +1,5 @@
 ---
-title: How to use AI to organise your shared inbox
+title: How to Use AI to Organise Your Shared Inbox
 date: 2025-09-25
 updated: 2025-11-17
 author: Denys Lazarenko
