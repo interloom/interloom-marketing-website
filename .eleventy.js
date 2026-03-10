@@ -53,6 +53,12 @@ module.exports = function(eleventyConfig) {
       }
     );
 
+    // Convert Webflow video figures to responsive video embeds
+    out = out.replace(
+      /<figure[^>]*w-richtext-figure-type-video[^>]*>\s*<div>\s*(<iframe[\s\S]*?<\/iframe>)\s*<\/div>\s*<\/figure>/gi,
+      '<div class="video-embed">$1</div>'
+    );
+
     return out;
   });
   // Copy static assets
@@ -60,6 +66,20 @@ module.exports = function(eleventyConfig) {
     "src/images": "images",
     "src/videos": "videos",
     "src/css/main.generated.css": "css/main.generated.css"
+  });
+  // Copy blog images to permalink-matching output dirs (strip date prefix)
+  const fs = require("fs");
+  const path = require("path");
+  const imgExts = ["png", "jpg", "jpeg", "webp", "avif", "gif", "svg"];
+  fs.readdirSync(path.join("src", "blog")).forEach(entry => {
+    if (fs.statSync(path.join("src", "blog", entry)).isDirectory() && /^\d{4}-\d{2}-\d{2}-/.test(entry)) {
+      const slug = entry.replace(/^\d{4}-\d{2}-\d{2}-/, "");
+      for (const ext of imgExts) {
+        eleventyConfig.addPassthroughCopy({
+          [`src/blog/${entry}/*.${ext}`]: `blog/${slug}/`
+        });
+      }
+    }
   });
 
   // Tell Eleventy's dev server to watch and serve the Tailwind output
@@ -87,8 +107,9 @@ module.exports = function(eleventyConfig) {
 
   // Collection for blog posts
   eleventyConfig.addCollection("posts", function(collectionApi) {
-    return collectionApi.getFilteredByGlob("src/blog/*.md")
-      .filter(item => !item.inputPath.includes("index.md"))
+    return collectionApi.getFilteredByGlob("src/blog/**/*.md")
+      .filter(item => item.inputPath !== "./src/blog/index.md")
+      .filter(item => !item.data.draft)
       .sort((a, b) => {
         return b.date - a.date;
       });

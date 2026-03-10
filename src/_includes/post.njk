@@ -10,10 +10,23 @@ layout: base.njk
       </a>
       <h1 class="mb-2">{{ title }}</h1>
       {% if description %}<p class="text-fg-2 mt-3 mb-4 text-lg leading-snug">{{ description }}</p>{% endif %}
-      <div class="text-sm text-fg-3 flex flex-wrap items-center gap-x-4 gap-y-1">
-        {% if author %}<span>{{ author }}</span>{% endif %}
-        <time>Published {{ date | dateFormat }}</time>
-        {% if updated %}<time>Updated {{ updated | dateFormat }}</time>{% endif %}
+      <div class="text-sm text-fg-3 flex flex-wrap gap-x-6 gap-y-2 border-t border-line pt-3 mt-4">
+        {% if author %}
+        <div>
+          <div class="text-xs uppercase tracking-wide text-fg-4 mb-0.5 font-mono">Author</div>
+          <span>{{ author }}</span>
+        </div>
+        {% endif %}
+        <div>
+          <div class="text-xs uppercase tracking-wide text-fg-4 mb-0.5 font-mono">Published</div>
+          <time>{{ date | dateFormat }}</time>
+        </div>
+        {% if updated %}
+        <div>
+          <div class="text-xs uppercase tracking-wide text-fg-4 mb-0.5 font-mono">Updated</div>
+          <time>{{ updated | dateFormat }}</time>
+        </div>
+        {% endif %}
       </div>
     </header>
     {% if heroImage %}

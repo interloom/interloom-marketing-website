@@ -1,9 +1,11 @@
 ---
 title: Context Graph Technical Deep Dive
 date: 2026-03-05
+draft: true
 author: Interloom Team
 description: A practical overview of how the Context Graph connects source systems, canonical semantics, and surface-specific views for API, CLI, and agent workflows.
 layout: post.njk
+permalink: /blog/context-graph-technical-deep-dive/
 ---
 
 Most teams have the same problem: data lives everywhere, but context lives nowhere.

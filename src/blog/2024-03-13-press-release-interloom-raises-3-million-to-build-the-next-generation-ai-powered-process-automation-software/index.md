@@ -5,6 +5,7 @@ updated: 2025-08-20
 author: Fabian Jakobi
 description: Discover how Interloom's groundbreaking AI platform combines task mining, knowledge graphs, and adaptive automation to tackle the inefficiencies of traditional workflows, offering actionable insights into transforming complex processes like procurement, customer onboarding, and claims processing.
 layout: post.njk
+permalink: /blog/press-release-interloom-raises-3-million-to-build-the-next-generation-ai-powered-process-automation-software/
 heroImage: ./interloom-airstreet.webp
 heroImageAlt: Interloom and Air Street Capital
 sourceUrl: https://www.interloom.com/en/blog/press-release-interloom-raises-3-million-to-build-the-next-generation-ai-powered-process-automation-software

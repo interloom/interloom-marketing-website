@@ -15,8 +15,8 @@ title: Workspace for Business Operations
 <svg class="announcement-pill-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a>
 </div>
-<h1 class="max-w-3xl text-3xl md:text-4xl" data-scramble>Workflows that Learn from your Experts. One Case at a Time.</h1>
-<p class="text-base md:text-lg text-fg-3 leading-snug tracking-tight max-w-3xl mt-6" data-scramble="150"><span class="text-fg-2">Deploy production workflows in natural language.</span> Designed for the people who know the domain best, powered by a context graph that constantly gets smarter.</p>
+<h1 class="max-w-3xl text-3xl md:text-4xl" data-scramble>Workflows Learning from Experts</h1>
+<p class="text-base md:text-lg text-fg-3 leading-snug tracking-tight max-w-3xl mt-6" data-scramble="150"><span class="text-fg-2">Deploy production AI workflows in natural language.</span> Designed for your domain experts, powered by a context graph that constantly gets smarter.</p>
 <div class="flex flex-wrap items-center gap-3 mt-10">
 <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2eEwV1c880TGi16I1QWst6PTzbawnSjH9mV1e49ihrW3raJf-nKrwUIua0S59qEtt5TkGFmrfr" class="inline-flex items-center h-[32px] bg-fg-1 text-surface-1 px-3 rounded font-medium no-underline hover:opacity-85 transition-opacity">Schedule Demo</a>
 <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2eEwV1c880TGi16I1QWst6PTzbawnSjH9mV1e49ihrW3raJf-nKrwUIua0S59qEtt5TkGFmrfr" class="inline-flex items-center h-[32px] border border-line text-fg-2 px-3 rounded font-medium no-underline hover:bg-surface-3 transition-colors">Join the waitlist</a>

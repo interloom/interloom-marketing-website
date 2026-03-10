@@ -1,9 +1,11 @@
 ---
 title: Why We Chose Natural Language for Workflow Authoring
 date: 2025-03-24
+draft: true
 author: Erik Collinder
 description: Most workflow tools make you think like an engineer. We wanted subject matter experts to describe their processes in their own words. The people who understand a process best — the analysts, the compliance officers, the operations leads — shouldn't need to learn a visual programming language to codify what they already know. Natural language authoring closes that gap.
 layout: post.njk
+permalink: /blog/natural-language-workflows/
 ---
 
 Traditional workflow tools assume you'll have a developer available to build and maintain every automation. Drag-and-drop builders helped, but they still require you to think in terms of nodes, branches, and conditional logic.
