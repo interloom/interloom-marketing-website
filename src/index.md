@@ -149,7 +149,7 @@ title: Workspace for Business Operations
 <span class="text-fg-2 text-base font-medium">SAP</span>
 </div>
 <div class="flex items-center gap-3 rounded-lg border border-line bg-surface-1 px-4 py-4">
-<img src="{{ '/images/integrations/microsoft.svg' | url }}" alt="Microsoft" class="h-8 w-8 shrink-0">
+<img src="{{ '/images/integrations/microsoft-teams.svg' | url }}" alt="Microsoft" class="h-8 w-8 shrink-0">
 <span class="text-fg-2 text-base font-medium">Microsoft Teams</span>
 </div>
 <div class="flex items-center gap-3 rounded-lg border border-line bg-surface-1 px-4 py-4">
