@@ -1,0 +1,25 @@
+---
+title: Stories
+layout: base.njk
+---
+
+<div class="max-w-4xl">
+  <h1 class="font-serif text-3xl mb-2">Stories</h1>
+  <p class="text-fg-3 text-sm mb-10">Presentations and narratives. Each story is a markdown file rendered as a standalone page.</p>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+    {# Stories will be populated here as md files are added to /stories/ #}
+  </div>
+
+  <div class="rounded-lg border border-dashed border-line bg-surface-1 p-10 text-center">
+    <p class="text-fg-4 text-sm">No stories yet. Add a markdown file to <code class="text-fg-3 font-mono text-xs bg-surface-3 px-1.5 py-0.5 rounded">brand/src/stories/</code> with frontmatter:</p>
+    <pre class="mt-4 text-left inline-block text-xs font-mono text-fg-3 bg-surface-3 rounded-lg p-4">---
+title: Story Title
+layout: base.njk
+date: 2026-01-01
+thumbnail: A short description
+---
+
+Content here...</pre>
+  </div>
+</div>

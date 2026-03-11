@@ -9,14 +9,44 @@ Marketing and documentation website for Interloom, a custom automation platform.
 - **Styling**: Tailwind CSS v4 with `@theme` semantic tokens (Geist font)
 - **Design System**: Shared `@theme` tokens from prototype-control-tower (`surface-1..4`, `fg-1..4`, `line`, tints). Serif headings use Hedvig Letters Serif.
 
+## Quick Start
+
+Run both sites locally (two terminals):
+
+```bash
+# Terminal 1 — Marketing site
+npm install
+npm start
+# → http://localhost:8080
+
+# Terminal 2 — Brand playground
+cd brand
+npm install
+npm start
+# → http://localhost:8081
+```
+
 ## Commands
 
+**Marketing site** (run from repo root):
 - `npm start` - Run dev server (Eleventy + Tailwind watch in parallel) at http://localhost:8080
 - `npm run build` - Build for production (Tailwind minify + Eleventy)
 
+**Brand site** (run from `brand/`):
+- `npm start` - Run dev server at http://localhost:8081
+- `npm run build` - Build for production
+
 ## Project Structure
 
+Both sites share design tokens from `shared/tokens.css` (colors, fonts, semantic variables). Each site has its own Eleventy config, Tailwind entry CSS, and templates.
+
 ```
+shared/
+└── tokens.css      # Shared design tokens (imported by both sites)
+brand/
+├── src/            # Brand playground source (layouts, pages, CSS)
+├── .eleventy.js    # Brand Eleventy config
+└── package.json    # Brand dependencies
 src/
 ├── _data/          # Global data files
 ├── _includes/      # Layout templates (base.njk, docs.njk)

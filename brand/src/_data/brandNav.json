@@ -1,0 +1,27 @@
+{
+  "sections": [
+    {
+      "title": "Guide",
+      "items": [
+        { "title": "Color Palette", "url": "/#colors" },
+        { "title": "Typography", "url": "/#typography" },
+        { "title": "Gray Scale", "url": "/#grays" },
+        { "title": "Logo", "url": "/#logo" }
+      ]
+    },
+    {
+      "title": "Sections",
+      "items": [
+        { "title": "Hero", "url": "/sections/hero/" },
+        { "title": "Blockquote", "url": "/sections/blockquote/" },
+        { "title": "Customer Stories", "url": "/sections/customer-stories/" },
+        { "title": "Experts in the Loop", "url": "/sections/experts/" },
+        { "title": "Integrations", "url": "/sections/integrations/" }
+      ]
+    },
+    {
+      "title": "Stories",
+      "items": []
+    }
+  ]
+}

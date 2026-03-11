@@ -1,0 +1,35 @@
+---
+title: Customer Stories
+layout: base.njk
+---
+
+<div class="max-w-4xl">
+  <h1 class="font-serif text-3xl mb-2">Customer Stories</h1>
+  <p class="text-fg-3 text-sm mb-10">Lead paragraph with highlighted opening, three-column card grid, and a logo strip.</p>
+
+  <div class="rounded-lg border border-line bg-surface-1 overflow-hidden">
+    <div class="px-6 md:px-10 py-16 md:py-24">
+      <p class="text-xl md:text-2xl text-fg-3 leading-snug tracking-tight max-w-2xl"><span class="text-fg-1">Customer Stories.</span> How operational teams use Interloom to deploy workflows, coordinate experts and agents, and keep execution grounded across systems.</p>
+
+      <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-4">
+        {% for story in [
+          { name: "Zurich Insurance", text: "Operational experts coordinate underwriting workflows with AI-assisted extraction, guided validation, and transparent case context." },
+          { name: "Commerzbank", text: "Teams structure complex process steps into reusable workflow stages and iterate quickly as policies and requirements evolve." },
+          { name: "Volkswagen Group Services", text: "Cross-functional teams connect business processes across tools while keeping every decision and action traceable in one flow." }
+        ] %}
+        <article class="rounded-lg border border-line bg-surface-2 flex flex-col items-start p-5" style="min-height: 190px;">
+          <span class="text-fg-1 text-sm font-medium">{{ story.name }}</span>
+          <p class="mt-2 text-fg-3 text-sm leading-relaxed">{{ story.text }}</p>
+          <span class="inline-flex pt-3 text-sm text-fg-1" style="margin-top: auto;">Read story &rarr;</span>
+        </article>
+        {% endfor %}
+      </div>
+
+      <div class="mt-12 flex items-center justify-center gap-10 flex-wrap">
+        {% for name in ["JLL", "Thuega", "Comdirect", "Irish Life", "Fiege"] %}
+        <span class="text-fg-4 text-sm font-mono">{{ name }}</span>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>

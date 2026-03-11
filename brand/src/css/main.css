@@ -1,0 +1,59 @@
+@import "tailwindcss";
+@import "../../../shared/tokens.css";
+
+@source "../**/*.njk";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* =================================================================
+   Scaffold grid — lean version
+   ================================================================= */
+:root {
+  --gutter-w: 0.75rem;
+}
+@media (width >= 48rem) {
+  :root { --gutter-w: 2rem; }
+}
+@media (width >= 80rem) {
+  :root { --gutter-w: 3rem; }
+}
+
+.scaffold {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  display: grid;
+  grid-template-columns: var(--gutter-w) 1fr var(--gutter-w);
+}
+
+.gutter {
+  background-color: var(--color-surface-3);
+}
+
+.gutter-left {
+  border-right: 1px solid var(--color-line);
+}
+
+.gutter-right {
+  border-left: 1px solid var(--color-line);
+  grid-column: 3;
+}
+
+body {
+  overflow-x: clip;
+}
+
+body > header {
+  padding-inline: var(--gutter-w);
+  border-bottom: 1px solid var(--color-line);
+}
+
+body > header > nav {
+  border-inline: 1px solid var(--color-line);
+  margin-inline: -1px;
+}
+
+.shell {
+  padding-inline: var(--gutter-w);
+}
