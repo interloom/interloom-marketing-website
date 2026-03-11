@@ -1,0 +1,33 @@
+---
+title: Experts in the Loop
+layout: base.njk
+---
+
+<div class="max-w-4xl">
+  <h1 class="font-serif text-3xl mb-2">Experts in the Loop</h1>
+  <p class="text-fg-3 text-sm mb-10">Lead paragraph with three-column image cards. Each card has an illustration, title, and description.</p>
+
+  <div class="rounded-lg border border-line bg-surface-1 overflow-hidden">
+    <div class="px-6 md:px-10 py-16 md:py-24">
+      <p class="text-xl md:text-2xl text-fg-3 leading-snug tracking-tight max-w-3xl"><span class="text-fg-1">Experts in the loop.</span> Interloom does not replace expert judgment. It turns expert judgment into the operating logic that guides agents, evaluates decisions, and controls when tools and integrations can act.</p>
+
+      <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-4">
+        {% for card in [
+          { title: "Grounded in expert guidance", text: "Workflows learn from precedent. Every completed case adds context for what good execution looks like in the real world." },
+          { title: "Governed by expert evaluations", text: "For every decision an agent makes, Interloom can compare the outcome against expert evaluations and use that feedback to improve future runs." },
+          { title: "Controlled by expert approvals", text: "Tool use, integrations, and high-impact actions stay inside approval boundaries your operators define." }
+        ] %}
+        <article class="rounded-lg border border-line bg-surface-2 flex flex-col overflow-hidden">
+          <div class="border-b border-line bg-surface-3 h-40 flex items-center justify-center">
+            <span class="text-fg-4 text-xs font-mono">[ illustration ]</span>
+          </div>
+          <div class="p-5">
+            <h3 class="text-fg-1 text-base font-medium">{{ card.title }}</h3>
+            <p class="mt-2 text-fg-3 text-sm leading-relaxed">{{ card.text }}</p>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
