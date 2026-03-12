@@ -16,7 +16,9 @@
         { "title": "Blockquote", "url": "/sections/blockquote/" },
         { "title": "Customer Stories", "url": "/sections/customer-stories/" },
         { "title": "Experts in the Loop", "url": "/sections/experts/" },
-        { "title": "Integrations", "url": "/sections/integrations/" }
+        { "title": "Integrations", "url": "/sections/integrations/" },
+        { "title": "Agents", "url": "/sections/agents/" },
+        { "title": "Carousel", "url": "/sections/carousel/" }
       ]
     },
     {

@@ -1,0 +1,207 @@
+---
+title: Carousel
+layout: base.njk
+---
+
+<style>
+  .carousel-demo {
+    --_pad: 1rem;
+    --_inset: max(var(--_pad), calc((100% - 64rem) / 2));
+    position: relative;
+    margin-inline: calc(-1 * var(--_pad));
+  }
+
+  @media (width >= 48rem) {
+    .carousel-demo { --_pad: 2.5rem; }
+  }
+  @media (width >= 80rem) {
+    .carousel-demo { --_pad: 4rem; }
+  }
+
+  .carousel-demo-track {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-block: 0.75rem;
+    padding-left: var(--_inset);
+    padding-right: var(--_inset);
+    scroll-padding-inline-start: var(--_inset);
+  }
+
+  .carousel-demo-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .carousel-demo-slide {
+    flex: 0 0 min(64rem, 100%);
+    scroll-snap-align: start;
+    min-width: 0;
+  }
+
+  .carousel-demo-placeholder {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-line);
+    background: var(--color-surface-3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-fg-3);
+    font-size: 0.875rem;
+  }
+
+  .carousel-demo-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 0;
+  }
+
+  .carousel-demo-prev,
+  .carousel-demo-next {
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    border: 1px solid var(--color-line);
+    background: none;
+    color: var(--color-fg-3);
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+  }
+
+  .carousel-demo-prev:hover,
+  .carousel-demo-next:hover {
+    color: var(--color-fg-1);
+    border-color: var(--color-fg-4);
+  }
+
+  .carousel-demo-dots {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .carousel-demo-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 9999px;
+    border: none;
+    background: var(--color-line);
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .carousel-demo-dot.active {
+    background: var(--color-fg-1);
+  }
+
+  .carousel-demo-caption {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    color: var(--color-fg-3);
+  }
+
+  @media (width >= 48rem) {
+    .carousel-demo-track {
+      gap: 2.25rem;
+    }
+  }
+  @media (width >= 80rem) {
+    .carousel-demo-track {
+      gap: 3rem;
+    }
+  }
+</style>
+
+<section>
+  <div class="mx-auto max-w-5xl">
+    <h1>Carousel</h1>
+    <p class="text-fg-3 text-base max-w-2xl">A horizontal scroll-snap carousel with dot navigation. Slides are full-width with scroll-padding insets that align to the content measure. This component was previously used on the homepage for feature screenshots.</p>
+
+    <div class="mt-12 rounded-lg border border-line overflow-hidden" style="padding: 2rem 0;">
+      <div class="carousel-demo" id="carouselDemo">
+        <div class="carousel-demo-track" id="carouselDemoTrack">
+          <div class="carousel-demo-slide">
+            <div class="carousel-demo-placeholder">Slide 1</div>
+            <p class="carousel-demo-caption">First slide caption with descriptive text</p>
+          </div>
+          <div class="carousel-demo-slide">
+            <div class="carousel-demo-placeholder">Slide 2</div>
+            <p class="carousel-demo-caption">Second slide caption with descriptive text</p>
+          </div>
+          <div class="carousel-demo-slide">
+            <div class="carousel-demo-placeholder">Slide 3</div>
+            <p class="carousel-demo-caption">Third slide caption with descriptive text</p>
+          </div>
+          <div class="carousel-demo-slide">
+            <div class="carousel-demo-placeholder">Slide 4</div>
+            <p class="carousel-demo-caption">Fourth slide caption with descriptive text</p>
+          </div>
+        </div>
+        <div class="carousel-demo-nav">
+          <button class="carousel-demo-prev" id="carouselDemoPrev" aria-label="Previous slide">&larr;</button>
+          <div class="carousel-demo-dots" id="carouselDemoDots">
+            <button class="carousel-demo-dot active" aria-label="Slide 1"></button>
+            <button class="carousel-demo-dot" aria-label="Slide 2"></button>
+            <button class="carousel-demo-dot" aria-label="Slide 3"></button>
+            <button class="carousel-demo-dot" aria-label="Slide 4"></button>
+          </div>
+          <button class="carousel-demo-next" id="carouselDemoNext" aria-label="Next slide">&rarr;</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  var track = document.getElementById('carouselDemoTrack');
+  var slides = Array.from(track.querySelectorAll('.carousel-demo-slide'));
+  var dots = Array.from(document.querySelectorAll('#carouselDemoDots .carousel-demo-dot'));
+  var prevBtn = document.getElementById('carouselDemoPrev');
+  var nextBtn = document.getElementById('carouselDemoNext');
+  var current = 0;
+
+  function getStep() {
+    return slides[0].offsetWidth + parseFloat(getComputedStyle(track).gap);
+  }
+
+  function scrollToSlide(i) {
+    i = Math.max(0, Math.min(i, slides.length - 1));
+    track.scrollTo({ left: i * getStep(), behavior: 'smooth' });
+    updateDots(i);
+  }
+
+  function updateDots(i) {
+    current = i;
+    dots.forEach(function (d, idx) {
+      d.classList.toggle('active', idx === i);
+    });
+  }
+
+  var scrollTimer;
+  track.addEventListener('scroll', function () {
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(function () {
+      updateDots(Math.round(track.scrollLeft / getStep()));
+    }, 50);
+  });
+
+  prevBtn.addEventListener('click', function () { scrollToSlide(current - 1); });
+  nextBtn.addEventListener('click', function () { scrollToSlide(current + 1); });
+  dots.forEach(function (dot, i) {
+    dot.addEventListener('click', function () { scrollToSlide(i); });
+  });
+})();
+</script>

@@ -16,49 +16,52 @@ title: Workspace for Business Operations
 </a>
 </div>
 <h1 class="max-w-3xl text-4xl md:text-5xl" data-scramble>Workflows Learning from Experts</h1>
-<p class="text-base md:text-lg text-fg-3 leading-snug tracking-tight max-w-3xl mt-6" data-scramble="150"><span class="text-fg-2">Deploy production AI workflows in natural language.</span> Designed for your domain experts, powered by a context graph that constantly gets smarter.</p>
+<p class="text-lg md:text-xl text-fg-3 leading-snug tracking-tight max-w-3xl mt-6" data-scramble="150"><span class="text-fg-2">Deploy production AI workflows in natural language.</span> Designed for your domain experts, powered by a context graph that constantly gets smarter.</p>
 <div class="flex flex-wrap items-center gap-3 mt-10">
 <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2eEwV1c880TGi16I1QWst6PTzbawnSjH9mV1e49ihrW3raJf-nKrwUIua0S59qEtt5TkGFmrfr" class="inline-flex items-center h-[32px] bg-fg-1 text-surface-1 px-3 rounded font-medium no-underline hover:opacity-85 transition-opacity">Schedule Demo</a>
 <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2eEwV1c880TGi16I1QWst6PTzbawnSjH9mV1e49ihrW3raJf-nKrwUIua0S59qEtt5TkGFmrfr" class="inline-flex items-center h-[32px] border border-line text-fg-2 px-3 rounded font-medium no-underline hover:bg-surface-3 transition-colors">Join the waitlist</a>
 </div>
 </div>
 
-<div class="carousel mt-16" role="region" aria-label="Feature slides">
-<div class="carousel-track">
-<div class="carousel-slide">
-<button type="button" class="carousel-zoom relative block w-full rounded-lg" aria-label="Expand slide image: Interloom workflow editor" aria-haspopup="dialog">
-<img src="{{ '/images/screenshot1.png' | url }}" alt="Interloom workflow editor" class="block w-full rounded-lg" width="1920" height="1080" draggable="false" decoding="async">
+<div data-lightbox-group class="mt-16">
+<div class="max-w-5xl mx-auto">
+<button type="button" class="carousel-zoom relative block w-full rounded-lg" aria-label="Expand image: Interloom workflow editor" aria-haspopup="dialog">
+<img src="/images/screenshot1.png" alt="Interloom workflow editor" class="block w-full rounded-lg" width="1920" height="1080" draggable="false" decoding="async">
 </button>
-<p class="text-base md:text-lg text-fg-3 leading-snug tracking-tight max-w-2xl mt-8 mx-auto text-center" data-scramble><span class="text-fg-1">Built for operational experts.</span> Build workflows by describing them in natural language. Ask the AI assistant to add code where you need it. Combine expert intelligence, artificial intelligence and traditional code on a workflow canvas.</p>
+<p class="text-lg md:text-xl text-fg-3 leading-snug tracking-tight max-w-2xl mt-8 mx-auto text-center" data-scramble><span class="text-fg-1">Built for operational experts.</span> Build workflows by describing them in natural language. Ask the AI assistant to add code where you need it. Combine expert intelligence, artificial intelligence and traditional code on a workflow canvas.</p>
 </div>
-<div class="carousel-slide">
-<button type="button" class="carousel-zoom relative block w-full rounded-lg" aria-label="Expand slide image: Interloom context layer" aria-haspopup="dialog">
-<img src="{{ '/images/screenshot2.png' | url }}" alt="Interloom context layer" class="block w-full rounded-lg" width="1920" height="1080" loading="lazy" draggable="false" decoding="async">
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 items-start max-w-5xl mx-auto mt-16">
+<div>
+<p class="text-lg md:text-xl text-fg-3 leading-snug tracking-tight" data-scramble><span class="text-fg-1">Context Graph.</span> As your workflows run, they learn from their own outcomes. Over time they build up a semantic context graph of the entities involves, and crucially: what worked last time, and what didn’t.</p>
+</div>
+<div class="md:col-span-2 min-w-0">
+<button type="button" class="carousel-zoom relative block w-full rounded-lg" aria-label="Expand image: Interloom context layer" aria-haspopup="dialog">
+<img src="/images/screenshot2.png" alt="Interloom context layer" class="block w-full rounded-lg" width="1920" height="1080" loading="lazy" draggable="false" decoding="async">
 </button>
-<p class="text-base md:text-lg text-fg-3 leading-snug tracking-tight max-w-2xl mt-8 mx-auto text-center" data-scramble><span class="text-fg-1">Context Graph.</span> As your workflows run, they learn from their own outcomes. Over time they build up a semantic context graph of the entities involves, and crucially: what worked last time, and what didn’t.</p>
 </div>
-<div class="carousel-slide">
-<button type="button" class="carousel-zoom relative block w-full rounded-lg" aria-label="Expand slide image: Interloom agent automation" aria-haspopup="dialog">
-<img src="{{ '/images/screenshot3.png' | url }}" alt="Interloom agent automation" class="block w-full rounded-lg" width="1920" height="1080" loading="lazy" draggable="false" decoding="async">
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 items-start max-w-5xl mx-auto mt-16">
+<div>
+<p class="text-lg md:text-xl text-fg-3 leading-snug tracking-tight" data-scramble><span class="text-fg-1">Agents in the loop.</span> Repetitive steps like extraction, triage, and follow-ups run autonomously inside controlled workflows. Agents operate within boundaries you set, and every action is grounded in context your team has already built.</p>
+</div>
+<div class="md:col-span-2 min-w-0">
+<button type="button" class="carousel-zoom relative block w-full rounded-lg" aria-label="Expand image: Interloom agent automation" aria-haspopup="dialog">
+<img src="/images/screenshot3.png" alt="Interloom agent automation" class="block w-full rounded-lg" width="1920" height="1080" loading="lazy" draggable="false" decoding="async">
 </button>
-<p class="text-base md:text-lg text-fg-3 leading-snug tracking-tight max-w-2xl mt-8 mx-auto text-center" data-scramble><span class="text-fg-1">Agents in the loop.</span> Repetitive steps like extraction, triage, and follow-ups run autonomously inside controlled workflows. Agents operate within boundaries you set, and every action is grounded in context your team has already built.</p>
 </div>
-<div class="carousel-slide">
-<button type="button" class="carousel-zoom relative block w-full rounded-lg" aria-label="Expand slide image: Interloom coding agents with subject matter experts" aria-haspopup="dialog">
-<img src="{{ '/images/screenshot4.png' | url }}" alt="Interloom coding agents with subject matter experts" class="block w-full rounded-lg" width="1920" height="1080" loading="lazy" draggable="false" decoding="async">
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 items-start max-w-5xl mx-auto mt-16">
+<div>
+<p class="text-lg md:text-xl text-fg-3 leading-snug tracking-tight" data-scramble><span class="text-fg-1">Coding for Everyone.</span> Unlock your subject matter experts to program, test, and deploy tools and integrations using natural language only.</p>
+</div>
+<div class="md:col-span-2 min-w-0">
+<button type="button" class="carousel-zoom relative block w-full rounded-lg" aria-label="Expand image: Interloom coding agents with subject matter experts" aria-haspopup="dialog">
+<img src="/images/screenshot4.png" alt="Interloom coding agents with subject matter experts" class="block w-full rounded-lg" width="1920" height="1080" loading="lazy" draggable="false" decoding="async">
 </button>
-<p class="text-base md:text-lg text-fg-3 leading-snug tracking-tight max-w-2xl mt-8 mx-auto text-center" data-scramble><span class="text-fg-1">Coding for Everyone.</span> Unlock your subject matter experts to program, test, and deploy tools and integrations using natural language only.</p>
 </div>
-</div>
-<div class="carousel-nav">
-<button class="carousel-prev" aria-label="Previous slide">&larr;</button>
-<div class="carousel-dots">
-<button class="carousel-dot active" aria-label="Slide 1"></button>
-<button class="carousel-dot" aria-label="Slide 2"></button>
-<button class="carousel-dot" aria-label="Slide 3"></button>
-<button class="carousel-dot" aria-label="Slide 4"></button>
-</div>
-<button class="carousel-next" aria-label="Next slide">&rarr;</button>
 </div>
 </div>
 
