@@ -1,0 +1,264 @@
+---
+title: Agents
+layout: base.njk
+---
+
+<style>
+  /* ── Grid ── */
+  .agents-board {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding-bottom: 2rem;
+  }
+  @media (min-width: 640px) {
+    .agents-board {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 3rem 2.5rem;
+    }
+  }
+
+  /* ── Coin sizing and interaction ── */
+  .agent-coin {
+    --coin-size: 5.5rem;
+    position: relative;
+    width: var(--coin-size);
+    height: var(--coin-size);
+    cursor: default; /* Changed from pointer since no click action anymore */
+    border-radius: 50%;
+    /* 3D lift effect on hover */
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform-style: preserve-3d;
+  }
+  
+  @media (min-width: 768px) {
+    .agent-coin {
+      --coin-size: 6.5rem;
+    }
+  }
+
+  .agent-coin:hover {
+    transform: translateY(-4px) scale(1.02) rotateX(5deg) rotateY(-5deg);
+  }
+
+  /* ── Coin face (The body of the coin) ── */
+  .coin-face {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    
+    /* Conic gradient for an angular, metallic coin-like reflection
+       Stops are organically offset (not equal) for a more natural metallic reflection */
+    box-shadow: 
+      inset 1px 1px 1px rgba(255, 255, 255, 0.3),
+      inset -1px -1px 2px rgba(0, 0, 0, 0.8),
+      inset 0 0 0 3px rgba(255, 255, 255, 0.1),
+      inset 4px 4px 5px rgba(0, 0, 0, 0.5),
+      inset -3px -3px 4px rgba(255, 255, 255, 0.08),
+      0 8px 16px -4px rgba(0, 0, 0, 0.35);
+    background:
+      conic-gradient(
+        from 115deg at 50% 50%,
+        rgba(255, 255, 255, 0.2) 0%,
+        rgba(0, 0, 0, 0.2) 12%,
+        rgba(255, 255, 255, 0.4) 26%,
+        rgba(0, 0, 0, 0.3) 38%,
+        rgba(255, 255, 255, 0.15) 62%,
+        rgba(0, 0, 0, 0.3) 75%,
+        rgba(255, 255, 255, 0.3) 93%,
+        rgba(255, 255, 255, 0.2) 100%
+      ),
+      var(--agent-tint);
+      
+    transition: box-shadow 0.3s ease, background 0.3s ease;
+  }
+
+  /* ── Inner vignette for depth ── */
+  .coin-face::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    /* Keep a subtle edge burn to emphasize the rim */
+    background: radial-gradient(circle at 50% 50%, transparent 50%, rgba(0,0,0,0.2) 100%);
+    mix-blend-mode: multiply;
+    pointer-events: none;
+  }
+
+  /* ── Specular highlight — flat metallic sheen ── */
+  .coin-face::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    /* A broad diagonal slash of light rather than a domed arc */
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.6) 0%,
+      rgba(255, 255, 255, 0.1) 30%,
+      transparent 40%,
+      transparent 60%,
+      rgba(0, 0, 0, 0.1) 75%,
+      rgba(0, 0, 0, 0.25) 100%
+    );
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    opacity: 0.9;
+    transition: opacity 0.3s ease, background 0.3s ease;
+  }
+  
+  /* ── Interaction spec adjustments ── */
+  .agent-coin:hover .coin-face::after {
+    opacity: 1;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.6) 0%,
+      rgba(255, 255, 255, 0.2) 30%,
+      transparent 45%,
+      transparent 55%,
+      rgba(0, 0, 0, 0.15) 75%,
+      rgba(0, 0, 0, 0.35) 100%
+    );
+  }
+
+  /* ── Icon (Solid and legible) ── */
+  .coin-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 44%;
+    height: 44%;
+    transform: translate(-50%, -50%);
+    color: white;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
+    pointer-events: none;
+    z-index: 10;
+  }
+</style>
+
+{% set agents = [
+  {
+    name: "Intake",
+    role: "Receives and registers incoming cases",
+    tint: "blue",
+    active: true,
+    icon: "M208,32H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM90.34,114.34a8,8,0,0,1,11.32,0L120,132.69V72a8,8,0,0,1,16,0v60.69l18.34-18.35a8,8,0,0,1,11.32,11.32l-32,32a8,8,0,0,1-11.32,0l-32-32A8,8,0,0,1,90.34,114.34ZM208,208H48V168H76.69L96,187.32A15.89,15.89,0,0,0,107.31,192h41.38A15.86,15.86,0,0,0,160,187.31L179.31,168H208v40Z"
+  },
+  {
+    name: "Router",
+    role: "Directs work to the right queue or team",
+    tint: "purple",
+    active: false,
+    icon: "M224,64a32,32,0,1,0-40,31v17a8,8,0,0,1-8,8H80a8,8,0,0,1-8-8V95a32,32,0,1,0-16,0v17a24,24,0,0,0,24,24h40v25a32,32,0,1,0,16,0V136h40a24,24,0,0,0,24-24V95A32.06,32.06,0,0,0,224,64ZM144,192a16,16,0,1,1-16-16A16,16,0,0,1,144,192Z"
+  },
+  {
+    name: "Extractor",
+    role: "Pulls structured data from documents",
+    tint: "amber",
+    active: false,
+    icon: "M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40ZM144,176H112a8,8,0,0,1,0-16h32a8,8,0,0,1,0,16Zm32-40H80a8,8,0,0,1,0-16h96a8,8,0,0,1,0,16Zm32-40H48a8,8,0,0,1,0-16H208a8,8,0,0,1,0,16Z"
+  },
+  {
+    name: "Classifier",
+    role: "Categorizes items by type and priority",
+    tint: "emerald",
+    active: true,
+    icon: "M243.31,136,144,36.69A15.86,15.86,0,0,0,132.69,32H40a8,8,0,0,0-8,8v92.69A15.86,15.86,0,0,0,36.69,144L136,243.31a16,16,0,0,0,22.63,0l84.68-84.68a16,16,0,0,0,0-22.63ZM84,96A12,12,0,1,1,96,84,12,12,0,0,1,84,96Z"
+  },
+  {
+    name: "Reviewer",
+    role: "Validates outputs against quality criteria",
+    tint: "rose",
+    active: false,
+    icon: "M247.31,124.76c-.35-.79-8.82-19.58-27.65-38.41C194.57,61.26,162.88,48,128,48S61.43,61.26,36.34,86.35C17.51,105.18,9,124,8.69,124.76a8,8,0,0,0,0,6.5c.35.79,8.82,19.57,27.65,38.4C61.43,194.74,93.12,208,128,208s66.57-13.26,91.66-38.34c18.83-18.83,27.3-37.61,27.65-38.4A8,8,0,0,0,247.31,124.76ZM128,168a40,40,0,1,1,40-40A40,40,0,0,1,128,168Z"
+  },
+  {
+    name: "Scheduler",
+    role: "Manages timing, deadlines, and retries",
+    tint: "cyan",
+    active: false,
+    icon: "M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm56,112H128a8,8,0,0,1-8-8V72a8,8,0,0,1,16,0v48h48a8,8,0,0,1,0,16Z"
+  },
+  {
+    name: "Notifier",
+    role: "Sends alerts and status updates",
+    tint: "orange",
+    active: false,
+    icon: "M221.8,175.94C216.25,166.38,208,139.33,208,104a80,80,0,1,0-160,0c0,35.34-8.26,62.38-13.81,71.94A16,16,0,0,0,48,200H88.81a40,40,0,0,0,78.38,0H208a16,16,0,0,0,13.8-24.06ZM128,216a24,24,0,0,1-22.62-16h45.24A24,24,0,0,1,128,216Z"
+  },
+  {
+    name: "Monitor",
+    role: "Watches for anomalies and SLA breaches",
+    tint: "indigo",
+    active: true,
+    icon: "M240,102c0,70-103.79,126.66-108.21,129a8,8,0,0,1-7.58,0c-3.35-1.8-63.55-34.69-92.68-80.89A4,4,0,0,1,34.92,144H72a8,8,0,0,0,6.66-3.56l9.34-14,25.34,38a8,8,0,0,0,9.16,3.16,8.23,8.23,0,0,0,4.28-3.34L140.28,144H160a8,8,0,0,0,8-8.53,8.18,8.18,0,0,0-8.25-7.47H136a8,8,0,0,0-6.66,3.56l-9.34,14-25.34-38a8,8,0,0,0-9.17-3.16,8.25,8.25,0,0,0-4.27,3.34L67.72,128H23.53a4,4,0,0,1-3.83-2.81A76.93,76.93,0,0,1,16,102,62.07,62.07,0,0,1,78,40c20.65,0,38.73,8.88,50,23.89C139.27,48.88,157.35,40,178,40A62.07,62.07,0,0,1,240,102Z"
+  },
+  {
+    name: "Resolver",
+    role: "Closes issues and archives completed work",
+    tint: "teal",
+    active: false,
+    icon: "M225.86,102.82c-3.77-3.94-7.67-8-9.14-11.57-1.36-3.27-1.44-8.69-1.52-13.94-.15-9.76-.31-20.82-8-28.51s-18.75-7.85-28.51-8c-5.25-.08-10.67-.16-13.94-1.52-3.56-1.47-7.63-5.37-11.57-9.14C146.28,23.51,138.44,16,128,16s-18.27,7.51-25.18,14.14c-3.94,3.77-8,7.67-11.57,9.14C88,40.64,82.56,40.72,77.31,40.8c-9.76.15-20.82.31-28.51,8S41,67.55,40.8,77.31c-.08,5.25-.16,10.67-1.52,13.94-1.47,3.56-5.37,7.63-9.14,11.57C23.51,109.72,16,117.56,16,128s7.51,18.27,14.14,25.18c3.77,3.94,7.67,8,9.14,11.57,1.36,3.27,1.44,8.69,1.52,13.94.15,9.76.31,20.82,8,28.51s18.75,7.85,28.51,8c5.25.08,10.67.16,13.94,1.52,3.56,1.47,7.63,5.37,11.57,9.14C109.72,232.49,117.56,240,128,240s18.27-7.51,25.18-14.14c3.94-3.77,8-7.67,11.57-9.14,3.27-1.36,8.69-1.44,13.94-1.52,9.76-.15,20.82-.31,28.51-8s7.85-18.75,8-28.51c.08-5.25.16-10.67,1.52-13.94,1.47-3.56,5.37-7.63,9.14-11.57C232.49,146.28,240,138.44,240,128S232.49,109.73,225.86,102.82Zm-52.2,6.84-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35a8,8,0,0,1,11.32,11.32Z"
+  },
+  {
+    name: "Composer",
+    role: "Drafts messages, summaries, and reports",
+    tint: "violet",
+    active: true,
+    icon: "M227.31,73.37,182.63,28.68a16,16,0,0,0-22.63,0L36.69,152A15.86,15.86,0,0,0,32,163.31V208a16,16,0,0,0,16,16H92.69A15.86,15.86,0,0,0,104,219.31L227.31,96a16,16,0,0,0,0-22.63ZM192,108.68,147.31,64l24-24L216,84.68Z"
+  },
+  {
+    name: "Guardian",
+    role: "Enforces policies and compliance rules",
+    tint: "red",
+    active: false,
+    icon: "M208,40H48A16,16,0,0,0,32,56v56c0,52.72,25.52,84.67,46.93,102.19,23.06,18.86,46,25.26,47,25.53a8,8,0,0,0,4.2,0c1-.27,23.91-6.67,47-25.53C198.48,196.67,224,164.72,224,112V56A16,16,0,0,0,208,40Zm-34.32,69.66-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35a8,8,0,0,1,11.32,11.32Z"
+  },
+  {
+    name: "Connector",
+    role: "Bridges external systems and APIs",
+    tint: "green",
+    active: false,
+    icon: "M88.57,35A8,8,0,0,1,103.43,29l8,20A8,8,0,0,1,96.57,55ZM29,103.43l20,8A8,8,0,1,0,55,96.57l-20-8A8,8,0,0,0,29,103.43ZM227,152.57l-20-8A8,8,0,1,0,201,159.43l20,8A8,8,0,0,0,227,152.57ZM159.43,201A8,8,0,0,0,144.57,207l8,20A8,8,0,1,0,167.43,221ZM237.91,18.52a8,8,0,0,0-11.5-.18L174,70.75l-5.38-5.38a32,32,0,0,0-45.28,0L106.14,82.54a4,4,0,0,0,0,5.66l61.7,61.66a4,4,0,0,0,5.66,0l16.74-16.74a32.76,32.76,0,0,0,9.81-22.52,31.82,31.82,0,0,0-9.37-23.17l-5.38-5.37,52.2-52.17A8.22,8.22,0,0,0,237.91,18.52ZM85.64,90.34a8,8,0,0,0-11.49.18,8.22,8.22,0,0,0,.41,11.37L80.67,108,65.34,123.31A31.82,31.82,0,0,0,56,146.47,32.75,32.75,0,0,0,65.77,169l5,4.94L18.49,226.13a8.21,8.21,0,0,0-.61,11.1,8,8,0,0,0,11.72.43L82,185.25l5.37,5.38a32.1,32.1,0,0,0,45.29,0L148,175.31l6.34,6.35a8,8,0,0,0,11.32-11.32Z"
+  }
+] %}
+
+<div class="max-w-4xl">
+  <h1 class="font-serif text-3xl mb-2">Agents</h1>
+  <p class="text-fg-3 text-sm mb-10">Premium coin avatars with tactile materials and engraved icons.</p>
+
+  <div class="rounded-lg border border-line bg-surface-1 overflow-hidden">
+    <div class="px-6 md:px-10 py-16 md:py-24">
+      <p class="text-xl md:text-2xl text-fg-3 leading-snug tracking-tight max-w-3xl mb-16"><span class="text-fg-1">Meet the agents.</span> Every automation in Interloom is carried out by a named agent with a clear role, bounded authority, and a traceable history of every action it takes.</p>
+
+      <div class="agents-board">
+        {% for agent in agents %}
+        <div class="flex items-center gap-5">
+
+          {# ── Coin avatar ── #}
+          <div
+            class="agent-coin shrink-0"
+            style="--agent-tint: var(--tint-{{ agent.tint }})"
+            role="img"
+            aria-label="{{ agent.name }} agent"
+          >
+            <div class="coin-face">
+              <svg class="coin-icon" viewBox="0 0 256 256" aria-hidden="true">
+                <path d="{{ agent.icon }}" fill="currentColor" />
+              </svg>
+            </div>
+          </div>
+
+          <div>
+            <p class="text-fg-1 text-base font-medium">{{ agent.name }}</p>
+            <p class="text-fg-3 text-sm leading-snug mt-1">{{ agent.role }}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
