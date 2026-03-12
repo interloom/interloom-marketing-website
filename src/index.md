@@ -70,7 +70,7 @@ title: Workspace for Business Operations
 <section class="min-h-[40vh] flex flex-col justify-center bg-surface-2">
 <div class="mx-auto max-w-2xl text-center">
 <blockquote class="text-2xl md:text-4xl md:leading-snug font-serif text-fg-3" data-scramble>
-<p>&ldquo;It&rsquo;s about bringing our knowledge and expertise together with data and information to make sure we can take the best risk based decision. <span class="text-fg-1">Interloom&rsquo;s solution didn&rsquo;t just meet the challenge, it helped us think through, more strongly, the art of the possible.</span>&rdquo;</p>
+<p>&ldquo;<span class="text-fg-1">It&rsquo;s about bringing our knowledge and expertise together with data and information to make sure we can take the best risk based decision.</span>&rdquo;</p>
 </blockquote>
 <p class="mt-6 text-sm text-fg-3">&mdash; Penny Seach, Group Chief Underwriting Officer, Zurich Insurance Group</p>
 </div>
