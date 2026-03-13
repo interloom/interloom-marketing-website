@@ -26,7 +26,7 @@ title: Workspace for Business Operations
 <div data-lightbox-group class="mt-16">
 <div class="max-w-5xl mx-auto">
 <button type="button" class="carousel-zoom relative block w-full rounded-lg" aria-label="Expand image: Interloom workflow editor" aria-haspopup="dialog">
-<img src="/images/screenshot1.png" alt="Interloom workflow editor" class="block w-full rounded-lg" width="1920" height="1080" draggable="false" decoding="async">
+<img src="/images/screenshot-workflowcanvas.png" alt="Interloom workflow canvas" class="block w-full rounded-lg" width="1920" height="1080" draggable="false" decoding="async">
 </button>
 </div>
 
@@ -34,37 +34,37 @@ title: Workspace for Business Operations
 
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 items-start max-w-5xl mx-auto">
 <div>
-<p class="text-lg md:text-xl text-fg-3 leading-snug tracking-tight" data-scramble><span class="text-fg-1">Context Graph.</span> As your workflows run, they learn from their own outcomes. Over time they build up a semantic context graph of the entities involves, and crucially: what worked last time, and what didn’t.</p>
-</div>
-<div class="md:col-span-2 min-w-0">
-<button type="button" class="carousel-zoom relative block w-full rounded-lg" aria-label="Expand image: Interloom context layer" aria-haspopup="dialog">
-<img src="/images/screenshot2.png" alt="Interloom context layer" class="block w-full rounded-lg" width="1920" height="1080" loading="lazy" draggable="false" decoding="async">
-</button>
-</div>
-</div>
-
-<hr class="max-w-5xl mx-auto border-t border-line/30 my-16">
-
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 items-start max-w-5xl mx-auto">
-<div>
-<p class="text-lg md:text-xl text-fg-3 leading-snug tracking-tight" data-scramble><span class="text-fg-1">Agents in the loop.</span> Repetitive steps like extraction, triage, and follow-ups run autonomously inside controlled workflows. Agents operate within boundaries you set, and every action is grounded in context your team has already built.</p>
-</div>
-<div class="md:col-span-2 min-w-0">
-<button type="button" class="carousel-zoom relative block w-full rounded-lg" aria-label="Expand image: Interloom agent automation" aria-haspopup="dialog">
-<img src="/images/screenshot3.png" alt="Interloom agent automation" class="block w-full rounded-lg" width="1920" height="1080" loading="lazy" draggable="false" decoding="async">
-</button>
-</div>
-</div>
-
-<hr class="max-w-5xl mx-auto border-t border-line/30 my-16">
-
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 items-start max-w-5xl mx-auto">
-<div>
-<p class="text-lg md:text-xl text-fg-3 leading-snug tracking-tight" data-scramble><span class="text-fg-1">Coding for Everyone.</span> Unlock your subject matter experts to program, test, and deploy tools and integrations using natural language only.</p>
+<p class="text-lg md:text-xl text-fg-3 leading-snug tracking-tight" data-scramble><span class="text-fg-1">Built for Experts.</span> Most automation platforms are built for developers. Interloom is built for the people who actually run your operations. Subject matter experts manage workflows, set governance rules, and build automations in natural language. Because no one will ever know your business better than they do.</p>
 </div>
 <div class="md:col-span-2 min-w-0">
 <button type="button" class="carousel-zoom relative block w-full rounded-lg" aria-label="Expand image: Interloom coding agents with subject matter experts" aria-haspopup="dialog">
-<img src="/images/screenshot4.png" alt="Interloom coding agents with subject matter experts" class="block w-full rounded-lg" width="1920" height="1080" loading="lazy" draggable="false" decoding="async">
+<img src="/images/screenshot-proceduredetail.png" alt="Interloom procedure detail view" class="block w-full rounded-lg" width="1920" height="1080" loading="lazy" draggable="false" decoding="async">
+</button>
+</div>
+</div>
+
+<hr class="max-w-5xl mx-auto border-t border-line/30 my-16">
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 items-start max-w-5xl mx-auto">
+<div>
+<p class="text-lg md:text-xl text-fg-3 leading-snug tracking-tight" data-scramble><span class="text-fg-1">Context Graph.</span> Every case your experts resolve becomes a precedent. Interloom builds these decisions into a context graph, a living operational memory of what worked, what didn’t, and why. Knowledge compounds instead of disappearing.</p>
+</div>
+<div class="md:col-span-2 min-w-0">
+<button type="button" class="carousel-zoom relative block w-full rounded-lg" aria-label="Expand image: Interloom context layer" aria-haspopup="dialog">
+<img src="/images/screenshot-graph.png" alt="Interloom context graph" class="block w-full rounded-lg" width="1920" height="1080" loading="lazy" draggable="false" decoding="async">
+</button>
+</div>
+</div>
+
+<hr class="max-w-5xl mx-auto border-t border-line/30 my-16">
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 items-start max-w-5xl mx-auto">
+<div>
+<p class="text-lg md:text-xl text-fg-3 leading-snug tracking-tight" data-scramble><span class="text-fg-1">Grounded Agents.</span> AI agents handle extraction, triage, and follow-ups autonomously. But only because there is a context foundation to guide them. Every action is grounded in operational precedents your experts have built, not generic training data or static documentation.</p>
+</div>
+<div class="md:col-span-2 min-w-0">
+<button type="button" class="carousel-zoom relative block w-full rounded-lg" aria-label="Expand image: Interloom agent automation" aria-haspopup="dialog">
+<img src="/images/screenshot-casedetailview.png" alt="Interloom case detail view" class="block w-full rounded-lg" width="1920" height="1080" loading="lazy" draggable="false" decoding="async">
 </button>
 </div>
 </div>
