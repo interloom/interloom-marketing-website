@@ -6,6 +6,12 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Widen the site-wide content clamp on large screens */
+@media (min-width: 1536px) {
+  :root {
+    --container-5xl: 72rem;
+  }
+}
 
 /* =================================================================
    Base layer — minimal resets and defaults
@@ -439,6 +445,26 @@ footer::before {
   }
 }
 
+.release-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+@media (width >= 40rem) {
+  .release-grid {
+    grid-template-columns: 280px 1fr;
+    gap: 3rem;
+    align-items: baseline;
+  }
+}
+.release-grid .prose {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+}
+.release-grid .prose p:last-child {
+  margin-bottom: 0;
+}
+
 section.fade-in > * {
   opacity: 0;
   transition: opacity 1.2s ease;
@@ -712,7 +738,7 @@ section.fade-in-stagger > .visible {
 }
 
 .carousel-zoom:hover {
-  transform: translateY(-2px);
+  transform: none;
 }
 
 .carousel-zoom:focus-visible {

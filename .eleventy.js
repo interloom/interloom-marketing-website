@@ -64,8 +64,7 @@ module.exports = function(eleventyConfig) {
   // Copy static assets
   eleventyConfig.addPassthroughCopy({
     "src/images": "images",
-    "src/videos": "videos",
-    "src/css/main.generated.css": "css/main.generated.css"
+    "src/videos": "videos"
   });
   // Copy blog images to permalink-matching output dirs (strip date prefix)
   const fs = require("fs");
