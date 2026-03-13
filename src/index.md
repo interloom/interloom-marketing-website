@@ -15,8 +15,8 @@ title: Workspace for Business Operations
 <svg class="announcement-pill-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a>
 </div>
-<h1 class="max-w-3xl text-4xl md:text-5xl leading-tight md:leading-snug" data-scramble>Your Expertise Turned Into Workflows</h1>
-<p class="text-lg md:text-xl text-fg-3 leading-snug tracking-tight max-w-3xl mt-6" data-scramble="150"><span class="text-fg-2">Deploy production AI workflows in natural language.</span> Designed for your domain experts, powered by a context graph that constantly gets smarter.</p>
+<h1 class="max-w-3xl text-4xl md:text-5xl leading-tight md:leading-snug" data-scramble>Workflows Learning from Operational Experts</h1>
+<p class="text-lg md:text-xl text-fg-3 leading-snug tracking-tight max-w-3xl mt-6" data-scramble="150"><span class="text-fg-2">Extract your operational expertise, hidden in emails, tickets, and call transcripts by transforming them into a context graph, acting as the persistent memory for your organisation.</p>
 <div class="flex flex-wrap items-center gap-3 mt-10">
 <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2eEwV1c880TGi16I1QWst6PTzbawnSjH9mV1e49ihrW3raJf-nKrwUIua0S59qEtt5TkGFmrfr" class="inline-flex items-center h-[32px] bg-fg-1 text-surface-1 px-3 rounded font-medium no-underline hover:opacity-85 transition-opacity">Schedule Demo</a>
 <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2eEwV1c880TGi16I1QWst6PTzbawnSjH9mV1e49ihrW3raJf-nKrwUIua0S59qEtt5TkGFmrfr" class="inline-flex items-center h-[32px] border border-line text-fg-2 px-3 rounded font-medium no-underline hover:bg-surface-3 transition-colors">Join the waitlist</a>
@@ -25,13 +25,14 @@ title: Workspace for Business Operations
 
 <div data-lightbox-group class="mt-16">
 <div class="max-w-5xl mx-auto">
-<p class="text-lg md:text-xl text-fg-3 leading-snug tracking-tight max-w-2xl mb-8" data-scramble><span class="text-fg-1">Built for operational experts.</span> Build workflows by describing them in natural language. Ask the AI assistant to add code where you need it. Combine expert intelligence, artificial intelligence and traditional code on a workflow canvas.</p>
 <button type="button" class="carousel-zoom relative block w-full rounded-lg" aria-label="Expand image: Interloom workflow editor" aria-haspopup="dialog">
 <img src="/images/screenshot1.png" alt="Interloom workflow editor" class="block w-full rounded-lg" width="1920" height="1080" draggable="false" decoding="async">
 </button>
 </div>
 
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 items-start max-w-5xl mx-auto mt-16">
+<hr class="max-w-5xl mx-auto border-t border-line/30 my-16">
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 items-start max-w-5xl mx-auto">
 <div>
 <p class="text-lg md:text-xl text-fg-3 leading-snug tracking-tight" data-scramble><span class="text-fg-1">Context Graph.</span> As your workflows run, they learn from their own outcomes. Over time they build up a semantic context graph of the entities involves, and crucially: what worked last time, and what didn’t.</p>
 </div>
@@ -42,7 +43,9 @@ title: Workspace for Business Operations
 </div>
 </div>
 
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 items-start max-w-5xl mx-auto mt-16">
+<hr class="max-w-5xl mx-auto border-t border-line/30 my-16">
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 items-start max-w-5xl mx-auto">
 <div>
 <p class="text-lg md:text-xl text-fg-3 leading-snug tracking-tight" data-scramble><span class="text-fg-1">Agents in the loop.</span> Repetitive steps like extraction, triage, and follow-ups run autonomously inside controlled workflows. Agents operate within boundaries you set, and every action is grounded in context your team has already built.</p>
 </div>
@@ -53,7 +56,9 @@ title: Workspace for Business Operations
 </div>
 </div>
 
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 items-start max-w-5xl mx-auto mt-16">
+<hr class="max-w-5xl mx-auto border-t border-line/30 my-16">
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 items-start max-w-5xl mx-auto">
 <div>
 <p class="text-lg md:text-xl text-fg-3 leading-snug tracking-tight" data-scramble><span class="text-fg-1">Coding for Everyone.</span> Unlock your subject matter experts to program, test, and deploy tools and integrations using natural language only.</p>
 </div>
