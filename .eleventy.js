@@ -1,5 +1,6 @@
 const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
+const hljs = require("highlight.js");
 
 const slugify = (s) =>
   s.toLowerCase().replace(/[^\w\s-]/g, "").replace(/\s+/g, "-").replace(/-+/g, "-").trim();
@@ -7,7 +8,20 @@ const slugify = (s) =>
 module.exports = function(eleventyConfig) {
 
   // Markdown with heading anchors (clean slugs, no special chars)
-  const md = markdownIt({ html: true })
+  const md = markdownIt({
+    html: true,
+    highlight(str, lang) {
+      const language = typeof lang === "string" ? lang.trim().toLowerCase() : "";
+      const escapedCode = md.utils.escapeHtml(str);
+
+      if (language && hljs.getLanguage(language)) {
+        const highlighted = hljs.highlight(str, { language }).value;
+        return `<pre><code class="hljs language-${md.utils.escapeHtml(language)}">${highlighted}</code></pre>`;
+      }
+
+      return `<pre><code${language ? ` class="language-${md.utils.escapeHtml(language)}"` : ""}>${escapedCode}</code></pre>`;
+    }
+  })
     .use(markdownItAnchor, { permalink: false, slugify });
   eleventyConfig.setLibrary("md", md);
 

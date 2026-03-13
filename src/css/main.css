@@ -152,6 +152,40 @@
   white-space: pre;
 }
 
+.prose pre code.hljs {
+  color: inherit;
+}
+
+.prose .hljs-punctuation,
+.prose .hljs-operator {
+  color: color-mix(in srgb, var(--color-gray-100) 78%, var(--color-gray-500));
+}
+
+.prose .hljs-attr,
+.prose .hljs-attribute,
+.prose .hljs-property {
+  color: #7dd3fc;
+}
+
+.prose .hljs-string {
+  color: #86efac;
+}
+
+.prose .hljs-number,
+.prose .hljs-literal {
+  color: #f9a8d4;
+}
+
+.prose .hljs-keyword,
+.prose .hljs-built_in,
+.prose .hljs-symbol {
+  color: #fcd34d;
+}
+
+.prose .hljs-comment {
+  color: #94a3b8;
+}
+
 .prose table {
   width: 100%;
   display: block;
