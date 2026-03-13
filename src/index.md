@@ -113,35 +113,6 @@ title: Workspace for Business Operations
 
 <section>
 <div class="mx-auto max-w-5xl">
-<p class="text-xl md:text-2xl text-fg-3 leading-snug tracking-tight max-w-3xl" data-scramble><span class="text-fg-1">Experts in the loop.</span> Interloom does not replace expert judgment. It turns expert judgment into the operating logic that guides agents, evaluates decisions, and controls when tools and integrations can act.</p>
-<div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-4">
-<article class="rounded-lg border border-line bg-surface-1 flex flex-col overflow-hidden">
-<img src="{{ '/images/expert-guidance.svg' | url }}" alt="Precedent cases feeding into execution logic" class="w-full border-b border-line bg-surface-2" style="height: 160px; object-fit: cover;">
-<div style="padding: 1.25rem;">
-<h3 class="text-fg-1 text-base font-medium">Grounded in expert guidance</h3>
-<p class="mt-2 text-fg-3 text-sm leading-relaxed">Workflows learn from precedent. Every completed case adds context for what good execution looks like in the real world.</p>
-</div>
-</article>
-<article class="rounded-lg border border-line bg-surface-1 flex flex-col overflow-hidden">
-<img src="{{ '/images/expert-evaluations.svg' | url }}" alt="Thumbs up and thumbs down evaluation" class="w-full border-b border-line bg-surface-2" style="height: 160px; object-fit: cover;">
-<div style="padding: 1.25rem;">
-<h3 class="text-fg-1 text-base font-medium">Governed by expert evaluations</h3>
-<p class="mt-2 text-fg-3 text-sm leading-relaxed">For every decision an agent makes, Interloom can compare the outcome against expert evaluations and use that feedback to improve future runs.</p>
-</div>
-</article>
-<article class="rounded-lg border border-line bg-surface-1 flex flex-col overflow-hidden">
-<img src="{{ '/images/expert-approvals.svg' | url }}" alt="Human approving a proposed action" class="w-full border-b border-line bg-surface-2" style="height: 160px; object-fit: cover;">
-<div style="padding: 1.25rem;">
-<h3 class="text-fg-1 text-base font-medium">Controlled by expert approvals</h3>
-<p class="mt-2 text-fg-3 text-sm leading-relaxed">Tool use, integrations, and high-impact actions stay inside approval boundaries your operators define.</p>
-</div>
-</article>
-</div>
-</div>
-</section>
-
-<section>
-<div class="mx-auto max-w-5xl">
 <p class="text-xl md:text-2xl text-fg-3 leading-snug tracking-tight max-w-2xl" data-scramble><span class="text-fg-1">Integrations.</span> Connect to the tools your team already uses. Interloom reads, writes, and syncs data across your stack so workflows stay grounded in live systems.</p>
 <div class="mt-16 grid grid-cols-2 md:grid-cols-3 gap-4">
 <div class="flex items-center gap-3 rounded-lg border border-line bg-surface-1 px-4 py-4">

@@ -11,22 +11,28 @@ layout: base.njk
     <div class="px-6 md:px-10 py-16 md:py-24">
       <p class="text-xl md:text-2xl text-fg-3 leading-snug tracking-tight max-w-3xl"><span class="text-fg-1">Experts in the loop.</span> Interloom does not replace expert judgment. It turns expert judgment into the operating logic that guides agents, evaluates decisions, and controls when tools and integrations can act.</p>
 
-      <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-4">
-        {% for card in [
-          { title: "Grounded in expert guidance", text: "Workflows learn from precedent. Every completed case adds context for what good execution looks like in the real world." },
-          { title: "Governed by expert evaluations", text: "For every decision an agent makes, Interloom can compare the outcome against expert evaluations and use that feedback to improve future runs." },
-          { title: "Controlled by expert approvals", text: "Tool use, integrations, and high-impact actions stay inside approval boundaries your operators define." }
-        ] %}
+      <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-4">
         <article class="rounded-lg border border-line bg-surface-2 flex flex-col overflow-hidden">
-          <div class="border-b border-line bg-surface-3 h-40 flex items-center justify-center">
-            <span class="text-fg-4 text-xs font-mono">[ illustration ]</span>
-          </div>
+          <img src="/images/expert-guidance.svg" alt="Precedent cases feeding into execution logic" class="w-full border-b border-line bg-surface-3" style="height: 160px; object-fit: cover;">
           <div class="p-5">
-            <h3 class="text-fg-1 text-base font-medium">{{ card.title }}</h3>
-            <p class="mt-2 text-fg-3 text-sm leading-relaxed">{{ card.text }}</p>
+            <h3 class="text-fg-1 text-base font-medium">Grounded in expert guidance</h3>
+            <p class="mt-2 text-fg-3 text-sm leading-relaxed">Workflows learn from precedent. Every completed case adds context for what good execution looks like in the real world.</p>
           </div>
         </article>
-        {% endfor %}
+        <article class="rounded-lg border border-line bg-surface-2 flex flex-col overflow-hidden">
+          <img src="/images/expert-evaluations.svg" alt="Thumbs up and thumbs down evaluation" class="w-full border-b border-line bg-surface-3" style="height: 160px; object-fit: cover;">
+          <div class="p-5">
+            <h3 class="text-fg-1 text-base font-medium">Governed by expert evaluations</h3>
+            <p class="mt-2 text-fg-3 text-sm leading-relaxed">For every decision an agent makes, Interloom can compare the outcome against expert evaluations and use that feedback to improve future runs.</p>
+          </div>
+        </article>
+        <article class="rounded-lg border border-line bg-surface-2 flex flex-col overflow-hidden">
+          <img src="/images/expert-approvals.svg" alt="Human approving a proposed action" class="w-full border-b border-line bg-surface-3" style="height: 160px; object-fit: cover;">
+          <div class="p-5">
+            <h3 class="text-fg-1 text-base font-medium">Controlled by expert approvals</h3>
+            <p class="mt-2 text-fg-3 text-sm leading-relaxed">Tool use, integrations, and high-impact actions stay inside approval boundaries your operators define.</p>
+          </div>
+        </article>
       </div>
     </div>
   </div>
