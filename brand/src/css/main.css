@@ -5,6 +5,13 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Widen the site-wide content clamp on large screens */
+@media (min-width: 1536px) {
+  :root {
+    --container-5xl: 72rem;
+  }
+}
+
 /* =================================================================
    Scaffold grid — lean version
    ================================================================= */

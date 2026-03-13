@@ -16,10 +16,10 @@ title: Workspace for Business Operations
 </a>
 </div>
 <h1 class="max-w-3xl text-4xl md:text-5xl leading-tight md:leading-snug" data-scramble>Workflows Learning from Operational Experts</h1>
-<p class="text-lg md:text-xl text-fg-3 leading-snug tracking-tight max-w-3xl mt-6" data-scramble="150"><span class="text-fg-2">Extract your operational expertise, hidden in emails, tickets, and call transcripts by transforming them into a context graph, acting as the persistent memory for your organisation.</p>
-<div class="flex flex-wrap items-center gap-3 mt-10">
+<p class="text-lg md:text-xl text-fg-3 leading-snug tracking-tight max-w-3xl mt-6" data-scramble="150"><span class="text-fg-2">Extract the operational expertise, hidden in emails, tickets, and call transcripts by transforming them into a <a href="{{ '/product/context-graph/' | url }}" class="text-fg-1 no-underline decoration-1 decoration-current/20 underline-offset-[3px] hover:underline hover:decoration-current/50 transition-colors">context graph</a> and ground production grade AI workflows.</p>
+<div class="flex flex-wrap items-center gap-6 mt-10">
 <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2eEwV1c880TGi16I1QWst6PTzbawnSjH9mV1e49ihrW3raJf-nKrwUIua0S59qEtt5TkGFmrfr" class="inline-flex items-center h-[32px] bg-fg-1 text-surface-1 px-3 rounded font-medium no-underline hover:opacity-85 transition-opacity">Schedule Demo</a>
-<a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2eEwV1c880TGi16I1QWst6PTzbawnSjH9mV1e49ihrW3raJf-nKrwUIua0S59qEtt5TkGFmrfr" class="inline-flex items-center h-[32px] border border-line text-fg-2 px-3 rounded font-medium no-underline hover:bg-surface-3 transition-colors">Join the waitlist</a>
+<span class="font-mono text-xs text-fg-3 tracking-wide uppercase">Facility Management <span class="text-fg-4 mx-1">&middot;</span> Insurance <span class="text-fg-4 mx-1">&middot;</span> Banking</span>
 </div>
 </div>
 
@@ -192,7 +192,6 @@ title: Workspace for Business Operations
 <p class="text-xl md:text-2xl text-fg-3 leading-snug tracking-tight max-w-2xl" data-scramble>Every week your team spends on manual workflows is a week your competitors are not. <span class="text-fg-1">Start deploying production workflows with a forward-deployed Interloom engineer.</span></p>
 <div class="flex gap-3 mt-10">
 <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2eEwV1c880TGi16I1QWst6PTzbawnSjH9mV1e49ihrW3raJf-nKrwUIua0S59qEtt5TkGFmrfr" class="inline-flex items-center h-[32px] bg-fg-1 text-surface-1 px-3 rounded font-medium no-underline hover:opacity-85 transition-opacity">Book a demo</a>
-<a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2eEwV1c880TGi16I1QWst6PTzbawnSjH9mV1e49ihrW3raJf-nKrwUIua0S59qEtt5TkGFmrfr" class="inline-flex items-center h-[32px] border border-line text-fg-2 px-3 rounded font-medium no-underline hover:bg-surface-3 transition-colors">Join the waitlist</a>
 </div>
 </div>
 
